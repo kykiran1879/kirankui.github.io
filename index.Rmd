@@ -2,11 +2,23 @@
 title: "Kiran Yan Kui"
 output: 
   html_document:
-    toc: FALSE
-    toc_float: FALSE
+    toc: TRUE
+    toc_float: TRUE
     theme: spacelab
 ---
 
-# This is Kiran's Website
+## Introduction
+__Kiran Kui__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at Tufts CTSI and [ADAPT Coalition](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/).
+
+Kiran is passionate about addressing social and structural determinants to promote health equity within Asian American, Native Hawaiian, and Pacific Islander (AA & NH/PI) communities. Her research explores the intersection of climate change, food insecurity, and chronic health outcomes, aiming to shape culturally informed policies that mitigate health disparities in underserved populations.
+
+Kiran holds an MPH in Epidemiology and Applied Biostatistics from Columbia University. Before joining Tufts, she played an important role on the research team at the NYU Center for the Study of Asian American Health (CSAAH), where her work focused on  addressing food insecurity within AA & NH/PI communities through a community-engaged approach to develop highly effective, culturally tailored interventions.
+
+Prior to earning her MPH, she also earned her BSc. and served as a researcher at the National University of Singapore, examining the impact of dietary behaviors and physical activity among children and adolescents on chronic health outcomes in Asia.
+
+## Useful Tools for Data Science 
+
+
+
 
 ![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)

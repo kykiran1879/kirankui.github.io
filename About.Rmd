@@ -8,3 +8,7 @@ output:
 ---
 *Website developed by Kiran with R and Github programming tools*
 
+## Important Links for Heat Stress and Air Pollution
+
+* [U.S. National Weather Service (NWS) Wet Bulb Globe Temperature](https://www.weather.gov/tsa/wbgt)
+* [U.S. Environmental Protection Agency (EPA) Air Quality](https://www.airnow.gov/?city=Boston&state=MA&country=USA)

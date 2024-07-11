@@ -57,9 +57,3 @@ __Nutritional Epidemiology skills: __
 
 6. [Edney S, Chua XH, Müller AM, Kui KY, Müller‐Riemenschneider F. MHealth interventions targeting movement behaviors in Asia: A scoping review. Obesity Reviews. 2021;23(4). doi:10.1111/obr.13396.](https://pubmed.ncbi.nlm.nih.gov/34927346/)
 
-## Useful Tools for Data Science 
-
-
-
-
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)

@@ -1,12 +1,12 @@
 ---
-title: "My awesome website"
+title: "Kiran Yan Kui"
 output: 
   html_document:
-    toc: true
-    toc_float: true
-    theme: cerulean
+    toc: FALSE
+    toc_float: FALSE
+    theme: spacelab
 ---
 
-# This is Jeff's awesome website
+# This is Kiran's Website
 
 ![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)

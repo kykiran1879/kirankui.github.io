@@ -1,9 +1,12 @@
 ---
 title: "Heat Stress"
-author: "Kiran Kui"
-date: "2024-07-11"
-output: html_document
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: spacelab
 ---
+*Website developed by Kiran with R and Github programming tools*
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -52,6 +55,8 @@ box_ggplot =
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ggplotly(box_ggplot)
+
+box_ggplot
 
 ```
 

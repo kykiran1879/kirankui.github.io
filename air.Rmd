@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed by Kiran with R and Github programming tools*
+*Dashboard developed by Kiran using the Plotly R package*
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -41,8 +41,11 @@ ma_pm2_5_summary |>
   mutate(text_label = str_c("PM2.5 Average= ", avg_pm2_5, "ug/m3", "\nSite: ", local_site_name)) |> 
   plot_ly(
     x = ~latitude, y = ~longitude, type = "scatter", mode = "markers",
-    color = ~avg_pm2_5, text = ~text_label, alpha = 1.0) 
+    color = ~avg_pm2_5, text = ~text_label, alpha = 1.0)
+```
 
+
+```{r, include=FALSE}
 # Create text label
 ma_pm2_5_summary <- ma_pm2_5_summary %>%
   mutate(text_label = str_c(
@@ -60,7 +63,16 @@ air_plot <-
   marker = list(
     size = ~avg_pm2_5*2,  # Adjust size multiplier as needed
     opacity = 60  # Adjust opacity if needed
-  ))
+  )) %>%
+layout(
+  title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023",  # Title of the plot
+  xaxis = list(title = "Latitude"),  # X-axis label
+  yaxis = list(title = "Longitude"),  # Y-axis label
+  colorbar = list(
+    title = list(text = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023", side = "right"),
+    tickformat = ".2f"  # Format ticks as 2 decimal places
+  )
+)
 
 ```
 
@@ -69,4 +81,6 @@ air_plot <-
 air_plot
 
 ```
+
+*data from EPA*
 

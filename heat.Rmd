@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed by Kiran with R and Github programming tools*
+*Dashboard developed by Kiran using the Plotly R package*
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -47,7 +47,7 @@ box_ggplot =
   ggplot(aes(x = date, y = tmax_f, fill = factor(date))) +
   geom_boxplot() +
    labs(
-    title = "Daily Maximum Temperature Distribution in July-Aug 2023",
+    title = "Daily Maximum Temperature Distribution across Massachusetts in July-Aug 2023",
     x = "Date",
     y = "Maximum Temperature (°F)",
     fill = "Date"
@@ -64,3 +64,4 @@ ggplotly(box_ggplot)
 box_ggplot
 ```
 
+*data from NOAA*

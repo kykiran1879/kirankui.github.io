@@ -58,7 +58,8 @@ box_ggplot =
 
 ```
 
-```{r}
+```{r, warning=FALSE}
+
 ggplotly(box_ggplot)
 
 ```

@@ -76,7 +76,7 @@ layout(
 
 ```
 
-```{r}
+```{r, warning=FALSE}
 
 air_plot
 

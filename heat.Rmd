@@ -54,10 +54,13 @@ box_ggplot =
   ) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-ggplotly(box_ggplot)
 
-box_ggplot
 
 ```
 
+```{r}
+ggplotly(box_ggplot)
+
+box_ggplot
+```
 

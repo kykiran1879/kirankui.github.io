@@ -3,6 +3,8 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
+    - text: "Heat Stress"
+      href: heat.html
     - text: "About"
       href: About.html
     - icon: fa-envelope fa-lg

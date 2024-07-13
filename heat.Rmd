@@ -1,0 +1,59 @@
+---
+title: "Heat Stress"
+author: "Kiran Kui"
+date: "2024-07-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(rnoaa)
+library(ggplot2)
+library(plotly)
+
+
+```
+
+```{r, include=FALSE}
+# Get a list of all NY station IDs
+stations <- ghcnd_stations()
+
+mastationids <-  stations %>% 
+  filter(state == "MA") %>% 
+  distinct(id)
+
+# Pull the desired weather data for all of these stations
+
+madat <- meteo_pull_monitors(mastationids$id, 
+                             date_min = "2023-07-01", 
+                             date_max = "2023-08-31",
+                             var=c("id", "date", "TMAX", "TMIN"))
+
+madat = madat %>% 
+  dplyr::select(id, date, tmax, tmin, everything()) %>% 
+  drop_na(id, date, tmax, tmin) %>% 
+  mutate(tmax_c = tmax/10,
+         tmax_f = tmax_c*1.8 + 32)
+
+```
+
+
+```{r, include=FALSE}
+box_ggplot = 
+  madat |> 
+  ggplot(aes(x = date, y = tmax_f, fill = factor(date))) +
+  geom_boxplot() +
+   labs(
+    title = "Daily Maximum Temperature Distribution in July-Aug 2023",
+    x = "Date",
+    y = "Maximum Temperature (°F)",
+    fill = "Date"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+ggplotly(box_ggplot)
+
+```
+
+

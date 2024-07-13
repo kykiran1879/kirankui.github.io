@@ -58,6 +58,7 @@ air_plot <-
   x = ~latitude, y = ~longitude,
   type = "scatter", mode = "markers",
   color = ~avg_pm2_5,
+  colors = "viridis",
   text = ~text_label,
   alpha = 1.0,
   marker = list(
@@ -66,13 +67,8 @@ air_plot <-
   )) %>%
 layout(
   title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023",  # Title of the plot
-  xaxis = list(title = "Latitude"),  # X-axis label
-  yaxis = list(title = "Longitude"),  # Y-axis label
-  colorbar = list(
-    title = list(text = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023", side = "right"),
-    tickformat = ".2f"  # Format ticks as 2 decimal places
-  )
-)
+  xaxis = list(title = "Latitude"),  # X-axis labels
+  yaxis = list(title = "Longitude"))
 
 ```
 

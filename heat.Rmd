@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Dashboard developed by Kiran using the Plotly R package*
+*Dashboard developed by Kiran using the Plotly R package, data from NOAA*
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -61,7 +61,4 @@ box_ggplot =
 ```{r}
 ggplotly(box_ggplot)
 
-box_ggplot
 ```
-
-*data from NOAA*

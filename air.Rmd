@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Dashboard developed by Kiran using the Plotly R package*
+*Dashboard developed by Kiran using the Plotly R package, data from EPA*
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -81,6 +81,3 @@ layout(
 air_plot
 
 ```
-
-*data from EPA*
-

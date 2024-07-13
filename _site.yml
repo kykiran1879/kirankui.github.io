@@ -11,8 +11,6 @@ navbar:
       href: mailto:<yk2959@caa.columbia.com>
     - icon: fa-linkedin fa-lg
       href: https://www.linkedin.com/in/kiranyankui/
-      
-    
 
 output:
   html_document:

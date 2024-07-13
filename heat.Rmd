@@ -12,7 +12,6 @@ library(rnoaa)
 library(ggplot2)
 library(plotly)
 
-
 ```
 
 ```{r, include=FALSE}

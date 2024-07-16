@@ -7,7 +7,7 @@ navbar:
       href: About.html
     - text: "Heat"
       href: heat.html
-    - text: "Air Pollution"
+    - text: "PM2.5"
       href: air.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>

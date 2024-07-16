@@ -1,5 +1,5 @@
 ---
-title: "Air Pollution"
+title: "PM2.5"
 output: 
   html_document:
     toc: TRUE
@@ -26,7 +26,9 @@ ma_pm2_5 = read_csv("./data/ma_pm2_5.csv") %>%
          local_site_name = tolower(local_site_name)) %>% 
     rename(pm_2_5_ugm3_daily = daily_mean_pm2_5_concentration,
            latitude = site_latitude,
-           longitude = site_longitude) 
+           longitude = site_longitude) %>% 
+      filter(date >= "2023-07-01" & date <= "2023-08-31") 
+
 
 ma_pm2_5_summary = ma_pm2_5 %>% 
     filter(date >= "2023-07-01" & date <= "2023-08-31") %>% 
@@ -59,6 +61,9 @@ air_boxplot <- ma_pm2_5 %>%
     color = ~local_site_name,
     type = "box",
     colors = "viridis"
+  ) %>%  
+  layout(
+    title = "Boxplot of Daily PM2.5 Concentrations by Sites in MA across Massachusetts in July-Aug 2023"
   )
   
 

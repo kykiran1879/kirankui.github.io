@@ -5,7 +5,6 @@ output:
     orientation: columns
     vertical_layout: fill
 ---
-*Dashboard developed by Kiran using the Plotly R package, data from EPA*
 
 ```{r setup, include=FALSE}
 library(tidyverse)

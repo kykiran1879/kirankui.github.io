@@ -80,16 +80,16 @@ Column {data-width=650}
 
 ```{r, warning=FALSE}
 
-air_plot
+air_boxplot
 
 ```
 
-Column {data-width=650}
+Column {data-width=350}
 -----------------------------------------------------------------------
 
 ```{r, warning=FALSE}
 
-air_boxplot
+air_plot
 
 ```
 

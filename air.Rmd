@@ -1,10 +1,9 @@
 ---
 title: "Air Pollution"
 output: 
-  html_document:
-    toc: TRUE
-    toc_float: TRUE
-    theme: spacelab
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 *Dashboard developed by Kiran using the Plotly R package, data from EPA*
 
@@ -14,6 +13,7 @@ library(dplyr)
 library(rnoaa)
 library(ggplot2)
 library(plotly)
+library(flexdashboard)
 
 ```
 
@@ -60,18 +60,36 @@ layout(
   title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023")
 ```
 
+
+
+```{r, include=FALSE}
+air_boxplot <- ma_pm2_5 %>%
+  plot_ly(
+    y = ~pm_2_5_ugm3_daily,
+    color = ~local_site_name,
+    type = "box",
+    colors = "viridis"
+  ) %>%
+  layout(
+    title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023")
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
 ```{r, warning=FALSE}
 
 air_plot
 
 ```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
 
-```{r}
-ma_pm2_5 |> 
-  plot_ly(y = ~pm_2_5_ugm3_daily, color = ~local_site_name, type = "box", colors = "viridis") %>%
-layout(
-  title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023") 
+```{r, warning=FALSE}
+
+air_boxplot
 
 ```
 

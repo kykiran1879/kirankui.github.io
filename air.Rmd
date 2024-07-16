@@ -31,11 +31,7 @@ ma_pm2_5_summary = ma_pm2_5 %>%
     filter(date >= "2023-07-01" & date <= "2023-08-31") %>% 
       group_by(site_id, local_site_name, latitude, longitude) %>% 
       summarize(avg_pm2_5 = mean(pm_2_5_ugm3_daily))
-  
 
-```
-
-```{r, include=FALSE}
 # Create text label
 ma_pm2_5_summary <- ma_pm2_5_summary %>%
   mutate(text_label = str_c(
@@ -55,11 +51,7 @@ air_plot <-
     size = ~avg_pm2_5*4,  
     opacity = 0.5  
   )) 
-```
 
-
-
-```{r, include=FALSE}
 air_boxplot <- ma_pm2_5 %>%
   plot_ly(
     y = ~pm_2_5_ugm3_daily,
@@ -67,10 +59,11 @@ air_boxplot <- ma_pm2_5 %>%
     type = "box",
     colors = "viridis"
   )
+  
 
 ```
 
-Column {data-width=750}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
 ```{r}
@@ -79,7 +72,7 @@ air_boxplot
 
 ```
 
-Column {data-width=350}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
 ```{r}

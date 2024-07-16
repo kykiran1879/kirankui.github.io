@@ -74,10 +74,10 @@ air_boxplot <- ma_pm2_5 %>%
 
 ```
 
-Column {data-width=650}
+Column {data-width=750}
 -----------------------------------------------------------------------
 
-```{r, warning=FALSE}
+```{r}
 
 air_boxplot
 
@@ -86,7 +86,7 @@ air_boxplot
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-```{r, warning=FALSE}
+```{r}
 
 air_plot
 

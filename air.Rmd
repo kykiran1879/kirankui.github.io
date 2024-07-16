@@ -1,11 +1,11 @@
 ---
 title: "Air Pollution"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: spacelab
 ---
-
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(dplyr)

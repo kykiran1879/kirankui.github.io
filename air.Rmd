@@ -54,9 +54,7 @@ air_plot <-
   marker = list(
     size = ~avg_pm2_5*4,  
     opacity = 0.5  
-  )) %>%
-layout(
-  title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023")
+  )) 
 ```
 
 
@@ -68,9 +66,7 @@ air_boxplot <- ma_pm2_5 %>%
     color = ~local_site_name,
     type = "box",
     colors = "viridis"
-  ) %>%
-  layout(
-    title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023")
+  )
 
 ```
 

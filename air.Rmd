@@ -22,7 +22,8 @@ library(plotly)
 ma_pm2_5 = read_csv("./data/ma_pm2_5.csv") %>% 
   janitor::clean_names() %>% 
   drop_na(local_site_name) %>% 
-  mutate(date = as.Date(date, format = "%m/%d/%Y")) %>% 
+  mutate(date = as.Date(date, format = "%m/%d/%Y"),
+         local_site_name = tolower(local_site_name)) %>% 
     rename(pm_2_5_ugm3_daily = daily_mean_pm2_5_concentration,
            latitude = site_latitude,
            longitude = site_longitude) 
@@ -34,16 +35,6 @@ ma_pm2_5_summary = ma_pm2_5 %>%
   
 
 ```
-
-
-```{r, include=FALSE}
-ma_pm2_5_summary |>
-  mutate(text_label = str_c("PM2.5 Average= ", avg_pm2_5, "ug/m3", "\nSite: ", local_site_name)) |> 
-  plot_ly(
-    x = ~latitude, y = ~longitude, type = "scatter", mode = "markers",
-    color = ~avg_pm2_5, text = ~text_label, alpha = 1.0)
-```
-
 
 ```{r, include=FALSE}
 # Create text label
@@ -62,14 +53,11 @@ air_plot <-
   text = ~text_label,
   alpha = 1.0,
   marker = list(
-    size = ~avg_pm2_5*2,  # Adjust size multiplier as needed
-    opacity = 60  # Adjust opacity if needed
+    size = ~avg_pm2_5*4,  
+    opacity = 0.5  
   )) %>%
 layout(
-  title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023",  # Title of the plot
-  xaxis = list(title = "Latitude"),  # X-axis labels
-  yaxis = list(title = "Longitude"))
-
+  title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023")
 ```
 
 ```{r, warning=FALSE}
@@ -77,3 +65,13 @@ layout(
 air_plot
 
 ```
+
+
+```{r}
+ma_pm2_5 |> 
+  plot_ly(y = ~pm_2_5_ugm3_daily, color = ~local_site_name, type = "box", colors = "viridis") %>%
+layout(
+  title = "Average PM2.5 (µg/m³) across Sites in MA in July-Aug 2023") 
+
+```
+

@@ -64,17 +64,6 @@ air_plot <- plot_ly(
   )
 
 
-
-air_boxplot <- ma_pm2_5 %>%
-  plot_ly(
-    y = ~pm_2_5_ugm3_daily,
-    color = ~local_site_name,
-    type = "box",
-    colors = "viridis"
-  ) %>%  
-  layout(
-    title = "Boxplot of Daily PM2.5 Concentrations by Sites in MA across Massachusetts in July-Aug 2023"
-  )
   
 
 ```

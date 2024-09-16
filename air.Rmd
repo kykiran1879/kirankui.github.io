@@ -6,6 +6,8 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
+*Dashboard developed by Kiran using the Plotly R package, data from NOAA*
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(dplyr)
@@ -15,7 +17,6 @@ library(plotly)
 library(flexdashboard)
 
 ```
-*Dashboard developed by Kiran using the Plotly R package, data from EPA*
 
 ```{r, include=FALSE}
 
@@ -68,14 +69,6 @@ air_boxplot <- ma_pm2_5 %>%
   
 
 ```
-
-
-```{r}
-
-air_boxplot
-
-```
-
 
 ```{r}
 

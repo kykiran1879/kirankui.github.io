@@ -12,3 +12,10 @@ output:
 
 * [U.S. National Weather Service (NWS) Wet Bulb Globe Temperature](https://www.weather.gov/tsa/wbgt)
 * [U.S. Environmental Protection Agency (EPA) Air Quality](https://www.airnow.gov/?city=Boston&state=MA&country=USA)
+
+#### World Health Organization (WHO) - How air pollution impacts your body
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GVBeY1jSG9Y?si=cONzdg1ZO7GnC-2h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+

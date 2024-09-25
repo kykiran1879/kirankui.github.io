@@ -64,11 +64,9 @@ air_plot <- plot_ly(
   )
 
 
-  
-
 ```
 
-```{r}
+```{r, echo=FALSE}
 
 air_plot
 

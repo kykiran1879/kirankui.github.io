@@ -19,21 +19,11 @@ library(plotly)
 
 ```{r, include=FALSE}
 # Get a list of all NY station IDs
-stations <- ghcnd_stations()
+nyc_noaa_df <-read_csv("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/nynoaadat.csv")
 
-mastationids <-  stations %>% 
-  filter(state == "MA") %>% 
-  distinct(id)
-
-# Pull the desired weather data for all of these stations
-
-madat <- meteo_pull_monitors(mastationids$id, 
-                             date_min = "2023-07-01", 
-                             date_max = "2023-08-31",
-                             var=c("id", "date", "TMAX", "TMIN"))
-
-madat = madat %>% 
+nyc_noaa_df = nyc_noaa_df %>% 
   dplyr::select(id, date, tmax, tmin, everything()) %>% 
+  filter(date >= as.Date("2010-07-01") & date <= as.Date("2010-08-31")) %>% 
   drop_na(id, date, tmax, tmin) %>% 
   mutate(tmax_c = tmax/10,
          tmax_f = tmax_c*1.8 + 32)
@@ -41,24 +31,22 @@ madat = madat %>%
 ```
 
 
-```{r, include=FALSE}
+```{r, echo=FALSE}
 box_ggplot = 
-  madat |> 
+  nyc_noaa_df |> 
   ggplot(aes(x = date, y = tmax_f, fill = factor(date))) +
   geom_boxplot() +
    labs(
-    title = "Daily Maximum Temperature Distribution across Massachusetts in July-Aug 2023",
+    title = "Daily Maximum Temperature Distribution across NY in July-Aug 2010",
     x = "Date",
     y = "Maximum Temperature (°F)",
     fill = "Date"
   ) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-
-
 ```
 
-```{r, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 
 ggplotly(box_ggplot)
 

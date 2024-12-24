@@ -7,6 +7,8 @@ navbar:
       href: About.html
     - text: "Heat"
       href: heat.html
+    - text: "Maps"
+      href: gis.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>
     - icon: fa-linkedin fa-lg

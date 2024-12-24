@@ -19,15 +19,20 @@ Her research centers on the intersection of __environmental justice, food justic
 __Advanced statistical/ data analysis skills: __
 
 * Predictive Disease Modelling using Linear, Logistic, Cluster and Cox Regression Models
-* Programming skills in R, SAS, and GitHub
+* Programming skills in R, SAS, GitHub, Python
 * Spatial Analysis skills in QGIS, Geoda
+
+__Environmental Epidemiology skills:__
+
+* Time-series Analysis 
+* Mass Spectrometry Urinary, Blood Data Analysis 
+* Risk Assessment
 
 __Nutritional Epidemiology skills: __
 
 * Advanced Data Analysis of NHANES Dietary Datasets (2011-2020)
 * 24-hour Dietary Recalls
 * Food Frequency Questionnaires
-* Food Coding using Dietplan7
 
 ## Experience/Education
 

@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Dashboard developed by Kiran using the tidycensus, sf and tmap packages, data from US Census*
+*Maps developed by Kiran using the tidycensus, sf and tmap packages, data from US Census*
 
 ```{r setup, include=FALSE}
 library(tidycensus) 

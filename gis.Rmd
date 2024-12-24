@@ -9,6 +9,7 @@ output:
 *Maps developed by Kiran using the tidycensus, sf and tmap packages, data from US Census*
 
 ```{r setup, include=FALSE}
+library(readr)
 library(tidycensus) 
 library(tidyverse) 
 library(sf) 
@@ -17,12 +18,7 @@ library(tmaptools)
 ```
 
 ```{r, include=FALSE}
-census_api_key("d696f22b515caa8ef3ea357f14aae75cdf1f745d")
-
-census_data <- load_variables(year = 2020, 
-                              dataset = "acs5", 
-                              cache = TRUE) # download all variables
-View(census_data)
+ma_data <-read_csv("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/census_data.csv")
 
 ```
 
@@ -36,8 +32,6 @@ ma_data <- get_acs(state = "ma",
                    geometry = TRUE, 
                    survey = "acs5",
                    output = "wide")
-
-class(ma_data)
 
 ```
 

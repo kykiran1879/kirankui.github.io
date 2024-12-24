@@ -1,0 +1,78 @@
+---
+title: "GIS Maps"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: spacelab
+---
+*Dashboard developed by Kiran using the tidycensus, sf and tmap packages, data from US Census*
+
+```{r setup, include=FALSE}
+library(tidycensus) 
+library(tidyverse) 
+library(sf) 
+library(tmap) 
+library(tmaptools)
+```
+
+```{r, include=FALSE}
+census_api_key("d696f22b515caa8ef3ea357f14aae75cdf1f745d")
+
+census_data <- load_variables(year = 2020, 
+                              dataset = "acs5", 
+                              cache = TRUE) # download all variables
+View(census_data)
+
+```
+
+```{r, include=FALSE}
+
+ma_data <- get_acs(state = "ma",
+                   year = 2020,
+                   geography = "county",
+                   variables = c("S2701_C01_001E",   # total n of population
+                                 "S2701_C02_001E"),  # total n of insured
+                   geometry = TRUE, 
+                   survey = "acs5",
+                   output = "wide")
+
+class(ma_data)
+
+```
+
+```{r, echo=FALSE}
+ma_df = ma_data %>% 
+  rename(total_pop = S2701_C01_001E,
+         total_insured = S2701_C02_001E) %>% 
+  mutate(prop_insured = (total_insured/total_pop)*100,
+         county = str_extract(NAME, "(\\w+)")) # capture first word of "NAME" column
+```
+
+```{r, echo=FALSE, warning=FALSE}
+
+ma_map <- tm_shape(ma_df) +
+  tm_polygons(col = "prop_insured",
+              style = "quantile",
+              n = 5,
+              palette = "Blues",
+              border.col= "black",
+              title = "Percent Insured (%)") + 
+  tm_legend(legend.position = c(0.35, 0.2)) +
+  tm_layout(title = "Percent of population insured in MA in 2020",
+            title.size = 1.3,
+            legend.title.size = 1.1,
+            frame = FALSE) +
+  tm_compass(type = "arrow",
+             position = c(0.25, 0.1),
+             size = 1.15) + 
+  tm_scale_bar(position = c(0.3, 0.1),
+               size = 0.6) + 
+  tm_credits("Author: Kiran Kui \nSource: US Census Data 2020",
+             position = c(0.01, 0.1),
+             size = 0.7) +
+  tm_text(text="county", 
+          size = 0.5)
+
+ma_map 
+```

@@ -22,7 +22,8 @@ library(RColorBrewer)
 
 ```{r, include=FALSE}
 # Read-in shp
-covid_zip <- st_read("NYC_covid19_zip.shp")
+covid_zip <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/NYC_covid19_zip.shp")
+
 ```
 
 ### Bivariate map showing Poverty and COVID-19 Deaths in NYC from 2020 to 2021

@@ -16,8 +16,6 @@ library(rgeoda)
 library(biscale)
 library(cowplot)
 library(RColorBrewer)
-
-
 ```
 
 ```{r, include=FALSE}
@@ -26,7 +24,7 @@ covid_zip <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/N
 
 ```
 
-### Bivariate map showing Poverty and COVID-19 Deaths in NYC from 2020 to 2021
+### Poverty and COVID-19 Deaths in NYC from 2020 to 2021
 ```{r, echo=FALSE}
 tm_shape(covid_zip) +
   tm_polygons(col =  "per_pov",
@@ -43,6 +41,41 @@ tm_shape(covid_zip) +
           palette = "Purples",
           border.col = "black")
 
+```
+
+```{r, include=FALSE}
+deaths <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/NYC_covid19_zip.shp")
+
+clusters <-  st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/clusters_death.shp")
+
+sites <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/NYC_covid19_vacc_sites.shp")
+
+deaths = deaths %>% 
+  rename("percent_over_65_yo" = per_pop65,
+         "percent_high_school" = per_highed,
+         "percent_poverty" = per_pov,
+         "percent_income" = per_pubinc,
+         "infection" =  r_covid) 
+  
+```
+
+### Interactive Map showing COVID-19 Deaths in NYC from 2020 to 2021
+
+*Click to view sociodemographics*
+```{r, echo=FALSE, warning=FALSE}
+tmap_mode("view")
+
+tm_shape(deaths) +
+  tm_polygons(col = "r_death",
+              palette = "GnBu",
+              alpha = .8,
+              style = "quantile",
+              n = 4,
+              border.col = "white",
+              lwd = .5,
+              title = "Death Rate",
+              interactive = TRUE,
+              popup.vars = c("percent_over_65_yo",  "percent_high_school", "percent_poverty", "infection"))
 
 ```
 

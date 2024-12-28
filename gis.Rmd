@@ -62,7 +62,7 @@ deaths = deaths %>%
 ### Interactive Map showing COVID-19 Deaths in NYC from 2020 to 2021
 
 *Click to view sociodemographics*
-```{r, echo=FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 tmap_mode("view")
 
 tm_shape(deaths) +

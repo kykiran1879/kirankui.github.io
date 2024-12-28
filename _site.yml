@@ -5,7 +5,7 @@ navbar:
   right:
     - text: "About"
       href: About.html
-    - text: "Heat"
+    - text: "Plots"
       href: heat.html
     - text: "Maps"
       href: gis.html

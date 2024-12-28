@@ -28,7 +28,10 @@ nyc_noaa_df = nyc_noaa_df %>%
   filter(date >= as.Date("2010-07-01") & date <= as.Date("2010-08-31")) %>% 
   drop_na(id, date, tmax, tmin) %>% 
   mutate(tmax_c = tmax/10,
-         tmax_f = tmax_c*1.8 + 32)
+         tmax_f = tmax_c*1.8 + 32,
+         tmin_c = tmin/10,
+         tmin_f = tmin_c*1.8 + 32,
+         prcp = prcp/10)
 
 ```
 
@@ -53,3 +56,45 @@ box_ggplot =
 ggplotly(box_ggplot)
 
 ```
+
+### Time Series Plot showing Temperature and Precipitation
+
+```{r, echo=FALSE, warning=FALSE}
+
+# central park weather station
+central_park_df = nyc_noaa_df %>% 
+  filter(id == "USW00094728")
+
+central_park_temp <- plot_ly(central_park_df, 
+                             x = ~date, 
+                             y = ~tmin_f, 
+                             name = 'Daily Minimum Temperature (°F)', 
+                             type = 'scatter', 
+                             mode = 'lines+markers') %>%
+  layout(
+    title = 'Daily Temperature and Precipitation at Central Park in July-Aug 2010',
+    yaxis = list(title = 'Temperature (°F)'),
+    xaxis = list(title = 'Date'),
+    legend = list(
+      orientation = 'h',
+      y = -0.3,
+      x = 0.5,
+      xanchor = 'center',
+      yanchor = 'bottom'
+    )
+  )
+
+central_park_temp = central_park_temp %>% 
+  add_trace(y = ~tmax_f, 
+            name = 'Daily Maximum Temperature (°F)', 
+            mode = 'lines+markers')
+
+central_park_temp = central_park_temp %>% 
+  add_trace(y = ~prcp, 
+            name = 'Precipitation (mm)', 
+            mode = 'lines+markers')
+
+central_park_temp
+
+```
+

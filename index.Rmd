@@ -10,22 +10,11 @@ output:
 
 ## Affliations
 <img src="/Users/kuiyan/Desktop/TuftsCTSI.jpeg" alt="Logo" width="300" height="90">
-<img src="/Users/kuiyan/Desktop/Columbia_logo.png" alt="Logo" width="250" height="120">  <img src="/Users/kuiyan/Desktop/NYU_logo.png" alt="Logo" width="250" height="120">
+<img src="/Users/kuiyan/Desktop/Columbia_logo.png" alt="Logo" width="250" height="120">  
 
 __Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an __MPH__ from __Columbia University__ in Epidemiology and Applied Biostatistics. 
 
 Her research focuses on addressing __environmental health and chronic health outcomes__ in underserved populations.
-
-## Skills
-<img src="/Users/kuiyan/Desktop/Rstudio_logo.png" alt="Logo" width="150" height="150">
-<img src="/Users/kuiyan/Desktop/SAS_logo.png" alt="Logo" width="100" height="40">
-<img src="/Users/kuiyan/Desktop/mysql_logo.png" alt="Logo" width="175" height="100">
-<img src="/Users/kuiyan/Desktop/Python_logo.jpg" alt="Logo" width="175" height="100">
-<img src="/Users/kuiyan/Desktop/qgis_logo.png" alt="Logo" width="200" height="100">
-<img src="/Users/kuiyan/Desktop/geoda_logo.png" alt="Logo" width="150" height="100">
-<img src="/Users/kuiyan/Desktop/git_logo.png" alt="Logo" width="200" height="100">
-
-
 
 
 ## Awards

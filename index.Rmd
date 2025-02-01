@@ -9,8 +9,8 @@ output:
 *Website developed by Kiran with R and Git software*
 
 ## Affliations
-<img src="/Users/kuiyan/Desktop/TuftsCTSI.jpeg" alt="Logo" width="300" height="90">
-<img src="/Users/kuiyan/Desktop/Columbia_logo.png" alt="Logo" width="250" height="120">  
+<img src="/Users/kuiyan/Desktop/TuftsCTSI.jpeg" alt="Logo" style="width:25%">
+<img src="/Users/kuiyan/Desktop/Columbia_logo.png" alt="Logo" style="width:25%">  
 
 __Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an __MPH__ from __Columbia University__ in Epidemiology and Applied Biostatistics. 
 

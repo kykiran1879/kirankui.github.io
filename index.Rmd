@@ -10,16 +10,16 @@ output:
 
 ## Introduction
 
-__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at Tufts CTSI and [ADAPT Coalition](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an expertise in Epidemiology and Applied Biostatistics. 
+__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at Tufts CTSI (https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an expertise in Epidemiology and Applied Biostatistics. 
 
-Her research centers on the intersection of __environmental justice, food justice, and chronic health outcomes__, with the goal of informing culturally sensitive policies that alleviate health disparities in underserved populations.
+Her research focuses on addressing __environmental health and chronic health outcomes__ in underserved populations.
 
 ## Research Skills
 
 __Advanced statistical/ data analysis skills: __
 
 * Predictive Disease Modelling using Linear, Logistic, Cluster and Cox Regression Models
-* Programming skills in R, SAS, GitHub, Python
+* Programming skills in R, SAS, GitHub, SQL, Python
 * Spatial Analysis skills in QGIS, Geoda
 
 __Environmental Epidemiology skills:__

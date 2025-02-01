@@ -1,54 +1,42 @@
 ---
-title: "Kiran Yan Kui"
+title: "Kiran Kui, MPH"
 output: 
   html_document:
     toc: TRUE
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed by Kiran with R and Github programming tools*
+*Website developed by Kiran with R and Git software*
 
-## Introduction
+## Affliations
+<img src="/Users/kuiyan/Desktop/TuftsCTSI.jpeg" alt="Logo" width="300" height="90">
+<img src="/Users/kuiyan/Desktop/Columbia_logo.png" alt="Logo" width="250" height="120">  <img src="/Users/kuiyan/Desktop/NYU_logo.png" alt="Logo" width="250" height="120">
 
-__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at Tufts CTSI (https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an expertise in Epidemiology and Applied Biostatistics. 
+__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an __MPH__ from __Columbia University__ in Epidemiology and Applied Biostatistics. 
 
 Her research focuses on addressing __environmental health and chronic health outcomes__ in underserved populations.
 
-## Research Skills
+## Skills
+<img src="/Users/kuiyan/Desktop/Rstudio_logo.png" alt="Logo" width="150" height="150">
+<img src="/Users/kuiyan/Desktop/SAS_logo.png" alt="Logo" width="100" height="40">
+<img src="/Users/kuiyan/Desktop/mysql_logo.png" alt="Logo" width="175" height="100">
+<img src="/Users/kuiyan/Desktop/Python_logo.jpg" alt="Logo" width="175" height="100">
+<img src="/Users/kuiyan/Desktop/qgis_logo.png" alt="Logo" width="200" height="100">
+<img src="/Users/kuiyan/Desktop/geoda_logo.png" alt="Logo" width="150" height="100">
+<img src="/Users/kuiyan/Desktop/git_logo.png" alt="Logo" width="200" height="100">
 
-__Advanced statistical/ data analysis skills: __
 
-* Predictive Disease Modelling using Linear, Logistic, Cluster and Cox Regression Models
-* Programming skills in R, SAS, GitHub, SQL, Python
-* Spatial Analysis skills in QGIS, Geoda
 
-__Environmental Epidemiology skills:__
-
-* Time-series Analysis 
-* Mass Spectrometry Urinary, Blood Data Analysis 
-* Risk Assessment
-
-__Nutritional Epidemiology skills: __
-
-* Advanced Data Analysis of NHANES Dietary Datasets (2011-2020)
-* 24-hour Dietary Recalls
-* Food Frequency Questionnaires
-
-## Experience/Education
-
-* Research Associate II at Tufts CTSI (current)
-* Research Assistant at NYU Langone Health, Grossman School of Medicine 
-* Research Assistant at Columbia Irving Medical Center, Department of Infectious Diseases
-* MPH in Epidemiology and Applied Biostatistics from Columbia University
-* Research Assistant at NUS, School of Public Health, Department of Epidemiology
-* Bachelor of Science (Honors), Biology (Biochemistry/Epigenetics)
 
 ## Awards
 
 * [Sidney Kark Award in Epidemiology 2023](https://www.publichealth.columbia.edu/sites/default/files/media/general/2023-05/columbia-mailman-2023-class-day.pdf)
-* [Delta Omega Award](https://www.publichealth.columbia.edu/people/current-students/commencement/delta-omega-honor-society)
+* [Delta Omega Award 2023](https://www.publichealth.columbia.edu/people/current-students/commencement/delta-omega-honor-society)
+* [Tow Scholar 2023](https://www.towfoundation.org/grantee/columbia-university-mailman-school-of-public-health/)
+* [American Public Health Association Travel Award 2022](https://www.apha.org/about-apha/apha-awards)
 
-## Selected Publications
+
+## Publications
 
 1. [Chan SW, Chin M, Suss R, Kui K, Lam S, Dowd E, Bosen C, Mei S, Barth Hughes M, Yi S. Uplifting Communities through Culturally Specific Nutrition Programming in Brooklyn, New York, 2022. Health Promotion Practice.](https://pubmed.ncbi.nlm.nih.gov/38415651/)
 

@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed by Kiran with R and Github programming tools*
+*Website developed by Kiran with R and Git software*
 
 ## Important Links for Heat Stress and Air Pollution
 

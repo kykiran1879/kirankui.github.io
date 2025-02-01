@@ -98,24 +98,5 @@ central_park_temp
 
 ```
 
-### Bubble Plots
 
-```{r}
-bubble_plot <- plot_ly(nyc_noaa_df, 
-               x = ~tmax_f, 
-               y = ~prcp, 
-               text = ~date, 
-               type = 'scatter', 
-               mode = 'markers', 
-               color = ~Gap, 
-               colors = 'Reds',
-               marker = list(size = ~Gap, opacity = 0.5))
-
-bubble_plot = bubble_plot %>% 
-  layout(title = 'Association Between Precipitation and Maximum Temperature',
-         xaxis = list(showgrid = FALSE),
-         yaxis = list(showgrid = FALSE))
-
-fig
-```
 

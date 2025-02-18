@@ -11,7 +11,7 @@
 
 
 
-<title>Airbnb Prices</title>
+<title>Project: AirBnb Rental Prices</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -228,6 +231,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -235,6 +301,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -277,11 +353,11 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="section-header">
+<div id="header">
 
 
 
-<h1 class="title toc-ignore">Airbnb Prices</h1>
+<h1 class="title toc-ignore">Project: AirBnb Rental Prices</h1>
 
 </div>
 
@@ -311,13 +387,12 @@ techniques, specifically regression analysis. This approach is suitable
 because our target variable (rental price) is continuous, and we want to
 understand how different independent variables (features) such as
 minimum nights and review scores influence that price.</p>
-<div id="section-imported-libraries" class="section level2">
+<div id="imported-libraries" class="section level2">
 <h2>Imported Libraries</h2>
 <p>I imported libraries from pandas, numpy, matplotlib, scikit-learn and
 seaborn.</p>
 </div>
-<div id="section-loaded-and-inspected-the-dataset"
-class="section level2">
+<div id="loaded-and-inspected-the-dataset" class="section level2">
 <h2>Loaded and inspected the dataset</h2>
 <pre><code>## {&#39;rows&#39;: 40753, &#39;columns&#39;: 17, &#39;columns_names&#39;: [&#39;id&#39;, &#39;review_scores_location&#39;, &#39;name&#39;, &#39;host_id&#39;, &#39;host_name&#39;, &#39;neighbourhood_group&#39;, &#39;neighbourhood&#39;, &#39;lat&#39;, &#39;long&#39;, &#39;room_type&#39;, &#39;price&#39;, &#39;minimum_nights&#39;, &#39;number_of_reviews&#39;, &#39;last_review&#39;, &#39;reviews_per_month&#39;, &#39;calculated_host_listings_count&#39;, &#39;availability_365&#39;], &#39;duplicate_records&#39;: np.int64(0)}</code></pre>
 <p><strong>Data Summary</strong></p>
@@ -329,7 +404,7 @@ type, and review metrics. Key columns in the dataset include ‘id’,
 ‘reviews_per_month’, and ‘availability_365’. There are no duplicate
 records in this dataset.</p>
 </div>
-<div id="section-exploratory-data-analysis" class="section level2">
+<div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
 <pre><code>## {&#39;borough_counts&#39;: {&#39;Manhattan&#39;: 19212, &#39;Brooklyn&#39;: 16810, &#39;Queens&#39;: 3821, &#39;Bronx&#39;: 649, &#39;Staten Island&#39;: 261}, &#39;average_prices_borough&#39;: {&#39;Manhattan&#39;: 180.09337913803873, &#39;Staten Island&#39;: 128.0191570881226, &#39;Brooklyn&#39;: 119.67703747769185, &#39;Queens&#39;: 94.72939021198638, &#39;Bronx&#39;: 82.82896764252696}, &#39;most_expensive&#39;: &#39;Manhattan&#39;, &#39;least_expensive&#39;: &#39;Bronx&#39;, &#39;most_expensive_price&#39;: np.float64(180.09337913803873), &#39;least_expensive_price&#39;: np.float64(82.82896764252696)}</code></pre>
 <p><strong>Exploratory Results Summary</strong></p>
@@ -345,24 +420,23 @@ with averages of $128.02 and $119.68, respectively.</p>
 <p>Manhattan stands out as the most expensive area, while the Bronx
 remains the least expensive.</p>
 </div>
-<div id="section-visualizations" class="section level2">
+<div id="visualizations" class="section level2">
 <h2>Visualizations</h2>
-<div
-id="section-graph-showing-the-distribution-of-nyc-airbnb-listing-prices"
+<div id="graph-showing-the-distribution-of-nyc-airbnb-listing-prices"
 class="section level3">
 <h3>Graph showing the distribution of NYC Airbnb Listing Prices</h3>
 <pre><code>## (0.0, 1500.0)</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-4-1.png" width="960" />
 Most NYC Airbnb listings are between $0 to $250.</p>
 </div>
-<div id="section-distribution-of-prices-in-nyc-airbnb-listings"
+<div id="distribution-of-prices-in-nyc-airbnb-listings"
 class="section level3">
 <h3>Distribution of Prices in NYC Airbnb Listings</h3>
-<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371d520&gt;, &lt;matplotlib.lines.Line2D object at 0x12371d7c0&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371d910&gt;, &lt;matplotlib.lines.Line2D object at 0x12371dc40&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x11fcbcbc0&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371df70&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371e2a0&gt;], &#39;means&#39;: []}</code></pre>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12c587710&gt;, &lt;matplotlib.lines.Line2D object at 0x12ead9e20&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x12eada000&gt;, &lt;matplotlib.lines.Line2D object at 0x12eada330&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x12c543770&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x12eada630&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12eada930&gt;], &#39;means&#39;: []}</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-5-3.png" width="960" />
 NYC Airbnb listings can reach prices as high as $10,000.</p>
 </div>
-<div id="section-average-prices-in-nyc-airbnb-listings-across-boroughs"
+<div id="average-prices-in-nyc-airbnb-listings-across-boroughs"
 class="section level3">
 <h3>Average Prices in NYC Airbnb Listings across Boroughs</h3>
 <pre class="python"><code># Bar Graph: Average Price per Borough
@@ -384,7 +458,7 @@ The average prices per borough vary, with Manhattan being the most
 expensive at an average of $180.09, while the Bronx is the least
 expensive at $82.83.</p>
 </div>
-<div id="section-maximum-prices-in-nyc-airbnb-listings-across-boroughs"
+<div id="maximum-prices-in-nyc-airbnb-listings-across-boroughs"
 class="section level3">
 <h3>Maximum Prices in NYC Airbnb Listings across Boroughs</h3>
 <pre class="python"><code># Boxplot of Price Distribution Across Boroughs
@@ -403,7 +477,7 @@ The maximum prices per borough vary, with Manhattan being the most
 expensive at around $10,000, while the Bronx is the least expensive at
 $1,000.</p>
 </div>
-<div id="section-price-vs-review-scores" class="section level3">
+<div id="price-vs-review-scores" class="section level3">
 <h3>Price vs Review Scores</h3>
 <pre class="python"><code># Scatterplot: Price vs Review Scores (Location)
 plt.figure(figsize=(10, 6))
@@ -418,7 +492,7 @@ Rental price tend to increase with review scores (1-10) up to a score of
 8. Beyond this point, maximum rental prices for listings with a score of
 8 or higher remain relatively consistent at around $10,000.</p>
 </div>
-<div id="section-price-vs-minimum-nights" class="section level3">
+<div id="price-vs-minimum-nights" class="section level3">
 <h3>Price vs Minimum Nights</h3>
 <pre class="python"><code># Scatterplot: Price vs Minimum Nights
 plt.figure(figsize=(10, 6))
@@ -433,7 +507,7 @@ In general, rental price tend to decrease with an increase in minimum
 nights.</p>
 </div>
 </div>
-<div id="section-supervised-machine-learning-regression-output"
+<div id="supervised-machine-learning-regression-output"
 class="section level2">
 <h2>Supervised Machine Learning: Regression Output</h2>
 <pre class="python"><code># Supervised Machine Learning: Linear Regression
@@ -904,6 +978,8 @@ the baseline for the regression model.</li>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -924,7 +1000,7 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function () {
-  window.buildTabsets("section-TOC");
+  window.buildTabsets("TOC");
 });
 
 $(document).ready(function () {
@@ -936,6 +1012,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

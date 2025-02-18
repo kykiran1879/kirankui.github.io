@@ -11,7 +11,7 @@
 
 
 
-<title>Heat Stress</title>
+<title>Airbnb Prices</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -231,69 +228,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -301,16 +235,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -334,10 +258,7 @@ div.tocify {
   <a href="About.html">About</a>
 </li>
 <li>
-  <a href="heat.html">Project 1</a>
-</li>
-<li>
-  <a href="gis.html">Maps</a>
+  <a href="python.html">Project: AirBnb</a>
 </li>
 <li>
   <a href="mailto:&lt;yk2959@caa.columbia.com&gt;">
@@ -356,22 +277,633 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div id="section-header">
 
 
 
-<h1 class="title toc-ignore">Heat Stress</h1>
+<h1 class="title toc-ignore">Airbnb Prices</h1>
 
+</div>
+
+
+<p><strong>Project Introduction and Context</strong></p>
+<p>This project explores Airbnb rental prices in New York City in
+2017.Through this analysis, I aim to uncover patterns, trends and
+relationships between:</p>
+<ul>
+<li>Rental prices</li>
+<li>Borough</li>
+<li>Neighborhood</li>
+<li>Review score (1-10)</li>
+<li>Minimum Nights</li>
+</ul>
+<p><strong>Dataset Source</strong></p>
+<p>The data used in this project were sourced from <strong>Inside
+Airbnb</strong> as of September 2, 2017. The version of the dataset
+employed for this analysis can be accessed (here)[<a
+href="https://insideairbnb.com/get-the-data/"
+class="uri">https://insideairbnb.com/get-the-data/</a>].</p>
+<p><strong>Methodology: Supervised Machine Learning for Predicting
+Rental Prices</strong></p>
+<p>To predict rental prices based on various factors like borough,
+minimum nights, and review scores, we use supervised machine learning
+techniques, specifically regression analysis. This approach is suitable
+because our target variable (rental price) is continuous, and we want to
+understand how different independent variables (features) such as
+minimum nights and review scores influence that price.</p>
+<div id="section-imported-libraries" class="section level2">
+<h2>Imported Libraries</h2>
+<p>I imported libraries from pandas, numpy, matplotlib, scikit-learn and
+seaborn.</p>
+</div>
+<div id="section-loaded-and-inspected-the-dataset"
+class="section level2">
+<h2>Loaded and inspected the dataset</h2>
+<pre><code>## {&#39;rows&#39;: 40753, &#39;columns&#39;: 17, &#39;columns_names&#39;: [&#39;id&#39;, &#39;review_scores_location&#39;, &#39;name&#39;, &#39;host_id&#39;, &#39;host_name&#39;, &#39;neighbourhood_group&#39;, &#39;neighbourhood&#39;, &#39;lat&#39;, &#39;long&#39;, &#39;room_type&#39;, &#39;price&#39;, &#39;minimum_nights&#39;, &#39;number_of_reviews&#39;, &#39;last_review&#39;, &#39;reviews_per_month&#39;, &#39;calculated_host_listings_count&#39;, &#39;availability_365&#39;], &#39;duplicate_records&#39;: np.int64(0)}</code></pre>
+<p><strong>Data Summary</strong></p>
+<p>The dataset contains 40,753 rows and 17 columns. The columns include
+key information about Airbnb listings, such as listing ID, location
+review scores, host details, neighbourhood information, pricing, room
+type, and review metrics. Key columns in the dataset include ‘id’,
+‘review_scores_location’, ‘price’, ‘room_type’, ‘number_of_reviews’,
+‘reviews_per_month’, and ‘availability_365’. There are no duplicate
+records in this dataset.</p>
+</div>
+<div id="section-exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
+<pre><code>## {&#39;borough_counts&#39;: {&#39;Manhattan&#39;: 19212, &#39;Brooklyn&#39;: 16810, &#39;Queens&#39;: 3821, &#39;Bronx&#39;: 649, &#39;Staten Island&#39;: 261}, &#39;average_prices_borough&#39;: {&#39;Manhattan&#39;: 180.09337913803873, &#39;Staten Island&#39;: 128.0191570881226, &#39;Brooklyn&#39;: 119.67703747769185, &#39;Queens&#39;: 94.72939021198638, &#39;Bronx&#39;: 82.82896764252696}, &#39;most_expensive&#39;: &#39;Manhattan&#39;, &#39;least_expensive&#39;: &#39;Bronx&#39;, &#39;most_expensive_price&#39;: np.float64(180.09337913803873), &#39;least_expensive_price&#39;: np.float64(82.82896764252696)}</code></pre>
+<p><strong>Exploratory Results Summary</strong></p>
+<p>The dataset reveals a notable distribution of Airbnb listings across
+New York City boroughs, with Manhattan having the highest count at
+19,212 listings, followed by Brooklyn with 16,810 listings. Other
+boroughs such as Queens, the Bronx, and Staten Island have significantly
+fewer listings.</p>
+<p>The average prices per borough vary, with Manhattan being the most
+expensive at an average of $180.09, while the Bronx is the least
+expensive at $82.83. Staten Island and Brooklyn have moderate pricing,
+with averages of $128.02 and $119.68, respectively.</p>
+<p>Manhattan stands out as the most expensive area, while the Bronx
+remains the least expensive.</p>
+</div>
+<div id="section-visualizations" class="section level2">
+<h2>Visualizations</h2>
+<div
+id="section-graph-showing-the-distribution-of-nyc-airbnb-listing-prices"
+class="section level3">
+<h3>Graph showing the distribution of NYC Airbnb Listing Prices</h3>
+<pre><code>## (0.0, 1500.0)</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-4-1.png" width="960" />
+Most NYC Airbnb listings are between $0 to $250.</p>
+</div>
+<div id="section-distribution-of-prices-in-nyc-airbnb-listings"
+class="section level3">
+<h3>Distribution of Prices in NYC Airbnb Listings</h3>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371d520&gt;, &lt;matplotlib.lines.Line2D object at 0x12371d7c0&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371d910&gt;, &lt;matplotlib.lines.Line2D object at 0x12371dc40&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x11fcbcbc0&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371df70&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12371e2a0&gt;], &#39;means&#39;: []}</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-5-3.png" width="960" />
+NYC Airbnb listings can reach prices as high as $10,000.</p>
+</div>
+<div id="section-average-prices-in-nyc-airbnb-listings-across-boroughs"
+class="section level3">
+<h3>Average Prices in NYC Airbnb Listings across Boroughs</h3>
+<pre class="python"><code># Bar Graph: Average Price per Borough
+average_prices_borough = df.groupby(&#39;borough&#39;)[&#39;price&#39;].mean().sort_values(ascending=False)
+plt.figure(figsize=(10, 6))
+av = average_prices_borough.plot(kind=&#39;bar&#39;, color=&#39;lightgreen&#39;, edgecolor=&#39;black&#39;)
+
+for i, v in enumerate(average_prices_borough):
+    av.text(i, v + 5, f&quot;${v:,.2f}&quot;, ha=&#39;center&#39;, va=&#39;bottom&#39;, fontsize=10) 
+    
+plt.title(&#39;Average Prices of NYC Airbnb Listings across Boroughs&#39;)
+plt.xlabel(&#39;Borough&#39;)
+plt.ylabel(&#39;Average Price ($)&#39;)
+plt.xticks(rotation=45)</code></pre>
+<pre><code>## (array([0, 1, 2, 3, 4]), [Text(0, 0, &#39;Manhattan&#39;), Text(1, 0, &#39;Staten Island&#39;), Text(2, 0, &#39;Brooklyn&#39;), Text(3, 0, &#39;Queens&#39;), Text(4, 0, &#39;Bronx&#39;)])</code></pre>
+<pre class="python"><code>plt.show()</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-6-5.png" width="960" />
+The average prices per borough vary, with Manhattan being the most
+expensive at an average of $180.09, while the Bronx is the least
+expensive at $82.83.</p>
+</div>
+<div id="section-maximum-prices-in-nyc-airbnb-listings-across-boroughs"
+class="section level3">
+<h3>Maximum Prices in NYC Airbnb Listings across Boroughs</h3>
+<pre class="python"><code># Boxplot of Price Distribution Across Boroughs
+custom_order = [&#39;Manhattan&#39;, &#39;Brooklyn&#39;, &#39;Queens&#39;, &#39;Staten Island&#39;, &#39;Bronx&#39;]
+
+plt.figure(figsize=(12, 8))
+sns.boxplot(x=&#39;borough&#39;, y=&#39;price&#39;, data=df, palette=&#39;Set2&#39;, order=custom_order)
+plt.title(&#39;Distribution of Prices Across Boroughs in NYC Airbnb Listings&#39;)
+plt.xlabel(&#39;Borough&#39;)
+plt.ylabel(&#39;Price ($)&#39;)
+plt.xticks(rotation=45)</code></pre>
+<pre><code>## ([0, 1, 2, 3, 4], [Text(0, 0, &#39;Manhattan&#39;), Text(1, 0, &#39;Brooklyn&#39;), Text(2, 0, &#39;Queens&#39;), Text(3, 0, &#39;Staten Island&#39;), Text(4, 0, &#39;Bronx&#39;)])</code></pre>
+<pre class="python"><code>plt.show()</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-7-7.png" width="1152" />
+The maximum prices per borough vary, with Manhattan being the most
+expensive at around $10,000, while the Bronx is the least expensive at
+$1,000.</p>
+</div>
+<div id="section-price-vs-review-scores" class="section level3">
+<h3>Price vs Review Scores</h3>
+<pre class="python"><code># Scatterplot: Price vs Review Scores (Location)
+plt.figure(figsize=(10, 6))
+plt.scatter(df[&#39;review_scores_location&#39;], df[&#39;price&#39;], alpha=0.5, color=&#39;purple&#39;)
+plt.title(&#39;Review Scores vs. Price of NYC Airbnb Listings&#39;)
+plt.xlabel(&#39;Review Scores (1-10)&#39;)
+plt.ylabel(&#39;Price ($)&#39;)
+plt.grid(True)
+plt.show()</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-8-9.png" width="960" />
+Rental price tend to increase with review scores (1-10) up to a score of
+8. Beyond this point, maximum rental prices for listings with a score of
+8 or higher remain relatively consistent at around $10,000.</p>
+</div>
+<div id="section-price-vs-minimum-nights" class="section level3">
+<h3>Price vs Minimum Nights</h3>
+<pre class="python"><code># Scatterplot: Price vs Minimum Nights
+plt.figure(figsize=(10, 6))
+plt.scatter(df[&#39;minimum_nights&#39;], df[&#39;price&#39;], alpha=0.5, color=&#39;blue&#39;)
+plt.title(&#39;Minimum Nights vs. Price of NYC Airbnb Listings&#39;)
+plt.xlabel(&#39;Minimum Nights&#39;)
+plt.ylabel(&#39;Price ($)&#39;)
+plt.grid(True)
+plt.show()</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-9-11.png" width="960" />
+In general, rental price tend to decrease with an increase in minimum
+nights.</p>
+</div>
+</div>
+<div id="section-supervised-machine-learning-regression-output"
+class="section level2">
+<h2>Supervised Machine Learning: Regression Output</h2>
+<pre class="python"><code># Supervised Machine Learning: Linear Regression
+df = df.dropna(subset=[&#39;price&#39;, &#39;review_scores_location&#39;])
+df = df[df[&#39;borough&#39;] == &#39;Manhattan&#39;]
+
+x = df[[&#39;review_scores_location&#39;, &#39;minimum_nights&#39;]] 
+y = df[&#39;price&#39;]
+
+reg = linear_model.LinearRegression()
+reg.fit(x, y)</code></pre>
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div>
+<pre class="python"><code>reg_results = {
+    &quot;coefficients&quot;: reg.coef_,
+    &quot;intercept&quot;: reg.intercept_
+}
+reg_results</code></pre>
+<pre><code>## {&#39;coefficients&#39;: array([22.06163287,  0.84547462]), &#39;intercept&#39;: np.float64(-41.57885193908413)}</code></pre>
+<p>In this analysis, we are focused on exploring the relationship
+between rental prices, review scores, and minimum nights for Airbnb
+listings in Manhattan. Given that Manhattan has the highest number of
+listings, the highest average rental price, and some of the most
+expensive properties, it presents a unique opportunity for deeper
+analysis.</p>
+<p>We use regression analysis to model how rental prices are influenced
+by review scores and minimum nights. By doing so, we aim to understand
+whether higher review scores or longer minimum stays are associated with
+higher rental prices. The regression output will help quantify these
+relationships and provide insights into which factors are more
+influential in determining rental price within this borough.</p>
+<p><strong>Regression Output Explanation:</strong></p>
+<p>The regression model has produced the following results:</p>
+<p><strong>Coefficients:</strong></p>
+<ul>
+<li><p>22.06: This is the coefficient for review scores. It means that
+for each additional point in the review score, the rental price
+increases by approximately $22.06, assuming all other factors remain
+constant.</p></li>
+<li><p>0.85: This is the coefficient for the minimum number of nights.
+It indicates that for each additional night added to the minimum stay
+requirement, the rental price increases by around $0.85, again assuming
+all other factors are constant.</p></li>
+</ul>
+<p><strong>Intercept:</strong></p>
+<ul>
+<li>-41.58: This is the intercept of the regression line, meaning when
+both the review score and minimum nights are zero, the model predicts a
+rental price of approximately -$41.58. While this doesn’t represent a
+realistic scenario (since rental prices can’t be negative), it serves as
+the baseline for the regression model.</li>
+</ul>
 </div>
 
 
-<pre class="python"><code># Example Python Code
-f=1</code></pre>
 
-
-
-</div>
-</div>
 
 </div>
 
@@ -392,7 +924,7 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function () {
-  window.buildTabsets("TOC");
+  window.buildTabsets("section-TOC");
 });
 
 $(document).ready(function () {
@@ -404,35 +936,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

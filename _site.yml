@@ -7,6 +7,8 @@ navbar:
       href: About.html
     - text: "Project: AirBnb"
       href: python.html
+   -  text: "Project: Weather"
+      href: rstudio.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>
     - icon: fa-linkedin fa-lg

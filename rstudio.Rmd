@@ -1,0 +1,142 @@
+---
+title: "Project: Hot Summer"
+output:
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(openair)
+library(lubridate)
+library(plotly)
+```
+
+__Project Introduction and Context__
+
+This project explores weather collected in Reggie Wong Park in Boston on in July and August of 2023. Through this analysis, I aim to uncover patterns, trends and relationships between: 
+
+* Outdoors Temperature
+
+And other environmental metrics: 
+
+* Relative Humidity 
+* and other weather conditions...
+
+__Methodology: End to End Data Pipelines & Time Series Analysis for Predicting Weather__
+
+The Kestrel sensor collects weather data at every 10-min interval. Working with this raw data, I applied end to end data pipelines to QC the dataset and applied time series analysis to understand how different independent variables (features) such as outdoor temperature, and humidity influence that weather conditions. 
+
+__Dataset Source__
+
+The data used in this project were sourced from __Kestrel Sensors__ located at Reggie Wong Park on Aug 2, 2023. Please email me for more information about this dataset. 
+
+__Programming Languages used__
+
+* R *(tidyverse, dplyr, ggplot2, plotly, lubridate, openair)*
+* Version Control: Git
+
+
+## Loaded and QC the dataset
+```{r, echo=FALSE}
+
+kestrel_df <- read_xlsx("./data/Reggie_Kestrel_08022023.xlsx", sheet=1, range = "A5:G6228") %>% 
+  janitor::clean_names() %>% 
+  slice(-1) %>% 
+  mutate(temperature = as.numeric(temperature),  
+         wet_bulb_temp = as.numeric(wet_bulb_temp), 
+         relative_humidity = as.numeric(relative_humidity), 
+         station_pressure = as.numeric(station_pressure), 
+         heat_index = as.numeric(heat_index), 
+         dew_point = as.numeric(dew_point)) %>% 
+  rename(date = formatted_date_time)
+
+View(kestrel_df)
+
+```
+
+__Methodology Explanation__
+
+I created a dataset kestrel_df for the Kestrel sensor by loading the relevant excel sheet, tidying the column names and removing irrelevant columns. I also explored the different variables and changed metrics from character to numeric variables. I also changed the name of the date variable to make it easier to use the lubridate packages later on. 
+
+__Data Summary__
+
+The dataframe kestrel_df consists of `r ncol(kestrel_df)` variables and `r nrow(kestrel_df)` observations. 
+
+The dataframe presents data pertaining to various environmental metrics, including heat metrics (temperature, wet bulb temperature, heat index), and more, obtained from the Kestrel sensor during the period spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. Initially, the data points were recorded at 2-minute intervals until 07/12/2023, 7:30 PM, at which point the recording frequency transitioned to 10-minute intervals.
+
+## Time Series Analysis
+### Date -> year, month, day and hour
+```{r, echo=FALSE}
+kestrel_df$date <- ymd_hms(kestrel_df$date)
+
+kestrel_df$year <- year(kestrel_df$date)
+kestrel_df$month <- month(kestrel_df$date)
+kestrel_df$day <- day(kestrel_df$date)
+kestrel_df$hour <- hour(kestrel_df$date)
+
+kestrel_df %>% 
+  select(date, year, month, day, hour)
+
+```
+I separated the date column into year, month, day and hour. 
+
+### 2-min intervals -> 10-min intervals
+```{r, echo=FALSE}
+kestrel_df$date <- floor_date(kestrel_df$date, unit = "10 minutes")
+
+head(kestrel_df)
+```
+I changed the time interval to from 2 minutes to 10 minutes. 
+
+### Average values for each day
+```{r, echo=FALSE}
+kestrel_daily_df <- timeAverage(kestrel_df, avg.time = "day")
+
+head(kestrel_daily_df)
+```
+I found the average daily metrics for temperature, humidity...
+
+### Average values for each month
+```{r, echo=FALSEl}
+kestrel_monthly_df <- timeAverage(kestrel_df, avg.time = "month")
+
+head(kestrel_monthly_df)
+```
+I found the average monthly metrics for Kestrel for July and August respectively for temperature, humidity...
+Note: There was only data recorded for 08/01/2023 and 08/02/2023. 
+
+### Trends in temperature, WBGT and heat index
+
+Let's focus on July 2023, because of the higher temperatures. 
+
+#### Weather conditions across time in July 2023
+```{r, echo=FALSE}
+timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
+pollutant = c("temperature", "relative_humidity"),
+y.relation = "free")
+
+```
+I created a time series plot that depicts the variations in temperature, wet bulb global temperature, and heat index from July 8, 2023, at 8:02 PM to July 31, 2023, at 11:50 PM. Outdoor temperature is linked to lower humidity across July. 
+
+#### Weather Conditions across days of the week
+```{r, echo=FALSE}
+
+# temperature
+timeVariation(subset(kestrel_df),pollutant = "temperature", ylab = "Temperature (F)")
+
+# Relative Humidity
+timeVariation(subset(kestrel_df),pollutant = "relative_humidity", ylab = "Relative Humidity")
+
+```
+
+* MON: highest humidity, lowest temperature
+* WED: highest temperature, lowest humidity
+
+

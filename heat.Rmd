@@ -11,10 +11,11 @@ output:
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(dplyr)
-library(rnoaa)
+library(readxl)
 library(ggplot2)
+library(openair)
+library(lubridate)
 library(plotly)
-library(reticulate)
 
 ```
 

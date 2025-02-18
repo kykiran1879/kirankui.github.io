@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Project: Hot Summer</title>
+
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="About.html">About</a>
+</li>
+<li>
+  <a href="python.html">Project: AirBnb</a>
+</li>
+<li>
+  <a href="rstudio.html">Project: Hot Summer</a>
+</li>
+<li>
+  <a href="mailto:&lt;yk2959@caa.columbia.com&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/kiranyankui/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Project: Hot Summer</h1>
+
+</div>
+
+
+<p><strong>Project Introduction and Context</strong></p>
+<p>This project explores weather collected in Reggie Wong Park in Boston
+on in July and August of 2023. Through this analysis, I aim to uncover
+patterns, trends and relationships between:</p>
+<ul>
+<li>Outdoors Temperature</li>
+</ul>
+<p>And other environmental metrics:</p>
+<ul>
+<li>Relative Humidity</li>
+<li>and other weather conditions…</li>
+</ul>
+<p><strong>Methodology: End to End Data Pipelines &amp; Time Series
+Analysis for Predicting Weather</strong></p>
+<p>The Kestrel sensor collects weather data at every 10-min interval.
+Working with this raw data, I applied end to end data pipelines to QC
+the dataset and applied time series analysis to understand how different
+independent variables (features) such as outdoor temperature, and
+humidity influence that weather conditions.</p>
+<p><strong>Applications</strong></p>
+<p>Time Series Analysis can be applied to analyze any type of trend that
+changes across time:</p>
+<ul>
+<li>Healthcare: Patient Admissions, Disease Prevalence, Drug
+Effectiveness</li>
+<li>Retail: Sales data, Customer Traffic, Inventory Management</li>
+<li>Finance: Stock Market Prices, Interest Rates, Cryptocurrency
+Trends</li>
+<li>Manufacturing: Production Output, Supply Chain</li>
+</ul>
+<p>and so much more…</p>
+<p><strong>Dataset Source</strong></p>
+<p>The data used in this project were sourced from <strong>Kestrel
+Sensors</strong> located at Reggie Wong Park on Aug 2, 2023. Please
+email me for more information about this dataset.</p>
+<p><strong>Programming Languages used</strong></p>
+<ul>
+<li>R <em>(tidyverse, dplyr, ggplot2, plotly, lubridate,
+openair)</em></li>
+<li>Version Control: Git</li>
+</ul>
+<div id="loaded-and-qc-the-dataset" class="section level2">
+<h2>Loaded and QC the dataset</h2>
+<pre class="r"><code>kestrel_df &lt;- read_xlsx(&quot;./data/Reggie_Kestrel_08022023.xlsx&quot;, sheet=1, range = &quot;A5:G6228&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  slice(-1) %&gt;% 
+  mutate(temperature = as.numeric(temperature),  
+         wet_bulb_temp = as.numeric(wet_bulb_temp), 
+         relative_humidity = as.numeric(relative_humidity), 
+         station_pressure = as.numeric(station_pressure), 
+         heat_index = as.numeric(heat_index), 
+         dew_point = as.numeric(dew_point)) %&gt;% 
+  rename(date = formatted_date_time)
+
+head(kestrel_df)</code></pre>
+<pre><code>## # A tibble: 6 × 7
+##   date   temperature wet_bulb_temp relative_humidity station_pressure heat_index
+##   &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+## 1 2023-…        72.3          70.2              90               29.8       74.5
+## 2 2023-…        72.6          70.5              90.2             29.8       74.8
+## 3 2023-…        72.4          70.3              90.2             29.8       74.7
+## 4 2023-…        72.6          70.5              90.3             29.8       74.8
+## 5 2023-…        72.4          70.3              90.3             29.8       74.7
+## 6 2023-…        72.4          70.3              90.5             29.8       74.7
+## # ℹ 1 more variable: dew_point &lt;dbl&gt;</code></pre>
+<p><strong>Methodology Explanation</strong></p>
+<p>I created a dataset kestrel_df for the Kestrel sensor by loading the
+relevant excel sheet, tidying the column names and removing irrelevant
+columns. I also explored the different variables and changed metrics
+from character to numeric variables. I also changed the name of the date
+variable to make it easier to use the lubridate packages later on.</p>
+<p><strong>Data Summary</strong></p>
+<p>The dataframe kestrel_df consists of 7 variables and 6222
+observations.</p>
+<p>The dataframe presents data pertaining to various environmental
+metrics, including heat metrics (temperature, wet bulb temperature, heat
+index), and more, obtained from the Kestrel sensor during the period
+spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. Initially,
+the data points were recorded at 2-minute intervals until 07/12/2023,
+7:30 PM, at which point the recording frequency transitioned to
+10-minute intervals.</p>
+</div>
+<div id="time-series-analysis" class="section level2">
+<h2>Time Series Analysis</h2>
+<pre class="r"><code># Date to year, month, day and hour
+kestrel_df$date &lt;- ymd_hms(kestrel_df$date)
+
+kestrel_df$year &lt;- year(kestrel_df$date)
+kestrel_df$month &lt;- month(kestrel_df$date)
+kestrel_df$day &lt;- day(kestrel_df$date)
+kestrel_df$hour &lt;- hour(kestrel_df$date)
+
+kestrel_df %&gt;% 
+  select(date, year, month, day, hour)</code></pre>
+<pre><code>## # A tibble: 6,222 × 5
+##    date                 year month   day  hour
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+##  1 2023-07-08 20:12:00  2023     7     8    20
+##  2 2023-07-08 20:14:00  2023     7     8    20
+##  3 2023-07-08 20:16:00  2023     7     8    20
+##  4 2023-07-08 20:18:00  2023     7     8    20
+##  5 2023-07-08 20:20:00  2023     7     8    20
+##  6 2023-07-08 20:22:00  2023     7     8    20
+##  7 2023-07-08 20:24:00  2023     7     8    20
+##  8 2023-07-08 20:26:00  2023     7     8    20
+##  9 2023-07-08 20:28:00  2023     7     8    20
+## 10 2023-07-08 20:30:00  2023     7     8    20
+## # ℹ 6,212 more rows</code></pre>
+<pre class="r"><code># Converted to 10 minute intervals
+kestrel_df$date &lt;- floor_date(kestrel_df$date, unit = &quot;10 minutes&quot;)
+
+head(kestrel_df)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   date                temperature wet_bulb_temp relative_humidity
+##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
+## 1 2023-07-08 20:10:00        72.3          70.2              90  
+## 2 2023-07-08 20:10:00        72.6          70.5              90.2
+## 3 2023-07-08 20:10:00        72.4          70.3              90.2
+## 4 2023-07-08 20:10:00        72.6          70.5              90.3
+## 5 2023-07-08 20:20:00        72.4          70.3              90.3
+## 6 2023-07-08 20:20:00        72.4          70.3              90.5
+## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
+## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;int&gt;, hour &lt;int&gt;</code></pre>
+<pre class="r"><code># Converted to 1-month intervals
+kestrel_df$date &lt;- floor_date(kestrel_df$date, unit = &quot;10 minutes&quot;)
+
+head(kestrel_df)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   date                temperature wet_bulb_temp relative_humidity
+##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
+## 1 2023-07-08 20:10:00        72.3          70.2              90  
+## 2 2023-07-08 20:10:00        72.6          70.5              90.2
+## 3 2023-07-08 20:10:00        72.4          70.3              90.2
+## 4 2023-07-08 20:10:00        72.6          70.5              90.3
+## 5 2023-07-08 20:20:00        72.4          70.3              90.3
+## 6 2023-07-08 20:20:00        72.4          70.3              90.5
+## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
+## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;int&gt;, hour &lt;int&gt;</code></pre>
+<pre class="r"><code># Converted to 1-day intervals
+kestrel_daily_df &lt;- timeAverage(kestrel_df, avg.time = &quot;day&quot;)
+
+head(kestrel_daily_df)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   date                temperature wet_bulb_temp relative_humidity
+##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
+## 1 2023-07-08 00:00:00        77.2          70.9              75.1
+## 2 2023-07-09 00:00:00        74.5          70.3              82.5
+## 3 2023-07-10 00:00:00        69.1          69.0              99.3
+## 4 2023-07-11 00:00:00        78.3          69.1              67.5
+## 5 2023-07-12 00:00:00        84.1          70.3              53.9
+## 6 2023-07-13 00:00:00        82.2          70.8              58.9
+## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
+## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;</code></pre>
+<pre class="r"><code># Converted to monthly intervals
+kestrel_monthly_df &lt;- timeAverage(kestrel_df, avg.time = &quot;month&quot;)
+
+head(kestrel_monthly_df)</code></pre>
+<pre><code>## # A tibble: 2 × 11
+##   date                temperature wet_bulb_temp relative_humidity
+##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
+## 1 2023-07-01 00:00:00        77.0          69.6              72.9
+## 2 2023-08-01 00:00:00        70.4          57.6              47.5
+## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
+## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;</code></pre>
+<p><strong>Data Methodology</strong></p>
+<ul>
+<li>I separated the date column into year, month, day and hour.</li>
+<li>I found the average 10-min values for temperature, humidity…</li>
+<li>I found the average daily values for temperature, humidity…</li>
+<li>I found the average monthly values for temperature, humidity…</li>
+</ul>
+<p>Note: There was only data recorded for 08/01/2023 and 08/02/2023 in
+August.</p>
+<div id="trends-in-temperature-wbgt-and-heat-index"
+class="section level3">
+<h3>Trends in temperature, WBGT and heat index</h3>
+<div id="comparing-july-and-august-temperatures" class="section level4">
+<h4>Comparing July and August temperatures</h4>
+<pre class="r"><code>kestrel_temp &lt;- plot_ly(kestrel_daily_df, 
+                        x = ~date, 
+                        y = ~temperature, 
+                        name = &#39;Daily Average Temperature (°F)&#39;, 
+                        type = &#39;scatter&#39;, 
+                        mode = &#39;lines+markers&#39;) %&gt;%
+  layout(
+    title = &#39;Daily Temperature at Reggie Wong Park in July-Aug 2023&#39;,
+    yaxis = list(title = &#39;Temperature (°F)&#39;),
+    xaxis = list(title = &#39;Date&#39;),
+    legend = list(
+      orientation = &#39;h&#39;,
+      y = -0.3,
+      x = 0.5,
+      xanchor = &#39;center&#39;,
+      yanchor = &#39;bottom&#39;
+    )
+  )
+
+
+# View the plot
+kestrel_temp</code></pre>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-58394c5c568720f24282" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-58394c5c568720f24282">{"x":{"visdat":{"1730984504f5":["function () ","plotlyVisDat"]},"cur_data":"1730984504f5","attrs":{"1730984504f5":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p><strong>Findings</strong> * July 2023 had higher temperatures, and we
+have more data!</p>
+<p>Let’s focus on July 2023.</p>
+</div>
+<div id="weather-conditions-across-time-in-july-2023"
+class="section level4">
+<h4>Weather conditions across time in July 2023</h4>
+<pre class="r"><code>timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
+pollutant = c(&quot;temperature&quot;, &quot;relative_humidity&quot;),
+y.relation = &quot;free&quot;)</code></pre>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><strong>Data Methodology</strong></p>
+<p>I created a time series plot that depicts the variations in
+temperature and humidity from July 8, 2023, at 8:02 PM to July 31, 2023,
+at 11:50 PM.</p>
+<p><strong>Findings</strong></p>
+<ul>
+<li>July 13 and July 24 had the highest temperatures, close to 100
+degrees Fahrenheit!!!</li>
+<li>Outdoor temperature is linked to lower humidity across July
+2023.</li>
+</ul>
+</div>
+<div id="weather-conditions-across-days-of-the-week"
+class="section level4">
+<h4>Weather Conditions across days of the week</h4>
+<pre class="r"><code># temperature
+timeVariation(subset(kestrel_df),pollutant = &quot;temperature&quot;, ylab = &quot;Temperature (F)&quot;)</code></pre>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code># Relative Humidity
+timeVariation(subset(kestrel_df),pollutant = &quot;relative_humidity&quot;, ylab = &quot;Relative Humidity&quot;)</code></pre>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><strong>Data Methodology</strong></p>
+<p>I created a time series plot that depicts the variations in
+temperature and humidity across different days of the week in July
+2023.</p>
+<p><strong>Findings</strong></p>
+<ul>
+<li>MONDAY had the highest humidity, lowest temperature</li>
+<li>WEDNESDAY had the highest temperature, lowest humidity</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="data-summary-and-recommendations-for-park-users"
+class="section level2">
+<h2>Data Summary and Recommendations for park users</h2>
+<p>Based on the data from July-Aug 2023:</p>
+<ul>
+<li>July is a hot month, with temperatures approaching 100 degrees
+fahrenheit at certain times.</li>
+<li>Temperatures may fluctuate across July, and start cooling off
+towards the end of the month.</li>
+<li>Wednesdays bring the highest temperatures and lowest humidity, so
+users should take extra precautions when exercising in the park to avoid
+heat-related issues.</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

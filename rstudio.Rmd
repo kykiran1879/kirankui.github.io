@@ -33,6 +33,18 @@ __Methodology: End to End Data Pipelines & Time Series Analysis for Predicting W
 
 The Kestrel sensor collects weather data at every 10-min interval. Working with this raw data, I applied end to end data pipelines to QC the dataset and applied time series analysis to understand how different independent variables (features) such as outdoor temperature, and humidity influence that weather conditions. 
 
+__Applications__
+
+Time Series Analysis can be applied to analyze any type of trend that changes across time: 
+
+* Healthcare: Patient Admissions, Disease Prevalence, Drug Effectiveness
+* Retail: Sales data, Customer Traffic, Inventory Management
+* Finance: Stock Market Prices, Interest Rates, Cryptocurrency Trends
+* Manufacturing: Production Output, Supply Chain
+
+and so much more...
+
+
 __Dataset Source__
 
 The data used in this project were sourced from __Kestrel Sensors__ located at Reggie Wong Park on Aug 2, 2023. Please email me for more information about this dataset. 
@@ -44,7 +56,7 @@ __Programming Languages used__
 
 
 ## Loaded and QC the dataset
-```{r, echo=FALSE}
+```{r}
 
 kestrel_df <- read_xlsx("./data/Reggie_Kestrel_08022023.xlsx", sheet=1, range = "A5:G6228") %>% 
   janitor::clean_names() %>% 
@@ -57,7 +69,7 @@ kestrel_df <- read_xlsx("./data/Reggie_Kestrel_08022023.xlsx", sheet=1, range = 
          dew_point = as.numeric(dew_point)) %>% 
   rename(date = formatted_date_time)
 
-View(kestrel_df)
+head(kestrel_df)
 
 ```
 
@@ -72,8 +84,9 @@ The dataframe kestrel_df consists of `r ncol(kestrel_df)` variables and `r nrow(
 The dataframe presents data pertaining to various environmental metrics, including heat metrics (temperature, wet bulb temperature, heat index), and more, obtained from the Kestrel sensor during the period spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. Initially, the data points were recorded at 2-minute intervals until 07/12/2023, 7:30 PM, at which point the recording frequency transitioned to 10-minute intervals.
 
 ## Time Series Analysis
-### Date -> year, month, day and hour
-```{r, echo=FALSE}
+
+```{r}
+# Date to year, month, day and hour
 kestrel_df$date <- ymd_hms(kestrel_df$date)
 
 kestrel_df$year <- year(kestrel_df$date)
@@ -84,49 +97,93 @@ kestrel_df$hour <- hour(kestrel_df$date)
 kestrel_df %>% 
   select(date, year, month, day, hour)
 
-```
-I separated the date column into year, month, day and hour. 
-
-### 2-min intervals -> 10-min intervals
-```{r, echo=FALSE}
+# Converted to 10 minute intervals
 kestrel_df$date <- floor_date(kestrel_df$date, unit = "10 minutes")
 
 head(kestrel_df)
-```
-I changed the time interval to from 2 minutes to 10 minutes. 
 
-### Average values for each day
-```{r, echo=FALSE}
+# Converted to 1-month intervals
+kestrel_df$date <- floor_date(kestrel_df$date, unit = "10 minutes")
+
+head(kestrel_df)
+
+# Converted to 1-day intervals
 kestrel_daily_df <- timeAverage(kestrel_df, avg.time = "day")
 
 head(kestrel_daily_df)
-```
-I found the average daily metrics for temperature, humidity...
 
-### Average values for each month
-```{r, echo=FALSEl}
+# Converted to monthly intervals
 kestrel_monthly_df <- timeAverage(kestrel_df, avg.time = "month")
 
 head(kestrel_monthly_df)
+
 ```
-I found the average monthly metrics for Kestrel for July and August respectively for temperature, humidity...
-Note: There was only data recorded for 08/01/2023 and 08/02/2023. 
+
+__Data Methodology__
+
+* I separated the date column into year, month, day and hour. 
+* I found the average 10-min values for temperature, humidity... 
+* I found the average daily values for temperature, humidity...
+* I found the average monthly values for temperature, humidity...
+
+Note: There was only data recorded for 08/01/2023 and 08/02/2023 in August.  
+
 
 ### Trends in temperature, WBGT and heat index
 
-Let's focus on July 2023, because of the higher temperatures. 
+#### Comparing July and August temperatures
+
+```{r}
+kestrel_temp <- plot_ly(kestrel_daily_df, 
+                        x = ~date, 
+                        y = ~temperature, 
+                        name = 'Daily Average Temperature (°F)', 
+                        type = 'scatter', 
+                        mode = 'lines+markers') %>%
+  layout(
+    title = 'Daily Temperature at Reggie Wong Park in July-Aug 2023',
+    yaxis = list(title = 'Temperature (°F)'),
+    xaxis = list(title = 'Date'),
+    legend = list(
+      orientation = 'h',
+      y = -0.3,
+      x = 0.5,
+      xanchor = 'center',
+      yanchor = 'bottom'
+    )
+  )
+
+
+# View the plot
+kestrel_temp
+
+
+```
+
+__Findings__
+* July 2023 had higher temperatures, and we have more data! 
+
+Let's focus on July 2023. 
 
 #### Weather conditions across time in July 2023
-```{r, echo=FALSE}
+```{r}
 timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
 pollutant = c("temperature", "relative_humidity"),
 y.relation = "free")
 
 ```
-I created a time series plot that depicts the variations in temperature, wet bulb global temperature, and heat index from July 8, 2023, at 8:02 PM to July 31, 2023, at 11:50 PM. Outdoor temperature is linked to lower humidity across July. 
+
+__Data Methodology__
+
+I created a time series plot that depicts the variations in temperature and humidity from July 8, 2023, at 8:02 PM to July 31, 2023, at 11:50 PM. 
+
+__Findings__
+
+* July 13 and July 24 had the highest temperatures, close to 100 degrees Fahrenheit!!!
+* Outdoor temperature is linked to lower humidity across July 2023. 
 
 #### Weather Conditions across days of the week
-```{r, echo=FALSE}
+```{r}
 
 # temperature
 timeVariation(subset(kestrel_df),pollutant = "temperature", ylab = "Temperature (F)")
@@ -136,7 +193,22 @@ timeVariation(subset(kestrel_df),pollutant = "relative_humidity", ylab = "Relati
 
 ```
 
-* MON: highest humidity, lowest temperature
-* WED: highest temperature, lowest humidity
+__Data Methodology__
+
+I created a time series plot that depicts the variations in temperature and humidity across different days of the week in July 2023. 
+
+__Findings__
+
+* MONDAY had the highest humidity, lowest temperature
+* WEDNESDAY had the highest temperature, lowest humidity
+
+## Data Summary and Recommendations for park users
+
+Based on the data from July-Aug 2023: 
+
+* July is a hot month, with temperatures approaching 100 degrees fahrenheit at certain times. 
+* Temperatures may fluctuate across July, and start cooling off towards the end of the month. 
+* Wednesdays bring the highest temperatures and lowest humidity, so users should take extra precautions when exercising in the park to avoid heat-related issues.
+
 
 

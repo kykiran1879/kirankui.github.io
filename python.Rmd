@@ -1,9 +1,10 @@
 ---
-title: "Airbnb Prices"
+title: "Project: AirBnb Rental Prices"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: rows
-runtime: shiny
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: spacelab
 ---
 
 ```{r setup, include=FALSE}

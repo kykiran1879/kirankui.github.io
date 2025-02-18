@@ -16,6 +16,7 @@ library(rgeoda)
 library(biscale)
 library(cowplot)
 library(RColorBrewer)
+library(reticulate)
 ```
 
 ```{r, include=FALSE}

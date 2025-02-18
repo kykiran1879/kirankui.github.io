@@ -1,0 +1,228 @@
+---
+title: "Airbnb Prices"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+py_config()
+```
+
+__Project Introduction and Context__
+
+This project explores Airbnb rental prices in New York City in 2017.Through this analysis, I aim to uncover patterns, trends and relationships between: 
+
+* Rental prices
+* Borough
+* Neighborhood
+* Review score (1-10)
+* Minimum Nights
+
+__Dataset Source__
+
+The data used in this project were sourced from __Inside Airbnb__ as of September 2, 2017. The version of the dataset employed for this analysis can be accessed (here)[https://insideairbnb.com/get-the-data/].
+
+__Methodology: Supervised Machine Learning for Predicting Rental Prices__
+
+To predict rental prices based on various factors like borough, minimum nights, and review scores, we use supervised machine learning techniques, specifically regression analysis. This approach is suitable because our target variable (rental price) is continuous, and we want to understand how different independent variables (features) such as minimum nights and review scores influence that price.
+
+
+## Imported Libraries
+```{python, echo=FALSE}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import sklearn as sk
+from sklearn import linear_model
+import seaborn as sns
+```
+I imported libraries from pandas, numpy, matplotlib, scikit-learn and seaborn. 
+
+## Loaded and inspected the dataset
+```{python, echo=FALSE}
+# Load and inspect the dataset
+df = pd.read_csv('/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/nyc_airbnb.csv')
+
+# Dataset Summary
+df_info = {
+    "rows": df.shape[0],
+    "columns": df.shape[1],
+    "columns_names": df.columns.tolist(),
+    "duplicate_records": df.duplicated().sum()
+}
+
+df_info
+
+```
+
+__Data Summary__
+
+The dataset contains 40,753 rows and 17 columns. The columns include key information about Airbnb listings, such as listing ID, location review scores, host details, neighbourhood information, pricing, room type, and review metrics. Key columns in the dataset include 'id', 'review_scores_location', 'price', 'room_type', 'number_of_reviews', 'reviews_per_month', and 'availability_365'. There are no duplicate records in this dataset.
+
+## Exploratory Data Analysis
+```{python, echo=FALSE}
+# Renaming columns and performing some exploratory data analysis
+df = df.rename(columns={'neighbourhood_group': 'borough'})
+
+# Exploratory Findings:
+borough_counts = df['borough'].value_counts().sort_values(ascending=False)
+average_prices_borough = df.groupby('borough')['price'].mean().sort_values(ascending=False)
+
+# Finding most and least expensive neighborhoods
+most_expensive_neighborhood = average_prices_borough.idxmax()
+least_expensive_neighborhood = average_prices_borough.idxmin()
+
+# Results
+exploratory_results = {
+    "borough_counts": borough_counts.to_dict(),
+    "average_prices_borough": average_prices_borough.to_dict(),
+    "most_expensive": most_expensive_neighborhood,
+    "least_expensive": least_expensive_neighborhood,
+    "most_expensive_price": average_prices_borough.max(),
+    "least_expensive_price": average_prices_borough.min()
+}
+exploratory_results
+```
+
+__Exploratory Results Summary__
+
+The dataset reveals a notable distribution of Airbnb listings across New York City boroughs, with Manhattan having the highest count at 19,212 listings, followed by Brooklyn with 16,810 listings. Other boroughs such as Queens, the Bronx, and Staten Island have significantly fewer listings.
+
+The average prices per borough vary, with Manhattan being the most expensive at an average of $180.09, while the Bronx is the least expensive at $82.83. Staten Island and Brooklyn have moderate pricing, with averages of $128.02 and $119.68, respectively.
+
+Manhattan stands out as the most expensive area, while the Bronx remains the least expensive.
+
+## Visualizations
+
+### Graph showing the distribution of NYC Airbnb Listing Prices 
+```{python, echo=FALSE}
+# Visualization: Distribution of Prices
+plt.figure(figsize=(10, 6))
+plt.hist(df['price'], bins=50, color='lightgreen', edgecolor='black')
+plt.title('Distribution of Prices in NYC Airbnb Listings')
+plt.xlabel('Price ($)')
+plt.ylabel('Frequency (Number of Listings)')
+plt.xlim(0, 1500)  # Set the x-axis range between 0 and 2000
+plt.grid(True)
+plt.show()
+
+```
+Most NYC Airbnb listings are between $0 to $250. 
+
+### Distribution of Prices in NYC Airbnb Listings
+```{python, echo=FALSE}
+# Boxplot of Price Distribution
+plt.figure(figsize=(10, 6))
+plt.boxplot(df['price'], vert=False, patch_artist=True, 
+            boxprops=dict(facecolor='lightgreen', color='black'),
+            flierprops=dict(markerfacecolor='red', marker='o', markersize=5))
+
+plt.title('Distribution of Prices in NYC Airbnb Listings')
+plt.xlabel('Price ($)')
+plt.show()
+```
+NYC Airbnb listings can reach prices as high as $10,000.
+
+### Average Prices in NYC Airbnb Listings across Boroughs 
+```{python}
+# Bar Graph: Average Price per Borough
+average_prices_borough = df.groupby('borough')['price'].mean().sort_values(ascending=False)
+plt.figure(figsize=(10, 6))
+av = average_prices_borough.plot(kind='bar', color='lightgreen', edgecolor='black')
+
+for i, v in enumerate(average_prices_borough):
+    av.text(i, v + 5, f"${v:,.2f}", ha='center', va='bottom', fontsize=10) 
+    
+plt.title('Average Prices of NYC Airbnb Listings across Boroughs')
+plt.xlabel('Borough')
+plt.ylabel('Average Price ($)')
+plt.xticks(rotation=45)
+plt.show()
+
+```
+The average prices per borough vary, with Manhattan being the most expensive at an average of $180.09, while the Bronx is the least expensive at $82.83.
+
+### Maximum Prices in NYC Airbnb Listings across Boroughs 
+```{python}
+# Boxplot of Price Distribution Across Boroughs
+custom_order = ['Manhattan', 'Brooklyn', 'Queens', 'Staten Island', 'Bronx']
+
+plt.figure(figsize=(12, 8))
+sns.boxplot(x='borough', y='price', data=df, palette='Set2', order=custom_order)
+plt.title('Distribution of Prices Across Boroughs in NYC Airbnb Listings')
+plt.xlabel('Borough')
+plt.ylabel('Price ($)')
+plt.xticks(rotation=45)
+plt.show()
+
+```
+The maximum prices per borough vary, with Manhattan being the most expensive at around $10,000, while the Bronx is the least expensive at $1,000. 
+
+### Price vs Review Scores
+```{python}
+# Scatterplot: Price vs Review Scores (Location)
+plt.figure(figsize=(10, 6))
+plt.scatter(df['review_scores_location'], df['price'], alpha=0.5, color='purple')
+plt.title('Review Scores vs. Price of NYC Airbnb Listings')
+plt.xlabel('Review Scores (1-10)')
+plt.ylabel('Price ($)')
+plt.grid(True)
+plt.show()
+
+```
+Rental price tend to increase with review scores (1-10) up to a score of 8. Beyond this point, maximum rental prices for listings with a score of 8 or higher remain relatively consistent at around $10,000.
+
+### Price vs Minimum Nights
+```{python}
+# Scatterplot: Price vs Minimum Nights
+plt.figure(figsize=(10, 6))
+plt.scatter(df['minimum_nights'], df['price'], alpha=0.5, color='blue')
+plt.title('Minimum Nights vs. Price of NYC Airbnb Listings')
+plt.xlabel('Minimum Nights')
+plt.ylabel('Price ($)')
+plt.grid(True)
+plt.show()
+
+```
+In general, rental price tend to decrease with an increase in minimum nights.
+
+## Supervised Machine Learning: Regression Output
+```{python}
+# Supervised Machine Learning: Linear Regression
+df = df.dropna(subset=['price', 'review_scores_location'])
+df = df[df['borough'] == 'Manhattan']
+
+x = df[['review_scores_location', 'minimum_nights']] 
+y = df['price']
+
+reg = linear_model.LinearRegression()
+reg.fit(x, y)
+
+reg_results = {
+    "coefficients": reg.coef_,
+    "intercept": reg.intercept_
+}
+reg_results
+
+```
+
+In this analysis, we are focused on exploring the relationship between rental prices, review scores, and minimum nights for Airbnb listings in Manhattan. Given that Manhattan has the highest number of listings, the highest average rental price, and some of the most expensive properties, it presents a unique opportunity for deeper analysis.
+
+We use regression analysis to model how rental prices are influenced by review scores and minimum nights. By doing so, we aim to understand whether higher review scores or longer minimum stays are associated with higher rental prices. The regression output will help quantify these relationships and provide insights into which factors are more influential in determining rental price within this borough.
+
+__Regression Output Explanation:__
+
+The regression model has produced the following results:
+
+__Coefficients:__
+
+* 22.06: This is the coefficient for review scores. It means that for each additional point in the review score, the rental price increases by approximately $22.06, assuming all other factors remain constant.
+
+* 0.85: This is the coefficient for the minimum number of nights. It indicates that for each additional night added to the minimum stay requirement, the rental price increases by around $0.85, again assuming all other factors are constant.
+
+__Intercept:__
+
+* -41.58: This is the intercept of the regression line, meaning when both the review score and minimum nights are zero, the model predicts a rental price of approximately -$41.58. While this doesn't represent a realistic scenario (since rental prices can't be negative), it serves as the baseline for the regression model.

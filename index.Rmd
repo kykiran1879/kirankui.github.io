@@ -6,36 +6,34 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed by Kiran with R and Git software*
+*Website developed with R and Git*
 
-## Affliations
-<img src="/Users/kuiyan/Desktop/TuftsCTSI.jpeg" alt="Logo" style="width:25%">
-<img src="/Users/kuiyan/Desktop/Columbia_logo.png" alt="Logo" style="width:25%">  
-
-__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an __MPH__ from __Columbia University__ in Epidemiology and Applied Biostatistics. 
-
-Her research focuses on addressing __environmental health and chronic health outcomes__ in underserved populations.
+### Introduction
+ 
+__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an __Masters__ from __Columbia University__ in Epidemiology and Applied Biostatistics & Data Science. 
 
 
-## Awards
+### Skills & Expertise
+
+* R *(dplyr, tidyverse, ggplot2)*
+* Python *(Pandas, NumPy, Matplotlib)*
+* Machine Learning *(Scikit-Learn)*
+* SQL *(MySQL)*
+* Dashboards *(plotly)*
+* Software *(QGIS, Geoda)*
+
+In progress: 
+
+* Deep Learning *(NLP, LLM)*
+
+
+### Awards
 
 * [Sidney Kark Award in Epidemiology 2023](https://www.publichealth.columbia.edu/sites/default/files/media/general/2023-05/columbia-mailman-2023-class-day.pdf)
 * [Delta Omega Award 2023](https://www.publichealth.columbia.edu/people/current-students/commencement/delta-omega-honor-society)
 * [Tow Scholar 2023](https://www.towfoundation.org/grantee/columbia-university-mailman-school-of-public-health/)
-* [American Public Health Association Travel Award 2022](https://www.apha.org/about-apha/apha-awards)
+* [American Public Health Association Award 2022](https://www.apha.org/about-apha/apha-awards)
 
 
-## Publications
 
-1. [Chan SW, Chin M, Suss R, Kui K, Lam S, Dowd E, Bosen C, Mei S, Barth Hughes M, Yi S. Uplifting Communities through Culturally Specific Nutrition Programming in Brooklyn, New York, 2022. Health Promotion Practice.](https://pubmed.ncbi.nlm.nih.gov/38415651/)
-
-2. [Chin M, Doan L, Russo R, Roberts T, Persaud S, Kui KY, Kwon S, Yi S. Methods for Retrospectively Improving Race/Ethnicity Data Quality: A Scoping Review. Epidemiologic Reviews.](https://pubmed.ncbi.nlm.nih.gov/37045807/)
-
-3. [Castor D, Heck C, Quigee D, Telrandhe NV, Kui K, Wu J, Glickson E, Yohannes K, Torres-Rueda S, Bozzani F, Meyers K, Zucker J, Deacon J, Kripke K, Sobieszczyk ME, Terris-Prestholt F, Malati C, Obermeyer C, Dam A, Schwartz K, Forsythe S. PrEP costs and its implications for resource needs of long-acting PrEP in low- and middle-income countries: A scoping review. Journal of the International AIDS Society. ](https://pubmed.ncbi.nlm.nih.gov/37439063/)
-
-4. [Tay Z, Chen B, Kui KY, et al. Results from the Singapore 2022 report card on physical activity for children and adolescents. Journal of Exercise Science & Fitness. 2023;21(1):20-25. doi:10.1016/j.jesf.2022.10.005.](https://pubmed.ncbi.nlm.nih.gov/36349304/)
-
-5. [Chen B, Kui KY, Padmapriya N, Müller AM, Müller‐Riemenschneider F. Correlates of sedentary behavior in Asian preschool‐aged children: A systematic review. Obesity Reviews. 2022;23(9). doi:10.1111/obr.13485.](https://pubmed.ncbi.nlm.nih.gov/35698280/)
-
-6. [Edney S, Chua XH, Müller AM, Kui KY, Müller‐Riemenschneider F. MHealth interventions targeting movement behaviors in Asia: A scoping review. Obesity Reviews. 2021;23(4). doi:10.1111/obr.13396.](https://pubmed.ncbi.nlm.nih.gov/34927346/)
 

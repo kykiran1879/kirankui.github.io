@@ -5,10 +5,8 @@ navbar:
   right:
     - text: "About"
       href: About.html
-    - text: "Plots"
-      href: heat.html
-    - text: "Maps"
-      href: gis.html
+    - text: "Project: AirBnb"
+      href: python.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>
     - icon: fa-linkedin fa-lg

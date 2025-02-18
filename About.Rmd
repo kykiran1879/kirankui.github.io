@@ -6,12 +6,15 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed by Kiran with R and Git software*
+*Website developed with R and Git*
 
-## Important Links for Heat Stress and Air Pollution
+I have always been fascinated by the way machines can be trained to make decisions and solve complex problems. My journey into machine learning began during my master's studies, where I delved deeper into data science and artificial intelligence through coursework and hands-on projects. Over time, I became passionate about how these technologies could revolutionize industries, from healthcare to finance. My ultimate goal is to contribute to the development of scalable and equitable AI systems that can improve human lives by automating decision-making and unlocking hidden patterns in data. I am particularly excited about deep learning and natural language processing, as I believe they hold the potential for creating transformative solutions in fields such as healthcare diagnostics and personalized education.
 
-* [U.S. National Weather Service (NWS) Wet Bulb Globe Temperature](https://www.weather.gov/tsa/wbgt)
-* [U.S. Environmental Protection Agency (EPA) Air Quality](https://www.airnow.gov/?city=Boston&state=MA&country=USA)
+I will highlight a selection of projects that demonstrate my expertise in machine learning and AI. Each project reflects my hands-on experience in solving real-world problems and applying various techniques in the field.
+
+* Weather Pattern Prediction (R, ): A predictive model developed to forecast weather patterns based on historical data. This project involved extensive data cleaning, feature engineering, and the use of classification and regression algorithms like Random Forest and Logistic Regression to predict temperature, precipitation, and other weather factors. The goal was to identify key patterns in the data that could improve the accuracy of weather forecasts.
+
+
 
 
 

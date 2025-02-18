@@ -161,6 +161,7 @@ kestrel_temp
 ```
 
 __Findings__
+
 * July 2023 had higher temperatures, and we have more data! 
 
 Let's focus on July 2023. 

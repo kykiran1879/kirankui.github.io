@@ -376,9 +376,8 @@ relationships between:</p>
 <p><strong>Dataset Source</strong></p>
 <p>The data used in this project were sourced from <strong>Inside
 Airbnb</strong> as of September 2, 2017. The version of the dataset
-employed for this analysis can be accessed (here)[<a
-href="https://insideairbnb.com/get-the-data/"
-class="uri">https://insideairbnb.com/get-the-data/</a>].</p>
+employed for this analysis can be accessed <a
+href="%22https://insideairbnb.com/get-the-data/%22">here</a>.</p>
 <p><strong>Methodology: Supervised Machine Learning for Predicting
 Rental Prices</strong></p>
 <p>To predict rental prices based on various factors like borough,
@@ -387,6 +386,13 @@ techniques, specifically regression analysis. This approach is suitable
 because our target variable (rental price) is continuous, and we want to
 understand how different independent variables (features) such as
 minimum nights and review scores influence that price.</p>
+<p><strong>Programming Languages used</strong></p>
+<ul>
+<li>R <em>(plotly, reticulate)</em></li>
+<li>Python <em>(Pandas, NumPy, Scikit-Learn, Matplotlib,
+Seaborn)</em></li>
+<li>Machine Learning <em>(Scikit-Learn)</em></li>
+</ul>
 <div id="imported-libraries" class="section level2">
 <h2>Imported Libraries</h2>
 <p>I imported libraries from pandas, numpy, matplotlib, scikit-learn and
@@ -432,7 +438,7 @@ Most NYC Airbnb listings are between $0 to $250.</p>
 <div id="distribution-of-prices-in-nyc-airbnb-listings"
 class="section level3">
 <h3>Distribution of Prices in NYC Airbnb Listings</h3>
-<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12c587710&gt;, &lt;matplotlib.lines.Line2D object at 0x12ead9e20&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x12eada000&gt;, &lt;matplotlib.lines.Line2D object at 0x12eada330&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x12c543770&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x12eada630&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x12eada930&gt;], &#39;means&#39;: []}</code></pre>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x11e8df950&gt;, &lt;matplotlib.lines.Line2D object at 0x120f10aa0&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x120f10d70&gt;, &lt;matplotlib.lines.Line2D object at 0x120f11070&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x11e916750&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x120f113a0&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x120f11640&gt;], &#39;means&#39;: []}</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-5-3.png" width="960" />
 NYC Airbnb listings can reach prices as high as $10,000.</p>
 </div>

@@ -24,12 +24,17 @@ This project explores Airbnb rental prices in New York City in 2017.Through this
 
 __Dataset Source__
 
-The data used in this project were sourced from __Inside Airbnb__ as of September 2, 2017. The version of the dataset employed for this analysis can be accessed (here)[https://insideairbnb.com/get-the-data/].
+The data used in this project were sourced from __Inside Airbnb__ as of September 2, 2017. The version of the dataset employed for this analysis can be accessed [here]("https://insideairbnb.com/get-the-data/").
 
 __Methodology: Supervised Machine Learning for Predicting Rental Prices__
 
 To predict rental prices based on various factors like borough, minimum nights, and review scores, we use supervised machine learning techniques, specifically regression analysis. This approach is suitable because our target variable (rental price) is continuous, and we want to understand how different independent variables (features) such as minimum nights and review scores influence that price.
 
+__Programming Languages used__
+
+* R *(plotly, reticulate)*
+* Python *(Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn)*
+* Machine Learning *(Scikit-Learn)*
 
 ## Imported Libraries
 ```{python, echo=FALSE}

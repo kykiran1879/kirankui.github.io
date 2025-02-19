@@ -565,30 +565,8 @@ August.</p>
 <h2>Visualizations of Trends</h2>
 <div id="comparing-july-and-august-temperatures" class="section level3">
 <h3>Comparing July and August temperatures</h3>
-<pre class="r"><code>kestrel_temp &lt;- plot_ly(kestrel_daily_df, 
-                        x = ~date, 
-                        y = ~temperature, 
-                        name = &#39;Daily Average Temperature (°F)&#39;, 
-                        type = &#39;scatter&#39;, 
-                        mode = &#39;lines+markers&#39;) %&gt;%
-  layout(
-    title = &#39;Daily Temperature at Reggie Wong Park in July-Aug 2023&#39;,
-    yaxis = list(title = &#39;Temperature (°F)&#39;),
-    xaxis = list(title = &#39;Date&#39;),
-    legend = list(
-      orientation = &#39;h&#39;,
-      y = -0.3,
-      x = 0.5,
-      xanchor = &#39;center&#39;,
-      yanchor = &#39;bottom&#39;
-    )
-  )
-
-
-# View the plot
-kestrel_temp</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-6c2fc50d4e567ed91f96" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6c2fc50d4e567ed91f96">{"x":{"visdat":{"1e6d206722a3":["function () ","plotlyVisDat"]},"cur_data":"1e6d206722a3","attrs":{"1e6d206722a3":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-3ea4ced435648747dcdd" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3ea4ced435648747dcdd">{"x":{"visdat":{"209b28bd8aa6":["function () ","plotlyVisDat"]},"cur_data":"209b28bd8aa6","attrs":{"209b28bd8aa6":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Findings</strong></p>
 <ul>
 <li>July 2023 had higher temperatures, and we have more data!</li>
@@ -638,7 +616,6 @@ temperature and humidity across different days of the week in July
 <pre class="r"><code>kestrel_july_df = kestrel_df %&gt;% 
   filter(month==7)
 
-# Fit the models
 fit &lt;- lm(temperature ~ relative_humidity * day, data = kestrel_july_df)
 summary(fit)</code></pre>
 <pre><code>## 
@@ -663,7 +640,6 @@ summary(fit)</code></pre>
 ## F-statistic:  7683 on 3 and 5980 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>base &lt;- lm(temperature ~ relative_humidity + day, data = kestrel_july_df)
 
-# Partial F test to see if temperature is significant
 anova(base, fit)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -674,33 +650,14 @@ anova(base, fit)</code></pre>
 ## 2   5980 62659  1    3646.3 347.99 &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code># Store the fitted values for the interaction model
-kestrel_july_df$fit_values &lt;- fitted(fit)</code></pre>
-<pre class="r"><code># Plot the original data points and the fitted line
-ggplot(kestrel_july_df) +
-  aes(x = relative_humidity, y = temperature) +  
-  geom_point(aes(color = factor(day)), alpha = 0.6) +  
-  geom_line(aes(x = relative_humidity, y = fit_values, color = factor(day)), size = 1) +  
-  theme_minimal() +  
-  theme(
-    panel.background = element_rect(fill = &quot;white&quot;),  
-    plot.background = element_rect(fill = &quot;white&quot;),   
-    legend.background = element_rect(fill = &quot;white&quot;)  
-  ) +
-  labs(
-    x = &quot;Relative Humidity&quot;,                     
-    y = &quot;Temperature (F)&quot;,     
-    color = &quot;Day&quot;,                    
-    title = &quot;Temperature vs. Relative Humidity by Day in July&quot;  # Added title
-  )</code></pre>
+<pre class="r"><code>kestrel_july_df$fit_values &lt;- fitted(fit)</code></pre>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.</code></pre>
 <p><img src="rstudio_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code># Fit the models
-fit &lt;- lm(temperature ~ relative_humidity * day_of_week_name, data = kestrel_july_df)
+<pre class="r"><code>fit &lt;- lm(temperature ~ relative_humidity * day_of_week_name, data = kestrel_july_df)
 
 summary(fit)</code></pre>
 <pre><code>## 
@@ -736,7 +693,6 @@ summary(fit)</code></pre>
 ## F-statistic:  2045 on 13 and 5970 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>base &lt;- lm(temperature ~ relative_humidity + day_of_week_name, data = kestrel_july_df)
 
-# Partial F test to see if temperature is significant
 anova(base, fit)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -747,26 +703,7 @@ anova(base, fit)</code></pre>
 ## 2   5970 55780  6     12894 229.99 &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code># Store the fitted values for the interaction model
-kestrel_july_df$fit_values &lt;- fitted(fit)</code></pre>
-<pre class="r"><code># Plot the original data points and the fitted line
-ggplot(kestrel_july_df) +
-  aes(x = relative_humidity, y = temperature) +  
-  geom_point(aes(color = factor(day_of_week_name)), alpha = 0.6) +  
-  geom_line(aes(x = relative_humidity, y = fit_values, color = factor(day_of_week_name)), size = 1) +  
-  theme_minimal() +  
-  theme(
-    panel.background = element_rect(fill = &quot;white&quot;),  
-    plot.background = element_rect(fill = &quot;white&quot;),   
-    legend.background = element_rect(fill = &quot;white&quot;)  
-  ) +
-  scale_color_brewer(palette = &quot;Set1&quot;) + 
-  labs(
-    x = &quot;Relative Humidity&quot;,                     
-    y = &quot;Temperature (F)&quot;,     
-    color = &quot;Day&quot;,                    
-    title = &quot;Temperature vs. Relative Humidity by Day of Week in July&quot;  # Added title
-  )</code></pre>
+<pre class="r"><code>kestrel_july_df$fit_values &lt;- fitted(fit)</code></pre>
 <p><img src="rstudio_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="data-summary-and-recommendations-for-park-users"

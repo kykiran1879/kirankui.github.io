@@ -148,7 +148,7 @@ Note: There was only data recorded for 08/01/2023 and 08/02/2023 in August.
 
 ### Comparing July and August temperatures
 
-```{r}
+```{r, echo=FALSE}
 kestrel_temp <- plot_ly(kestrel_daily_df, 
                         x = ~date, 
                         y = ~temperature, 
@@ -224,21 +224,18 @@ __Findings__
 kestrel_july_df = kestrel_df %>% 
   filter(month==7)
 
-# Fit the models
 fit <- lm(temperature ~ relative_humidity * day, data = kestrel_july_df)
 summary(fit)
 
 base <- lm(temperature ~ relative_humidity + day, data = kestrel_july_df)
 
-# Partial F test to see if temperature is significant
 anova(base, fit)
 
-# Store the fitted values for the interaction model
 kestrel_july_df$fit_values <- fitted(fit)
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 # Plot the original data points and the fitted line
 ggplot(kestrel_july_df) +
   aes(x = relative_humidity, y = temperature) +  
@@ -253,7 +250,7 @@ ggplot(kestrel_july_df) +
   labs(
     x = "Relative Humidity",                     
     y = "Temperature (F)",     
-    color = "Day",                    
+    color = "Day of the week",                    
     title = "Temperature vs. Relative Humidity by Day in July"  # Added title
   )
 
@@ -262,21 +259,18 @@ ggplot(kestrel_july_df) +
 
 
 ```{r}
-# Fit the models
 fit <- lm(temperature ~ relative_humidity * day_of_week_name, data = kestrel_july_df)
 
 summary(fit)
 
 base <- lm(temperature ~ relative_humidity + day_of_week_name, data = kestrel_july_df)
 
-# Partial F test to see if temperature is significant
 anova(base, fit)
 
-# Store the fitted values for the interaction model
 kestrel_july_df$fit_values <- fitted(fit)
 ```
 
-```{r}
+```{r, echo=FALSE}
 # Plot the original data points and the fitted line
 ggplot(kestrel_july_df) +
   aes(x = relative_humidity, y = temperature) +  

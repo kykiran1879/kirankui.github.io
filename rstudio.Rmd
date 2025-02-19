@@ -187,7 +187,7 @@ __Findings__
 * July 13 and July 24 had the highest temperatures, close to 100 degrees Fahrenheit!!!
 * Outdoor temperature is linked to lower humidity across July 2023. 
 
-#### Weather Conditions across days of the week
+### Weather Conditions across days of the week
 ```{r}
 
 # temperature

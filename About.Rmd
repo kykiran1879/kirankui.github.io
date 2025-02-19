@@ -14,9 +14,9 @@ I will highlight a selection of projects that demonstrate my expertise in machin
 
 __Projects__
 
-* Airbnb Rental Price prediction: This project predicts Airbnb rental prices in New York City based on data from 2017. 
+* Airbnb Rental Price prediction (Python, R): This project predicts Airbnb rental prices in New York City based on data from 2017. 
 
-* Hot Summer Trends: This project analyzes weather changes in Boston based on data from 2023
+* Hot Summer Trends (R, Git): This project analyzes weather changes in Boston based on data from 2023
 
 
 

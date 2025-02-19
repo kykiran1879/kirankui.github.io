@@ -1,5 +1,5 @@
 ---
-title: "Kiran Kui, MPH"
+title: "Kiran Kui's E-Porfolio"
 output: 
   html_document:
     toc: TRUE
@@ -9,23 +9,32 @@ output:
 *Website developed with R and Git*
 
 ### Introduction
- 
-__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/) with an __Masters__ from __Columbia University__ in Epidemiology and Applied Biostatistics & Data Science. 
 
+<div style="display: flex; align-items: center;">
+  <img src="/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/Biosketch_Headshot_Kiran.jpg" width="172.5" height="300" style="margin-right: 15px;">
+  <div>
+  
+__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/).
 
-### Skills & Expertise
+__Degree__: Masters in __Biostatistics & Data Science__, Columbia University 
+
+__Programming Languages:__ 
 
 * R *(dplyr, tidyverse, ggplot2)*
 * Python *(Pandas, NumPy, Matplotlib)*
+* SAS *(Studio)*
 * Machine Learning *(Scikit-Learn)*
+* Deep Learning *(NLP, LLM)*
 * SQL *(MySQL)*
 * Dashboards *(plotly)*
 * Software *(QGIS, Geoda)*
 
-In progress: 
+__Methods:__
 
-* Deep Learning *(NLP, LLM)*
-
+* Statistical Analysis, Data Analytics, Machine Learning, Deep Learning
+  
+  </div>
+</div>
 
 ### Awards
 
@@ -33,6 +42,10 @@ In progress:
 * [Delta Omega Award 2023](https://www.publichealth.columbia.edu/people/current-students/commencement/delta-omega-honor-society)
 * [Tow Scholar 2023](https://www.towfoundation.org/grantee/columbia-university-mailman-school-of-public-health/)
 * [American Public Health Association Award 2022](https://www.apha.org/about-apha/apha-awards)
+
+### Press
+
+* [Featured in Tufts Now for work advancing Asian American health on Feb 10, 2025](https://now.tufts.edu/2025/02/10/one-coalition-dozens-projects-advance-asian-american-health)
 
 
 

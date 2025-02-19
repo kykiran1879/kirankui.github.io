@@ -220,22 +220,22 @@ __Findings__
 
 ## Predictive Models (for July) 
 
-```{r}
+```{r , echo=FALSE, warning=FALSE}
 kestrel_july_df = kestrel_df %>% 
   filter(month==7)
 
 fit <- lm(temperature ~ relative_humidity * day, data = kestrel_july_df)
 summary(fit)
 
-base <- lm(temperature ~ relative_humidity + day, data = kestrel_july_df)
+#base <- lm(temperature ~ relative_humidity + day, data = kestrel_july_df)
 
-anova(base, fit)
+#anova(base, fit)
 
 kestrel_july_df$fit_values <- fitted(fit)
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 # Plot the original data points and the fitted line
 ggplot(kestrel_july_df) +
   aes(x = relative_humidity, y = temperature) +  
@@ -258,19 +258,19 @@ ggplot(kestrel_july_df) +
 ```
 
 
-```{r}
+```{r, echo=FALSE, warning=FALSE}
 fit <- lm(temperature ~ relative_humidity * day_of_week_name, data = kestrel_july_df)
 
 summary(fit)
 
-base <- lm(temperature ~ relative_humidity + day_of_week_name, data = kestrel_july_df)
+#base <- lm(temperature ~ relative_humidity + day_of_week_name, data = kestrel_july_df)
 
-anova(base, fit)
+#anova(base, fit)
 
 kestrel_july_df$fit_values <- fitted(fit)
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 # Plot the original data points and the fitted line
 ggplot(kestrel_july_df) +
   aes(x = relative_humidity, y = temperature) +  

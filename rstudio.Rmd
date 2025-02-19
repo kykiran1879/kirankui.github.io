@@ -54,8 +54,10 @@ __Programming Languages used__
 * R *(tidyverse, dplyr, ggplot2, plotly, lubridate, openair)*
 * Version Control: Git
 
+## Imported Libraries 
+I imported libraries from pandas, numpy, matplotlib, scikit-learn and seaborn. 
 
-## Loaded and QC the dataset
+## Loaded and inspected the dataset
 ```{r}
 
 kestrel_df <- read_xlsx("./data/Reggie_Kestrel_08022023.xlsx", sheet=1, range = "A5:G6228") %>% 
@@ -77,11 +79,14 @@ __Methodology Explanation__
 
 I created a dataset kestrel_df for the Kestrel sensor by loading the relevant excel sheet, tidying the column names and removing irrelevant columns. I also explored the different variables and changed metrics from character to numeric variables. I also changed the name of the date variable to make it easier to use the lubridate packages later on. 
 
-__Data Summary__
+
+## Exploratory Data Analysis
 
 The dataframe kestrel_df consists of `r ncol(kestrel_df)` variables and `r nrow(kestrel_df)` observations. 
 
-The dataframe presents data pertaining to various environmental metrics, including heat metrics (temperature, wet bulb temperature, heat index), and more, obtained from the Kestrel sensor during the period spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. Initially, the data points were recorded at 2-minute intervals until 07/12/2023, 7:30 PM, at which point the recording frequency transitioned to 10-minute intervals.
+The dataframe presents data pertaining to various environmental metrics, obtained from the Kestrel sensor during the period spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. 
+
+Initially, the data points were recorded at 2-minute intervals until 07/12/2023, 7:30 PM, at which point the recording frequency transitioned to 10-minute intervals.
 
 ## Time Series Analysis
 
@@ -128,10 +133,9 @@ __Data Methodology__
 
 Note: There was only data recorded for 08/01/2023 and 08/02/2023 in August.  
 
+## Visualizations of Trends
 
-### Trends in temperature, WBGT and heat index
-
-#### Comparing July and August temperatures
+### Comparing July and August temperatures
 
 ```{r}
 kestrel_temp <- plot_ly(kestrel_daily_df, 
@@ -166,7 +170,7 @@ __Findings__
 
 Let's focus on July 2023. 
 
-#### Weather conditions across time in July 2023
+### Weather conditions across time in July 
 ```{r}
 timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
 pollutant = c("temperature", "relative_humidity"),

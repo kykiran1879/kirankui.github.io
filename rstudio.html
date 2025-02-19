@@ -413,8 +413,13 @@ email me for more information about this dataset.</p>
 openair)</em></li>
 <li>Version Control: Git</li>
 </ul>
-<div id="loaded-and-qc-the-dataset" class="section level2">
-<h2>Loaded and QC the dataset</h2>
+<div id="imported-libraries" class="section level2">
+<h2>Imported Libraries</h2>
+<p>I imported libraries from pandas, numpy, matplotlib, scikit-learn and
+seaborn.</p>
+</div>
+<div id="loaded-and-inspected-the-dataset" class="section level2">
+<h2>Loaded and inspected the dataset</h2>
 <pre class="r"><code>kestrel_df &lt;- read_xlsx(&quot;./data/Reggie_Kestrel_08022023.xlsx&quot;, sheet=1, range = &quot;A5:G6228&quot;) %&gt;% 
   janitor::clean_names() %&gt;% 
   slice(-1) %&gt;% 
@@ -443,16 +448,17 @@ relevant excel sheet, tidying the column names and removing irrelevant
 columns. I also explored the different variables and changed metrics
 from character to numeric variables. I also changed the name of the date
 variable to make it easier to use the lubridate packages later on.</p>
-<p><strong>Data Summary</strong></p>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
 <p>The dataframe kestrel_df consists of 7 variables and 6222
 observations.</p>
 <p>The dataframe presents data pertaining to various environmental
-metrics, including heat metrics (temperature, wet bulb temperature, heat
-index), and more, obtained from the Kestrel sensor during the period
-spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. Initially,
-the data points were recorded at 2-minute intervals until 07/12/2023,
-7:30 PM, at which point the recording frequency transitioned to
-10-minute intervals.</p>
+metrics, obtained from the Kestrel sensor during the period spanning
+from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM.</p>
+<p>Initially, the data points were recorded at 2-minute intervals until
+07/12/2023, 7:30 PM, at which point the recording frequency transitioned
+to 10-minute intervals.</p>
 </div>
 <div id="time-series-analysis" class="section level2">
 <h2>Time Series Analysis</h2>
@@ -545,11 +551,11 @@ head(kestrel_monthly_df)</code></pre>
 </ul>
 <p>Note: There was only data recorded for 08/01/2023 and 08/02/2023 in
 August.</p>
-<div id="trends-in-temperature-wbgt-and-heat-index"
-class="section level3">
-<h3>Trends in temperature, WBGT and heat index</h3>
-<div id="comparing-july-and-august-temperatures" class="section level4">
-<h4>Comparing July and August temperatures</h4>
+</div>
+<div id="visualizations-of-trends" class="section level2">
+<h2>Visualizations of Trends</h2>
+<div id="comparing-july-and-august-temperatures" class="section level3">
+<h3>Comparing July and August temperatures</h3>
 <pre class="r"><code>kestrel_temp &lt;- plot_ly(kestrel_daily_df, 
                         x = ~date, 
                         y = ~temperature, 
@@ -572,17 +578,16 @@ class="section level3">
 
 # View the plot
 kestrel_temp</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-d57252697713f2586ff9" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-d57252697713f2586ff9">{"x":{"visdat":{"1773f7858e79f":["function () ","plotlyVisDat"]},"cur_data":"1773f7858e79f","attrs":{"1773f7858e79f":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-0314fe1f3941eb525cde" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0314fe1f3941eb525cde">{"x":{"visdat":{"121139d9db60":["function () ","plotlyVisDat"]},"cur_data":"121139d9db60","attrs":{"121139d9db60":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Findings</strong></p>
 <ul>
 <li>July 2023 had higher temperatures, and we have more data!</li>
 </ul>
 <p>Let’s focus on July 2023.</p>
 </div>
-<div id="weather-conditions-across-time-in-july-2023"
-class="section level4">
-<h4>Weather conditions across time in July 2023</h4>
+<div id="weather-conditions-across-time-in-july" class="section level3">
+<h3>Weather conditions across time in July</h3>
 <pre class="r"><code>timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
 pollutant = c(&quot;temperature&quot;, &quot;relative_humidity&quot;),
 y.relation = &quot;free&quot;)</code></pre>
@@ -598,7 +603,6 @@ degrees Fahrenheit!!!</li>
 <li>Outdoor temperature is linked to lower humidity across July
 2023.</li>
 </ul>
-</div>
 <div id="weather-conditions-across-days-of-the-week"
 class="section level4">
 <h4>Weather Conditions across days of the week</h4>

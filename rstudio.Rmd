@@ -55,7 +55,7 @@ __Programming Languages used__
 * Version Control: Git
 
 ## Imported Libraries 
-I imported libraries from pandas, numpy, matplotlib, scikit-learn and seaborn. 
+I imported libraries from tidyverse, dplyr, ggplot2, plotly, lubridate and openair.  
 
 ## Loaded and inspected the dataset
 ```{r}
@@ -121,6 +121,17 @@ head(kestrel_daily_df)
 kestrel_monthly_df <- timeAverage(kestrel_df, avg.time = "month")
 
 head(kestrel_monthly_df)
+
+# Generate the day of the week (1 = Sunday, 7 = Saturday)
+kestrel_df$day_of_week <- wday(kestrel_df$date)
+
+# Generate the day of the week as a factor (e.g., Sunday, Monday)
+kestrel_df$day_of_week_name <- wday(kestrel_df$date, label = TRUE, abbr = FALSE)
+
+kestrel_df$day_of_week_name <- factor(kestrel_df$day_of_week_name, 
+                                       levels = c("Sunday", "Monday", "Tuesday", "Wednesday", 
+                                                  "Thursday", "Friday", "Saturday"))
+
 
 ```
 
@@ -206,6 +217,87 @@ __Findings__
 
 * MONDAY had the highest humidity, lowest temperature
 * WEDNESDAY had the highest temperature, lowest humidity
+
+## Predictive Models (for July) 
+
+```{r}
+kestrel_july_df = kestrel_df %>% 
+  filter(month==7)
+
+# Fit the models
+fit <- lm(temperature ~ relative_humidity * day, data = kestrel_july_df)
+summary(fit)
+
+base <- lm(temperature ~ relative_humidity + day, data = kestrel_july_df)
+
+# Partial F test to see if temperature is significant
+anova(base, fit)
+
+# Store the fitted values for the interaction model
+kestrel_july_df$fit_values <- fitted(fit)
+```
+
+
+```{r}
+# Plot the original data points and the fitted line
+ggplot(kestrel_july_df) +
+  aes(x = relative_humidity, y = temperature) +  
+  geom_point(aes(color = factor(day)), alpha = 0.6) +  
+  geom_line(aes(x = relative_humidity, y = fit_values, color = factor(day)), size = 1) +  
+  theme_minimal() +  
+  theme(
+    panel.background = element_rect(fill = "white"),  
+    plot.background = element_rect(fill = "white"),   
+    legend.background = element_rect(fill = "white")  
+  ) +
+  labs(
+    x = "Relative Humidity",                     
+    y = "Temperature (F)",     
+    color = "Day",                    
+    title = "Temperature vs. Relative Humidity by Day in July"  # Added title
+  )
+
+
+```
+
+
+```{r}
+# Fit the models
+fit <- lm(temperature ~ relative_humidity * day_of_week_name, data = kestrel_july_df)
+
+summary(fit)
+
+base <- lm(temperature ~ relative_humidity + day_of_week_name, data = kestrel_july_df)
+
+# Partial F test to see if temperature is significant
+anova(base, fit)
+
+# Store the fitted values for the interaction model
+kestrel_july_df$fit_values <- fitted(fit)
+```
+
+```{r}
+# Plot the original data points and the fitted line
+ggplot(kestrel_july_df) +
+  aes(x = relative_humidity, y = temperature) +  
+  geom_point(aes(color = factor(day_of_week_name)), alpha = 0.6) +  
+  geom_line(aes(x = relative_humidity, y = fit_values, color = factor(day_of_week_name)), size = 1) +  
+  theme_minimal() +  
+  theme(
+    panel.background = element_rect(fill = "white"),  
+    plot.background = element_rect(fill = "white"),   
+    legend.background = element_rect(fill = "white")  
+  ) +
+  scale_color_brewer(palette = "Set1") + 
+  labs(
+    x = "Relative Humidity",                     
+    y = "Temperature (F)",     
+    color = "Day",                    
+    title = "Temperature vs. Relative Humidity by Day of Week in July"  # Added title
+  )
+
+```
+
 
 ## Data Summary and Recommendations for park users
 

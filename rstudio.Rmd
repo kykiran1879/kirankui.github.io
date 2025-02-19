@@ -251,8 +251,7 @@ ggplot(kestrel_july_df) +
     x = "Relative Humidity",                     
     y = "Temperature (F)",     
     color = "Day of the week",                    
-    title = "Temperature vs. Relative Humidity by Day in July"  # Added title
-  )
+    title = "Temperature vs. Relative Humidity by Day in July")
 
 
 ```

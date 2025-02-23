@@ -264,7 +264,7 @@ We use regression analysis to model how rental prices are influenced by review s
 
 __Methods__
 
-In the code, we applied the featured scaling using logarithmic transformation to two features: Price & Minimum Nights,k with large values. 
+In the code, we applied the featured scaling using logarithmic transformation to two features: __Price & Minimum Nights__, with large values. 
 
 The review_scores_location was left unchanged since its values were already on a manageable scale.
 

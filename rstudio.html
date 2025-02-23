@@ -420,18 +420,6 @@ lubridate and openair.</p>
 </div>
 <div id="loaded-and-inspected-the-dataset" class="section level2">
 <h2>Loaded and inspected the dataset</h2>
-<pre class="r"><code>kestrel_df &lt;- read_xlsx(&quot;./data/Reggie_Kestrel_08022023.xlsx&quot;, sheet=1, range = &quot;A5:G6228&quot;) %&gt;% 
-  janitor::clean_names() %&gt;% 
-  slice(-1) %&gt;% 
-  mutate(temperature = as.numeric(temperature),  
-         wet_bulb_temp = as.numeric(wet_bulb_temp), 
-         relative_humidity = as.numeric(relative_humidity), 
-         station_pressure = as.numeric(station_pressure), 
-         heat_index = as.numeric(heat_index), 
-         dew_point = as.numeric(dew_point)) %&gt;% 
-  rename(date = formatted_date_time)
-
-head(kestrel_df)</code></pre>
 <pre><code>## # A tibble: 6 × 7
 ##   date   temperature wet_bulb_temp relative_humidity station_pressure heat_index
 ##   &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
@@ -462,34 +450,23 @@ to 10-minute intervals.</p>
 </div>
 <div id="time-series-analysis" class="section level2">
 <h2>Time Series Analysis</h2>
-<pre class="r"><code># Date to year, month, day and hour
-kestrel_df$date &lt;- ymd_hms(kestrel_df$date)
-
-kestrel_df$year &lt;- year(kestrel_df$date)
-kestrel_df$month &lt;- month(kestrel_df$date)
-kestrel_df$day &lt;- day(kestrel_df$date)
-kestrel_df$hour &lt;- hour(kestrel_df$date)
-
-kestrel_df %&gt;% 
-  select(date, year, month, day, hour)</code></pre>
-<pre><code>## # A tibble: 6,222 × 5
-##    date                 year month   day  hour
-##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
-##  1 2023-07-08 20:12:00  2023     7     8    20
-##  2 2023-07-08 20:14:00  2023     7     8    20
-##  3 2023-07-08 20:16:00  2023     7     8    20
-##  4 2023-07-08 20:18:00  2023     7     8    20
-##  5 2023-07-08 20:20:00  2023     7     8    20
-##  6 2023-07-08 20:22:00  2023     7     8    20
-##  7 2023-07-08 20:24:00  2023     7     8    20
-##  8 2023-07-08 20:26:00  2023     7     8    20
-##  9 2023-07-08 20:28:00  2023     7     8    20
-## 10 2023-07-08 20:30:00  2023     7     8    20
-## # ℹ 6,212 more rows</code></pre>
-<pre class="r"><code># Converted to 10 minute intervals
-kestrel_df$date &lt;- floor_date(kestrel_df$date, unit = &quot;10 minutes&quot;)
-
-head(kestrel_df)</code></pre>
+<pre><code>## # A tibble: 6,222 × 11
+##    date                 year month   day  hour temperature wet_bulb_temp
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+##  1 2023-07-08 20:12:00  2023     7     8    20        72.3          70.2
+##  2 2023-07-08 20:14:00  2023     7     8    20        72.6          70.5
+##  3 2023-07-08 20:16:00  2023     7     8    20        72.4          70.3
+##  4 2023-07-08 20:18:00  2023     7     8    20        72.6          70.5
+##  5 2023-07-08 20:20:00  2023     7     8    20        72.4          70.3
+##  6 2023-07-08 20:22:00  2023     7     8    20        72.4          70.3
+##  7 2023-07-08 20:24:00  2023     7     8    20        72.3          70.3
+##  8 2023-07-08 20:26:00  2023     7     8    20        72            70  
+##  9 2023-07-08 20:28:00  2023     7     8    20        72.2          70.3
+## 10 2023-07-08 20:30:00  2023     7     8    20        72            70  
+## # ℹ 6,212 more rows
+## # ℹ 4 more variables: relative_humidity &lt;dbl&gt;, station_pressure &lt;dbl&gt;,
+## #   heat_index &lt;dbl&gt;, dew_point &lt;dbl&gt;</code></pre>
+<p>I separated the date column into year, month, day and hour.</p>
 <pre><code>## # A tibble: 6 × 11
 ##   date                temperature wet_bulb_temp relative_humidity
 ##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -501,25 +478,7 @@ head(kestrel_df)</code></pre>
 ## 6 2023-07-08 20:20:00        72.4          70.3              90.5
 ## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
 ## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;int&gt;, hour &lt;int&gt;</code></pre>
-<pre class="r"><code># Converted to 1-month intervals
-kestrel_df$date &lt;- floor_date(kestrel_df$date, unit = &quot;10 minutes&quot;)
-
-head(kestrel_df)</code></pre>
-<pre><code>## # A tibble: 6 × 11
-##   date                temperature wet_bulb_temp relative_humidity
-##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
-## 1 2023-07-08 20:10:00        72.3          70.2              90  
-## 2 2023-07-08 20:10:00        72.6          70.5              90.2
-## 3 2023-07-08 20:10:00        72.4          70.3              90.2
-## 4 2023-07-08 20:10:00        72.6          70.5              90.3
-## 5 2023-07-08 20:20:00        72.4          70.3              90.3
-## 6 2023-07-08 20:20:00        72.4          70.3              90.5
-## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
-## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;int&gt;, hour &lt;int&gt;</code></pre>
-<pre class="r"><code># Converted to 1-day intervals
-kestrel_daily_df &lt;- timeAverage(kestrel_df, avg.time = &quot;day&quot;)
-
-head(kestrel_daily_df)</code></pre>
+<p>I found the average 10-min values for temperature, humidity…</p>
 <pre><code>## # A tibble: 6 × 11
 ##   date                temperature wet_bulb_temp relative_humidity
 ##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -531,10 +490,7 @@ head(kestrel_daily_df)</code></pre>
 ## 6 2023-07-13 00:00:00        82.2          70.8              58.9
 ## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
 ## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;</code></pre>
-<pre class="r"><code># Converted to monthly intervals
-kestrel_monthly_df &lt;- timeAverage(kestrel_df, avg.time = &quot;month&quot;)
-
-head(kestrel_monthly_df)</code></pre>
+<p>I found the average daily values for temperature, humidity…</p>
 <pre><code>## # A tibble: 2 × 11
 ##   date                temperature wet_bulb_temp relative_humidity
 ##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -542,16 +498,8 @@ head(kestrel_monthly_df)</code></pre>
 ## 2 2023-08-01 00:00:00        70.4          57.6              47.5
 ## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
 ## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;</code></pre>
-<pre class="r"><code># Generate the day of the week (1 = Sunday, 7 = Saturday)
-kestrel_df$day_of_week &lt;- wday(kestrel_df$date)
-
-# Generate the day of the week as a factor (e.g., Sunday, Monday)
-kestrel_df$day_of_week_name &lt;- wday(kestrel_df$date, label = TRUE, abbr = FALSE)
-
-kestrel_df$day_of_week_name &lt;- factor(kestrel_df$day_of_week_name, 
-                                       levels = c(&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, 
-                                                  &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;))</code></pre>
-<p><strong>Data Methodology</strong></p>
+<p>I found the average monthly values for temperature, humidity…</p>
+<p><strong>Data Methodology Summary</strong></p>
 <ul>
 <li>I separated the date column into year, month, day and hour.</li>
 <li>I found the average 10-min values for temperature, humidity…</li>
@@ -565,20 +513,17 @@ August.</p>
 <h2>Visualizations of Trends</h2>
 <div id="comparing-july-and-august-temperatures" class="section level3">
 <h3>Comparing July and August temperatures</h3>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-7d23a853548ee6e6cf66" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-7d23a853548ee6e6cf66">{"x":{"visdat":{"221825f0c567":["function () ","plotlyVisDat"]},"cur_data":"221825f0c567","attrs":{"221825f0c567":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d2112119da6d3580b081" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d2112119da6d3580b081">{"x":{"visdat":{"925f17bf8b4d":["function () ","plotlyVisDat"]},"cur_data":"925f17bf8b4d","attrs":{"925f17bf8b4d":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Findings</strong></p>
 <ul>
 <li>July 2023 had higher temperatures, and we have more data!</li>
+<li>Let’s focus on July 2023.</li>
 </ul>
-<p>Let’s focus on July 2023.</p>
 </div>
 <div id="weather-conditions-across-time-in-july" class="section level3">
 <h3>Weather conditions across time in July</h3>
-<pre class="r"><code>timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
-pollutant = c(&quot;temperature&quot;, &quot;relative_humidity&quot;),
-y.relation = &quot;free&quot;)</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><strong>Data Methodology</strong></p>
 <p>I created a time series plot that depicts the variations in
 temperature and humidity from July 8, 2023, at 8:02 PM to July 31, 2023,
@@ -594,12 +539,7 @@ degrees Fahrenheit!!!</li>
 <div id="weather-conditions-across-days-of-the-week"
 class="section level3">
 <h3>Weather Conditions across days of the week</h3>
-<pre class="r"><code># temperature
-timeVariation(subset(kestrel_df),pollutant = &quot;temperature&quot;, ylab = &quot;Temperature (F)&quot;)</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code># Relative Humidity
-timeVariation(subset(kestrel_df),pollutant = &quot;relative_humidity&quot;, ylab = &quot;Relative Humidity&quot;)</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-9-1.png" width="672" /><img src="rstudio_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <p><strong>Data Methodology</strong></p>
 <p>I created a time series plot that depicts the variations in
 temperature and humidity across different days of the week in July
@@ -613,59 +553,8 @@ temperature and humidity across different days of the week in July
 </div>
 <div id="predictive-models-for-july" class="section level2">
 <h2>Predictive Models (for July)</h2>
-<pre><code>## 
-## Call:
-## lm(formula = temperature ~ relative_humidity * day, data = kestrel_july_df)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -10.622  -1.691  -0.231   1.485  12.516 
-## 
-## Coefficients:
-##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)            1.071e+02  3.772e-01  283.99   &lt;2e-16 ***
-## relative_humidity     -3.815e-01  4.839e-03  -78.83   &lt;2e-16 ***
-## day                   -5.173e-01  2.080e-02  -24.86   &lt;2e-16 ***
-## relative_humidity:day  5.245e-03  2.812e-04   18.66   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.237 on 5980 degrees of freedom
-## Multiple R-squared:  0.794,  Adjusted R-squared:  0.7939 
-## F-statistic:  7683 on 3 and 5980 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre><code>## 
-## Call:
-## lm(formula = temperature ~ relative_humidity * day_of_week_name, 
-##     data = kestrel_july_df)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -10.5536  -1.3302  -0.0508   1.5188  11.3105 
-## 
-## Coefficients:
-##                                       Estimate Std. Error  t value Pr(&gt;|t|)    
-## (Intercept)                          98.210477   0.178454  550.341  &lt; 2e-16 ***
-## relative_humidity                    -0.294777   0.002488 -118.473  &lt; 2e-16 ***
-## day_of_week_name.L                   11.476321   0.477658   24.026  &lt; 2e-16 ***
-## day_of_week_name.Q                   -5.886311   0.435961  -13.502  &lt; 2e-16 ***
-## day_of_week_name.C                    3.162467   0.491551    6.434 1.34e-10 ***
-## day_of_week_name^4                    1.223344   0.487286    2.511   0.0121 *  
-## day_of_week_name^5                   -6.572422   0.505063  -13.013  &lt; 2e-16 ***
-## day_of_week_name^6                   -5.024716   0.430284  -11.678  &lt; 2e-16 ***
-## relative_humidity:day_of_week_name.L -0.128653   0.006225  -20.668  &lt; 2e-16 ***
-## relative_humidity:day_of_week_name.Q  0.083177   0.006066   13.712  &lt; 2e-16 ***
-## relative_humidity:day_of_week_name.C -0.039849   0.006730   -5.921 3.37e-09 ***
-## relative_humidity:day_of_week_name^4 -0.012365   0.006588   -1.877   0.0606 .  
-## relative_humidity:day_of_week_name^5  0.083355   0.007200   11.578  &lt; 2e-16 ***
-## relative_humidity:day_of_week_name^6  0.081539   0.006629   12.300  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.057 on 5970 degrees of freedom
-## Multiple R-squared:  0.8166, Adjusted R-squared:  0.8162 
-## F-statistic:  2045 on 13 and 5970 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="data-summary-and-recommendations-for-park-users"
 class="section level2">

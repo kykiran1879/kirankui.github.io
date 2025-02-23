@@ -58,7 +58,7 @@ __Programming Languages used__
 I imported libraries from tidyverse, dplyr, ggplot2, plotly, lubridate and openair.  
 
 ## Loaded and inspected the dataset
-```{r}
+```{r, echo=FALSE}
 
 kestrel_df <- read_xlsx("./data/Reggie_Kestrel_08022023.xlsx", sheet=1, range = "A5:G6228") %>% 
   janitor::clean_names() %>% 
@@ -90,7 +90,7 @@ Initially, the data points were recorded at 2-minute intervals until 07/12/2023,
 
 ## Time Series Analysis
 
-```{r}
+```{r, echo=FALSE}
 # Date to year, month, day and hour
 kestrel_df$date <- ymd_hms(kestrel_df$date)
 
@@ -100,28 +100,36 @@ kestrel_df$day <- day(kestrel_df$date)
 kestrel_df$hour <- hour(kestrel_df$date)
 
 kestrel_df %>% 
-  select(date, year, month, day, hour)
+  select(date, year, month, day, hour, everything())
 
+```
+I separated the date column into year, month, day and hour.
+
+```{r, echo=FALSE}
 # Converted to 10 minute intervals
 kestrel_df$date <- floor_date(kestrel_df$date, unit = "10 minutes")
 
 head(kestrel_df)
+```
+I found the average 10-min values for temperature, humidity…
 
-# Converted to 1-month intervals
-kestrel_df$date <- floor_date(kestrel_df$date, unit = "10 minutes")
-
-head(kestrel_df)
-
+```{r, echo=FALSE}
 # Converted to 1-day intervals
 kestrel_daily_df <- timeAverage(kestrel_df, avg.time = "day")
 
 head(kestrel_daily_df)
+```
+I found the average daily values for temperature, humidity…
 
+```{r, echo=FALSE}
 # Converted to monthly intervals
 kestrel_monthly_df <- timeAverage(kestrel_df, avg.time = "month")
 
 head(kestrel_monthly_df)
+```
+I found the average monthly values for temperature, humidity…
 
+```{r, include=FALSE}
 # Generate the day of the week (1 = Sunday, 7 = Saturday)
 kestrel_df$day_of_week <- wday(kestrel_df$date)
 
@@ -135,7 +143,7 @@ kestrel_df$day_of_week_name <- factor(kestrel_df$day_of_week_name,
 
 ```
 
-__Data Methodology__
+__Data Methodology Summary__
 
 * I separated the date column into year, month, day and hour. 
 * I found the average 10-min values for temperature, humidity... 
@@ -178,11 +186,10 @@ kestrel_temp
 __Findings__
 
 * July 2023 had higher temperatures, and we have more data! 
-
-Let's focus on July 2023. 
+* Let's focus on July 2023. 
 
 ### Weather conditions across time in July 
-```{r}
+```{r, echo=FALSE}
 timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
 pollutant = c("temperature", "relative_humidity"),
 y.relation = "free")
@@ -199,7 +206,7 @@ __Findings__
 * Outdoor temperature is linked to lower humidity across July 2023. 
 
 ### Weather Conditions across days of the week
-```{r}
+```{r, echo=FALSE}
 
 # temperature
 timeVariation(subset(kestrel_df),pollutant = "temperature", ylab = "Temperature (F)")
@@ -220,7 +227,7 @@ __Findings__
 
 ## Predictive Models (for July) 
 
-```{r , echo=FALSE, warning=FALSE}
+```{r , include=FALSE, warning=FALSE}
 kestrel_july_df = kestrel_df %>% 
   filter(month==7)
 
@@ -249,15 +256,15 @@ ggplot(kestrel_july_df) +
   ) +
   labs(
     x = "Relative Humidity",                     
-    y = "Temperature (F)",     
-    color = "Day of the week",                    
+    y = "Temperature (°F)",     
+    color = "Day in July",                    
     title = "Temperature vs. Relative Humidity by Day in July")
 
 
 ```
 
 
-```{r, echo=FALSE, warning=FALSE}
+```{r, include=FALSE, warning=FALSE}
 fit <- lm(temperature ~ relative_humidity * day_of_week_name, data = kestrel_july_df)
 
 summary(fit)
@@ -284,8 +291,8 @@ ggplot(kestrel_july_df) +
   scale_color_brewer(palette = "Set1") + 
   labs(
     x = "Relative Humidity",                     
-    y = "Temperature (F)",     
-    color = "Day",                    
+    y = "Temperature (°F)",     
+    color = "Day of the week",                    
     title = "Temperature vs. Relative Humidity by Day of Week in July"  # Added title
   )
 

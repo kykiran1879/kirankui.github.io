@@ -23,7 +23,7 @@ __Programming Languages:__
 * R *(dplyr, tidyverse, ggplot2)*
 * Python *(Pandas, NumPy, Matplotlib)*
 * SAS *(Studio)*
-* Machine Learning *(Scikit-Learn)*
+* Machine Learning *(Scikit-Learn,TensorFlow)*
 * Deep Learning *(NLP, LLM)*
 * SQL *(MySQL)*
 * Dashboards *(plotly)*

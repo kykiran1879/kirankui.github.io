@@ -439,7 +439,7 @@ Most NYC Airbnb listings are between $0 to $250.</p>
 <div id="distribution-of-prices-in-nyc-airbnb-listings"
 class="section level3">
 <h3>Distribution of Prices in NYC Airbnb Listings</h3>
-<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x1378e4e00&gt;, &lt;matplotlib.lines.Line2D object at 0x137913140&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x137911fa0&gt;, &lt;matplotlib.lines.Line2D object at 0x1379135f0&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x137912c00&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x1379138f0&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x137913bf0&gt;], &#39;means&#39;: []}</code></pre>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x134f2ee40&gt;, &lt;matplotlib.lines.Line2D object at 0x134f2f140&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x134f2df40&gt;, &lt;matplotlib.lines.Line2D object at 0x134f2f5c0&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x134eda210&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x134f2f8f0&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x134f2fb60&gt;], &#39;means&#39;: []}</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-5-3.png" width="960" />
 NYC Airbnb listings can reach prices as high as $10,000.</p>
 </div>
@@ -895,8 +895,6 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div>
 <pre><code>## {&#39;coefficients&#39;: array([0.17286817, 0.04287051]), &#39;intercept&#39;: 3.237960031866904}</code></pre>
-<pre><code>## /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
-##   warnings.warn(</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-11-13.png" width="672" /></p>
 <p>In this analysis, we are focused on exploring the relationship
 between rental prices, review scores, and minimum nights for Airbnb
@@ -912,31 +910,28 @@ relationships and provide insights into which factors are more
 influential in determining rental price within this borough.</p>
 <p><strong>Methods</strong></p>
 <p>In the code, we applied the featured scaling using logarithmic
-transformation to two features: Price &amp; Minimum Nights,k with large
-values.</p>
+transformation to two features: <strong>Price &amp; Minimum
+Nights</strong>, with large values.</p>
 <p>The review_scores_location was left unchanged since its values were
 already on a manageable scale.</p>
 <p><strong>Regression Output Explanation:</strong></p>
 <p>The regression model has produced the following results:</p>
-<p><strong>Coefficients:</strong></p>
 <ul>
-<li><p>22.06: This is the coefficient for review scores. It means that
-for each additional point in the review score, the rental price
-increases by approximately $22.06, assuming all other factors remain
-constant.</p></li>
-<li><p>0.85: This is the coefficient for the minimum number of nights.
-It indicates that for each additional night added to the minimum stay
-requirement, the rental price increases by around $0.85, again assuming
-all other factors are constant.</p></li>
+<li><p><em>Intercept (3.237960031866904)</em>: This represents the
+predicted log of the price when both minimum_nights and
+review_scores_location are at their baseline values (e.g., zero). It is
+the starting point of the regression line.</p></li>
+<li><p><em>Coefficient for review_scores_location (0.17286817)</em>:
+This means that for each score increase in Airbnb review score, the log
+of the price is expected to increase by approximately 0.173. This means
+that for each airbnb review score increase, the price is expected to
+increase by approximately 18.9%.</p></li>
+<li><p><em>Coefficient for minimum_nights (0.04287051)</em>: This tells
+us that for each 1% increase in minimum_nights, the log of the price
+will increase by approximately 0.043%.</p></li>
 </ul>
-<p><strong>Intercept:</strong></p>
-<ul>
-<li>-41.58: This is the intercept of the regression line, meaning when
-both the review score and minimum nights are zero, the model predicts a
-rental price of approximately -$41.58. While this doesn’t represent a
-realistic scenario (since rental prices can’t be negative), it serves as
-the baseline for the regression model.</li>
-</ul>
+<p>In conclusion, airbnb review scores is more predictive of prices of
+airbnb!</p>
 </div>
 
 

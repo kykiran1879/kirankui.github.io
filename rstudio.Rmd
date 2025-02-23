@@ -255,7 +255,7 @@ ggplot(kestrel_july_df) +
     legend.background = element_rect(fill = "white")  
   ) +
   labs(
-    x = "Relative Humidity",                     
+    x = "Relative Humidity (%)",                     
     y = "Temperature (°F)",     
     color = "Day in July",                    
     title = "Temperature vs. Relative Humidity by Day in July")
@@ -290,7 +290,7 @@ ggplot(kestrel_july_df) +
   ) +
   scale_color_brewer(palette = "Set1") + 
   labs(
-    x = "Relative Humidity",                     
+    x = "Relative Humidity (%)",                     
     y = "Temperature (°F)",     
     color = "Day of the week",                    
     title = "Temperature vs. Relative Humidity by Day of Week in July"  # Added title

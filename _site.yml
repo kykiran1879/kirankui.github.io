@@ -13,6 +13,8 @@ navbar:
       href: mailto:<yk2959@caa.columbia.com>
     - icon: fa-linkedin fa-lg
       href: https://www.linkedin.com/in/kiranyankui/
+    - icon: fa-github fa-lg
+      href: https://github.com/kykiran1879/kirankui.github.io
 
 output:
   html_document:

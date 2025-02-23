@@ -48,7 +48,7 @@ import seaborn as sns
 I imported libraries from pandas, numpy, matplotlib, scikit-learn and seaborn. 
 
 ## Loaded and inspected the dataset
-```{python, echo=FALSE}
+```{python, include=FALSE}
 # Load and inspect the dataset
 df = pd.read_csv('/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/nyc_airbnb.csv')
 
@@ -69,7 +69,7 @@ __Data Summary__
 The dataset contains 40,753 rows and 17 columns. The columns include key information about Airbnb listings, such as listing ID, location review scores, host details, neighbourhood information, pricing, room type, and review metrics. Key columns in the dataset include 'id', 'review_scores_location', 'price', 'room_type', 'number_of_reviews', 'reviews_per_month', and 'availability_365'. There are no duplicate records in this dataset.
 
 ## Exploratory Data Analysis
-```{python, echo=FALSE}
+```{python, include=FALSE}
 # Renaming columns and performing some exploratory data analysis
 df = df.rename(columns={'neighbourhood_group': 'borough'})
 
@@ -105,13 +105,12 @@ Manhattan stands out as the most expensive area, while the Bronx remains the lea
 
 ### Graph showing the distribution of NYC Airbnb Listing Prices 
 ```{python, echo=FALSE}
-# Visualization: Distribution of Prices
 plt.figure(figsize=(10, 6))
 plt.hist(df['price'], bins=50, color='lightgreen', edgecolor='black')
 plt.title('Distribution of Prices in NYC Airbnb Listings')
 plt.xlabel('Price ($)')
 plt.ylabel('Frequency (Number of Listings)')
-plt.xlim(0, 1500)  # Set the x-axis range between 0 and 2000
+plt.xlim(0, 1500)  
 plt.grid(True)
 plt.show()
 
@@ -133,7 +132,7 @@ plt.show()
 NYC Airbnb listings can reach prices as high as $10,000.
 
 ### Average Prices in NYC Airbnb Listings across Boroughs 
-```{python}
+```{python, echo=FALSE}
 # Bar Graph: Average Price per Borough
 average_prices_borough = df.groupby('borough')['price'].mean().sort_values(ascending=False)
 plt.figure(figsize=(10, 6))
@@ -152,7 +151,7 @@ plt.show()
 The average prices per borough vary, with Manhattan being the most expensive at an average of $180.09, while the Bronx is the least expensive at $82.83.
 
 ### Maximum Prices in NYC Airbnb Listings across Boroughs 
-```{python}
+```{python, echo=FALSE}
 # Boxplot of Price Distribution Across Boroughs
 custom_order = ['Manhattan', 'Brooklyn', 'Queens', 'Staten Island', 'Bronx']
 
@@ -168,7 +167,7 @@ plt.show()
 The maximum prices per borough vary, with Manhattan being the most expensive at around $10,000, while the Bronx is the least expensive at $1,000. 
 
 ### Price vs Review Scores
-```{python}
+```{python, echo=FALSE}
 # Scatterplot: Price vs Review Scores (Location)
 plt.figure(figsize=(10, 6))
 plt.scatter(df['review_scores_location'], df['price'], alpha=0.5, color='purple')
@@ -182,7 +181,7 @@ plt.show()
 Rental price tend to increase with review scores (1-10) up to a score of 8. Beyond this point, maximum rental prices for listings with a score of 8 or higher remain relatively consistent at around $10,000.
 
 ### Price vs Minimum Nights
-```{python}
+```{python, echo=FALSE}
 # Scatterplot: Price vs Minimum Nights
 plt.figure(figsize=(10, 6))
 plt.scatter(df['minimum_nights'], df['price'], alpha=0.5, color='blue')
@@ -196,28 +195,78 @@ plt.show()
 In general, rental price tend to decrease with an increase in minimum nights.
 
 ## Supervised Machine Learning: Regression Output
-```{python}
-# Supervised Machine Learning: Linear Regression
+```{python, echo=FALSE, warning=FALSE}
 df = df.dropna(subset=['price', 'review_scores_location'])
 df = df[df['borough'] == 'Manhattan']
 
-x = df[['review_scores_location', 'minimum_nights']] 
-y = df['price']
+# Apply logarithmic transformation to 'minimum_nights' and 'price'
+df['log_price'] = np.log(df['price'])
+df['log_minimum_nights'] = np.log(df['minimum_nights'])
 
+# Prepare features and target variables
+x = df[['review_scores_location', 'log_minimum_nights']] 
+y = df['log_price']
+
+# Linear regression model
 reg = linear_model.LinearRegression()
 reg.fit(x, y)
 
+# Results
 reg_results = {
     "coefficients": reg.coef_,
     "intercept": reg.intercept_
 }
-reg_results
+
+# Displaying the regression results
+print(reg_results)
+```
+
+
+```{python echo=FALSE}
+# 3D Plotting
+from mpl_toolkits.mplot3d import Axes3D
+
+# Create a 3D scatter plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Scatter plot of the data points
+ax.scatter(df['review_scores_location'], df['log_minimum_nights'], df['log_price'], color='blue', label='Data points')
+
+# Create a meshgrid for the surface
+x_vals = np.linspace(df['review_scores_location'].min(), df['review_scores_location'].max(), 100)
+y_vals = np.linspace(df['log_minimum_nights'].min(), df['log_minimum_nights'].max(), 100)
+X, Y = np.meshgrid(x_vals, y_vals)
+
+# Predict the Z values (log_price) using the linear regression model
+Z = reg.predict(np.c_[X.ravel(), Y.ravel()]).reshape(X.shape)
+
+# Plot the regression plane
+ax.plot_surface(X, Y, Z, color='red', alpha=0.5)
+
+# Labels and title
+ax.set_xlabel('Review Scores Location')
+ax.set_ylabel('Log of Minimum Nights')
+ax.set_zlabel('Log of Price')
+ax.set_title('3D Linear Regression: Log(Price) vs Review Scores Location and Log(Minimum Nights)')
+
+plt.legend()
+plt.show()
+
+
 
 ```
+
 
 In this analysis, we are focused on exploring the relationship between rental prices, review scores, and minimum nights for Airbnb listings in Manhattan. Given that Manhattan has the highest number of listings, the highest average rental price, and some of the most expensive properties, it presents a unique opportunity for deeper analysis.
 
 We use regression analysis to model how rental prices are influenced by review scores and minimum nights. By doing so, we aim to understand whether higher review scores or longer minimum stays are associated with higher rental prices. The regression output will help quantify these relationships and provide insights into which factors are more influential in determining rental price within this borough.
+
+__Methods__
+
+In the code, we applied the featured scaling using logarithmic transformation to two features: Price & Minimum Nights,k with large values. 
+
+The review_scores_location was left unchanged since its values were already on a manageable scale.
 
 __Regression Output Explanation:__
 

@@ -403,7 +403,6 @@ seaborn.</p>
 </div>
 <div id="loaded-and-inspected-the-dataset" class="section level2">
 <h2>Loaded and inspected the dataset</h2>
-<pre><code>## {&#39;rows&#39;: 40753, &#39;columns&#39;: 17, &#39;columns_names&#39;: [&#39;id&#39;, &#39;review_scores_location&#39;, &#39;name&#39;, &#39;host_id&#39;, &#39;host_name&#39;, &#39;neighbourhood_group&#39;, &#39;neighbourhood&#39;, &#39;lat&#39;, &#39;long&#39;, &#39;room_type&#39;, &#39;price&#39;, &#39;minimum_nights&#39;, &#39;number_of_reviews&#39;, &#39;last_review&#39;, &#39;reviews_per_month&#39;, &#39;calculated_host_listings_count&#39;, &#39;availability_365&#39;], &#39;duplicate_records&#39;: np.int64(0)}</code></pre>
 <p><strong>Data Summary</strong></p>
 <p>The dataset contains 40,753 rows and 17 columns. The columns include
 key information about Airbnb listings, such as listing ID, location
@@ -415,7 +414,6 @@ records in this dataset.</p>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
-<pre><code>## {&#39;borough_counts&#39;: {&#39;Manhattan&#39;: 19212, &#39;Brooklyn&#39;: 16810, &#39;Queens&#39;: 3821, &#39;Bronx&#39;: 649, &#39;Staten Island&#39;: 261}, &#39;average_prices_borough&#39;: {&#39;Manhattan&#39;: 180.09337913803873, &#39;Staten Island&#39;: 128.0191570881226, &#39;Brooklyn&#39;: 119.67703747769185, &#39;Queens&#39;: 94.72939021198638, &#39;Bronx&#39;: 82.82896764252696}, &#39;most_expensive&#39;: &#39;Manhattan&#39;, &#39;least_expensive&#39;: &#39;Bronx&#39;, &#39;most_expensive_price&#39;: np.float64(180.09337913803873), &#39;least_expensive_price&#39;: np.float64(82.82896764252696)}</code></pre>
 <p><strong>Exploratory Results Summary</strong></p>
 <p>The dataset reveals a notable distribution of Airbnb listings across
 New York City boroughs, with Manhattan having the highest count at
@@ -441,27 +439,14 @@ Most NYC Airbnb listings are between $0 to $250.</p>
 <div id="distribution-of-prices-in-nyc-airbnb-listings"
 class="section level3">
 <h3>Distribution of Prices in NYC Airbnb Listings</h3>
-<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x1298b52b0&gt;, &lt;matplotlib.lines.Line2D object at 0x1298b5520&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x1298b56a0&gt;, &lt;matplotlib.lines.Line2D object at 0x1298b5970&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x1298718e0&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x1298b5ca0&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x1298b5eb0&gt;], &#39;means&#39;: []}</code></pre>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x1378e4e00&gt;, &lt;matplotlib.lines.Line2D object at 0x137913140&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x137911fa0&gt;, &lt;matplotlib.lines.Line2D object at 0x1379135f0&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x137912c00&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x1379138f0&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x137913bf0&gt;], &#39;means&#39;: []}</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-5-3.png" width="960" />
 NYC Airbnb listings can reach prices as high as $10,000.</p>
 </div>
 <div id="average-prices-in-nyc-airbnb-listings-across-boroughs"
 class="section level3">
 <h3>Average Prices in NYC Airbnb Listings across Boroughs</h3>
-<pre class="python"><code># Bar Graph: Average Price per Borough
-average_prices_borough = df.groupby(&#39;borough&#39;)[&#39;price&#39;].mean().sort_values(ascending=False)
-plt.figure(figsize=(10, 6))
-av = average_prices_borough.plot(kind=&#39;bar&#39;, color=&#39;lightgreen&#39;, edgecolor=&#39;black&#39;)
-
-for i, v in enumerate(average_prices_borough):
-    av.text(i, v + 5, f&quot;${v:,.2f}&quot;, ha=&#39;center&#39;, va=&#39;bottom&#39;, fontsize=10) 
-    
-plt.title(&#39;Average Prices of NYC Airbnb Listings across Boroughs&#39;)
-plt.xlabel(&#39;Borough&#39;)
-plt.ylabel(&#39;Average Price ($)&#39;)
-plt.xticks(rotation=45)</code></pre>
 <pre><code>## (array([0, 1, 2, 3, 4]), [Text(0, 0, &#39;Manhattan&#39;), Text(1, 0, &#39;Staten Island&#39;), Text(2, 0, &#39;Brooklyn&#39;), Text(3, 0, &#39;Queens&#39;), Text(4, 0, &#39;Bronx&#39;)])</code></pre>
-<pre class="python"><code>plt.show()</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-6-5.png" width="960" />
 The average prices per borough vary, with Manhattan being the most
 expensive at an average of $180.09, while the Bronx is the least
@@ -470,17 +455,7 @@ expensive at $82.83.</p>
 <div id="maximum-prices-in-nyc-airbnb-listings-across-boroughs"
 class="section level3">
 <h3>Maximum Prices in NYC Airbnb Listings across Boroughs</h3>
-<pre class="python"><code># Boxplot of Price Distribution Across Boroughs
-custom_order = [&#39;Manhattan&#39;, &#39;Brooklyn&#39;, &#39;Queens&#39;, &#39;Staten Island&#39;, &#39;Bronx&#39;]
-
-plt.figure(figsize=(12, 8))
-sns.boxplot(x=&#39;borough&#39;, y=&#39;price&#39;, data=df, palette=&#39;Set2&#39;, order=custom_order)
-plt.title(&#39;Distribution of Prices Across Boroughs in NYC Airbnb Listings&#39;)
-plt.xlabel(&#39;Borough&#39;)
-plt.ylabel(&#39;Price ($)&#39;)
-plt.xticks(rotation=45)</code></pre>
 <pre><code>## ([0, 1, 2, 3, 4], [Text(0, 0, &#39;Manhattan&#39;), Text(1, 0, &#39;Brooklyn&#39;), Text(2, 0, &#39;Queens&#39;), Text(3, 0, &#39;Staten Island&#39;), Text(4, 0, &#39;Bronx&#39;)])</code></pre>
-<pre class="python"><code>plt.show()</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-7-7.png" width="1152" />
 The maximum prices per borough vary, with Manhattan being the most
 expensive at around $10,000, while the Bronx is the least expensive at
@@ -488,14 +463,6 @@ $1,000.</p>
 </div>
 <div id="price-vs-review-scores" class="section level3">
 <h3>Price vs Review Scores</h3>
-<pre class="python"><code># Scatterplot: Price vs Review Scores (Location)
-plt.figure(figsize=(10, 6))
-plt.scatter(df[&#39;review_scores_location&#39;], df[&#39;price&#39;], alpha=0.5, color=&#39;purple&#39;)
-plt.title(&#39;Review Scores vs. Price of NYC Airbnb Listings&#39;)
-plt.xlabel(&#39;Review Scores (1-10)&#39;)
-plt.ylabel(&#39;Price ($)&#39;)
-plt.grid(True)
-plt.show()</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-8-9.png" width="960" />
 Rental price tend to increase with review scores (1-10) up to a score of
 8. Beyond this point, maximum rental prices for listings with a score of
@@ -503,14 +470,6 @@ Rental price tend to increase with review scores (1-10) up to a score of
 </div>
 <div id="price-vs-minimum-nights" class="section level3">
 <h3>Price vs Minimum Nights</h3>
-<pre class="python"><code># Scatterplot: Price vs Minimum Nights
-plt.figure(figsize=(10, 6))
-plt.scatter(df[&#39;minimum_nights&#39;], df[&#39;price&#39;], alpha=0.5, color=&#39;blue&#39;)
-plt.title(&#39;Minimum Nights vs. Price of NYC Airbnb Listings&#39;)
-plt.xlabel(&#39;Minimum Nights&#39;)
-plt.ylabel(&#39;Price ($)&#39;)
-plt.grid(True)
-plt.show()</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-9-11.png" width="960" />
 In general, rental price tend to decrease with an increase in minimum
 nights.</p>
@@ -519,15 +478,6 @@ nights.</p>
 <div id="supervised-machine-learning-regression-output"
 class="section level2">
 <h2>Supervised Machine Learning: Regression Output</h2>
-<pre class="python"><code># Supervised Machine Learning: Linear Regression
-df = df.dropna(subset=[&#39;price&#39;, &#39;review_scores_location&#39;])
-df = df[df[&#39;borough&#39;] == &#39;Manhattan&#39;]
-
-x = df[[&#39;review_scores_location&#39;, &#39;minimum_nights&#39;]] 
-y = df[&#39;price&#39;]
-
-reg = linear_model.LinearRegression()
-reg.fit(x, y)</code></pre>
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -944,12 +894,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   background-color: var(--sklearn-color-fitted-level-3);
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div>
-<pre class="python"><code>reg_results = {
-    &quot;coefficients&quot;: reg.coef_,
-    &quot;intercept&quot;: reg.intercept_
-}
-reg_results</code></pre>
-<pre><code>## {&#39;coefficients&#39;: array([22.06163287,  0.84547462]), &#39;intercept&#39;: np.float64(-41.57885193908413)}</code></pre>
+<pre><code>## {&#39;coefficients&#39;: array([0.17286817, 0.04287051]), &#39;intercept&#39;: 3.237960031866904}</code></pre>
+<pre><code>## /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+##   warnings.warn(</code></pre>
+<p><img src="python_files/figure-html/unnamed-chunk-11-13.png" width="672" /></p>
 <p>In this analysis, we are focused on exploring the relationship
 between rental prices, review scores, and minimum nights for Airbnb
 listings in Manhattan. Given that Manhattan has the highest number of
@@ -962,6 +910,12 @@ whether higher review scores or longer minimum stays are associated with
 higher rental prices. The regression output will help quantify these
 relationships and provide insights into which factors are more
 influential in determining rental price within this borough.</p>
+<p><strong>Methods</strong></p>
+<p>In the code, we applied the featured scaling using logarithmic
+transformation to two features: Price &amp; Minimum Nights,k with large
+values.</p>
+<p>The review_scores_location was left unchanged since its values were
+already on a manageable scale.</p>
 <p><strong>Regression Output Explanation:</strong></p>
 <p>The regression model has produced the following results:</p>
 <p><strong>Coefficients:</strong></p>

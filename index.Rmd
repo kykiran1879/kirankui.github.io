@@ -1,5 +1,5 @@
 ---
-title: "Kiran Kui's E-Porfolio"
+title: "Kiran for Public Health AI"
 output: 
   html_document:
     toc: TRUE
@@ -35,6 +35,10 @@ __Methods:__
   
   </div>
 </div>
+
+### My Vision
+
+As a public health data scientist, I am redefining public health by bridging the gap between AI and health professionals, challenging conventional norms with cutting-edge strategies. My mission is to empower public health agencies, clinicians and community leaders with innovative solutions that drive sustainable and equitable health outcomes. Join me in revolutionizing the way we approach wellness—one breakthrough at a time.
 
 ### Awards
 

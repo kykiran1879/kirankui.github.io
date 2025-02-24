@@ -6,6 +6,8 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
+__Bridging the gap between AI and Public Health__
+
 *Website developed with R and Git*
 
 ### Introduction

@@ -6,9 +6,9 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-*Website developed with R and Git*
+__Bridging the gap between AI and Public Health__
 
-__Public Health AI__
+### Public Health AI
 
 While there is a lot of hesitancy and confusion around AI, I’m here to help bridge the gap. 
 
@@ -20,7 +20,7 @@ My mission is to make AI more accessible, impactful, and equitable for all.
 
 I will highlight a selection of projects that demonstrate my expertise in machine learning and AI. Each project reflects my hands-on experience in solving real-world problems and applying various techniques in the field. Navigate to the top right hand corner to view these projects. 
 
-__Projects__
+### AI/ML Projects
 
 * Airbnb Rental Price prediction (Python, R): This project predicts Airbnb rental prices in New York City based on data from 2017. 
 

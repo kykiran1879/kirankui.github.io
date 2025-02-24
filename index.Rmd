@@ -1,5 +1,5 @@
 ---
-title: "Kiran for Public Health AI"
+title: "Kiran's E-Portfolio"
 output: 
   html_document:
     toc: TRUE

@@ -9,6 +9,8 @@ navbar:
       href: python.html
     - text: "Project: Hot Summer"
       href: rstudio.html
+    - text: "Project: COVID-19 Maps"
+      href: gis.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>
     - icon: fa-linkedin fa-lg

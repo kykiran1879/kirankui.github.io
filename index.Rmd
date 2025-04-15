@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
     theme: spacelab
 ---
-__Bridging the gap between AI and Public Health__
+__Data Analytics in Public Health__
 
 *Website developed with R and Git*
 
@@ -40,7 +40,7 @@ __Methods:__
 
 ### My Vision
 
-As a public health data scientist, I am redefining public health by bridging the gap between AI and health professionals, challenging conventional norms with cutting-edge strategies. My mission is to empower public health agencies, clinicians and community leaders with innovative solutions that drive sustainable and equitable health outcomes. Join me in revolutionizing the way we approach wellness—one breakthrough at a time.
+"As a public health data scientist, I am redefining public health by harnessing the power of data analytics to bridge the gap between insights and action. I challenge conventional norms with evidence-based strategies that inform smarter decisions and lasting impact. My mission is to empower public health agencies, clinicians, and community leaders with data-driven solutions that promote sustainable and meaningful health outcomes.
 
 ### Awards
 

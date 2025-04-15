@@ -1,5 +1,5 @@
 ---
-title: "GIS Maps"
+title: "Project: COVID-19 Maps"
 output: 
   html_document:
     toc: TRUE
@@ -8,7 +8,7 @@ output:
 ---
 *Maps developed by Kiran using the tidycensus, sf and tmap packages, data from US Census*
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE}
 library(sf)
 library(tmap)
 library(tidyverse)
@@ -19,14 +19,14 @@ library(RColorBrewer)
 library(reticulate)
 ```
 
-```{r, include=FALSE}
+```{r, include=FALSE, warning=FALSE, message=FALSE}
 # Read-in shp
 covid_zip <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/NYC_covid19_zip.shp")
 
 ```
 
 ### Poverty and COVID-19 Deaths in NYC from 2020 to 2021
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 tm_shape(covid_zip) +
   tm_polygons(col =  "per_pov",
               style = "quantile",
@@ -44,7 +44,7 @@ tm_shape(covid_zip) +
 
 ```
 
-```{r, include=FALSE}
+```{r, include=FALSE, warning=FALSE, message=FALSE}
 deaths <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/NYC_covid19_zip.shp")
 
 clusters <-  st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/clusters_death.shp")

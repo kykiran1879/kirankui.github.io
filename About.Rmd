@@ -7,13 +7,13 @@ output:
     theme: flatly
 ---
 
-### 💡 My Vision  
+## 💡 My Vision  
 
 > *“Living and working across different healthcare systems, I saw firsthand how timely data can change outcomes—and how its absence can delay action. That experience shaped my drive to make data not just available, but useful. I focus on building tools and models that help researchers, health systems, and decision-makers respond faster and plan smarter. I see the future of public health as predictive, actionable, and built on open data—and I want to help shape it.”*
 
 ---
 
-## 🚀 What I Bring to the Table
+## 🎯 What I Bring to the Table
 
 ### 🧠 Expertise  
 - **Predictive Modeling** — Machine Learning & statistical models to assess trends, identify risks & identify targeted solutions  
@@ -39,7 +39,9 @@ output:
 
 ---
 
-### 🚀 Featured Projects
+## 🚀 Featured Projects
+
+**🖱️Click the top right hand corner to access!**
 
 * __Airbnb Price Prediction__ *(Python, R)*  
   Predicted NYC rental prices using 2017 Airbnb data. Built regression models and visualized pricing patterns for short-term rentals.

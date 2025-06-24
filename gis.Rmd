@@ -4,9 +4,8 @@ output:
   html_document:
     toc: TRUE
     toc_float: TRUE
-    theme: spacelab
+    theme: flatly
 ---
-*Maps developed by Kiran using the tidycensus, sf and tmap packages, data from US Census*
 
 ```{r setup, include=FALSE, message=FALSE}
 library(sf)
@@ -25,7 +24,16 @@ covid_zip <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/N
 
 ```
 
-### Poverty and COVID-19 Deaths in NYC from 2020 to 2021
+
+> *“📅 2021 was a critical year in the pandemic — vaccines were available 💉, but the burden of COVID-19 remained deeply unequal ⚠️. In a city as large, diverse, and densely populated as New York City 🗽, analyzing spatial data helps reveal how geography and mortality intersected 💵💀. This kind of spatial analysis 📊 provides vital lessons for designing smarter, more equitable public health responses 🏥 in future crises.”*
+
+---
+
+## 💵💀🗽 Poverty & COVID-19 Deaths in NYC (2020–2021)
+
+📊 This section explores how **poverty levels** across New York City’s boroughs 🏙️ may have influenced **COVID-19 mortality** 💀 during the first two years of the pandemic 🦠.  
+By examining this data, we aim to uncover patterns 🔍 that can inform smarter public health planning 🧠 and resource allocation 🏥 in future emergencies 🚨.
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 tm_shape(covid_zip) +
   tm_polygons(col =  "per_pov",
@@ -60,9 +68,12 @@ deaths = deaths %>%
   
 ```
 
-### Interactive Map showing COVID-19 Deaths in NYC from 2020 to 2021
+---
 
-*Click to view sociodemographics*
+## 🗺️💀📊 Interactive Map: COVID-19 Deaths in NYC (2020–2021)
+
+🖱️ *Click on neighborhoods 🏘️ to explore sociodemographic data 📂 — including poverty rates 💵, median income 💰, population density 🧍‍♂️🧍‍♀️, and COVID-19 death counts ⚰️.*
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 tmap_mode("view")
 
@@ -80,3 +91,14 @@ tm_shape(deaths) +
 
 ```
 
+---
+
+## ✅ Conclusion
+
+This analysis reveals a clear pattern: neighborhoods with higher poverty rates 💵 experienced greater COVID-19 mortality 💀 in New York City 🗽 during 2020–2021.
+
+Despite the availability of vaccines in 2021 💉, the burden of the pandemic remained deeply unequal ⚠️ — especially in communities already facing structural disadvantages. These findings underscore how socioeconomic conditions directly shape public health outcomes 🧠.
+
+📊 By analyzing neighborhood-level data, we gain critical insights into where health systems and emergency response efforts must improve — not just for future pandemics 🦠, but for everyday city planning 🏥.
+
+The data speaks clearly: **place, income, and survival are deeply connected**.

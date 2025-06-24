@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -374,119 +374,225 @@ div.tocify {
 </div>
 
 
-<p><strong>Project Introduction and Context</strong></p>
-<p>This project explores Airbnb rental prices in New York City in
-2017.Through this analysis, I aim to uncover patterns, trends and
+<blockquote>
+<p><em>“2017 was a turning point for Airbnb 🏘️—major cities imposed new
+regulations to combat rising rents and housing shortages 🏙️📉, while
+public backlash grew over displacement and gentrification 😡. Airbnb’s
+valuation topped $30 billion 💰, and its launch of “Experiences”
+expanded tourism into everyday neighborhoods 🌐, raising concerns about
+infrastructure and community health. Since then, understanding what
+drives Airbnb prices—like guest reviews ⭐ and minimum stay requirements
+📅—has become increasingly important for shaping policy, ensuring fair
+access to housing, and balancing tourism with local well-being
+🧭🏘️.”</em></p>
+</blockquote>
+<hr />
+<div id="project-overview-predicting-airbnb-rental-prices-in-nyc"
+class="section level2">
+<h2>🏙️ Project Overview: Predicting Airbnb Rental Prices in NYC</h2>
+<p><strong>What drives rental prices in New York City?</strong> This
+project analyzes 2017 Airbnb listings to uncover patterns and
 relationships between:</p>
 <ul>
-<li>Rental prices</li>
-<li>Borough</li>
-<li>Neighborhood</li>
-<li>Review score (1-10)</li>
-<li>Minimum Nights</li>
+<li>📍 Borough and neighborhood<br />
+</li>
+<li>🌟 Review scores (1–10)<br />
+</li>
+<li>🛏️ Minimum nights required<br />
+</li>
+<li>💵 Rental price distributions</li>
 </ul>
-<p><strong>Dataset Source</strong></p>
-<p>The data used in this project were sourced from <strong>Inside
-Airbnb</strong> as of September 2, 2017. The version of the dataset
-employed for this analysis can be accessed <a
-href="%22https://insideairbnb.com/get-the-data/%22">here</a>.</p>
-<p><strong>Methodology: Supervised Machine Learning for Predicting
-Rental Prices</strong></p>
-<p>To predict rental prices based on various factors like borough,
-minimum nights, and review scores, we use supervised machine learning
-techniques, specifically regression analysis. This approach is suitable
-because our target variable (rental price) is continuous, and we want to
-understand how different independent variables (features) such as
-minimum nights and review scores influence that price.</p>
-<p><strong>Programming Languages used</strong></p>
+<hr />
+</div>
+<div id="data-source" class="section level2">
+<h2>📊 Data Source</h2>
+<p>The dataset was obtained from <a
+href="https://insideairbnb.com/get-the-data/"><strong>Inside
+Airbnb</strong></a>, a public data resource.<br />
+This analysis uses the NYC dataset as of <strong>September 2,
+2017</strong>, comprising over 40,000 listings across five boroughs.</p>
+<hr />
+</div>
+<div id="methodology-supervised-machine-learning"
+class="section level2">
+<h2>🧠 Methodology: Supervised Machine Learning</h2>
+<p>To predict rental prices, I used <strong>regression-based supervised
+learning</strong>, focusing on how features like borough, review scores,
+and minimum nights influence pricing.<br />
+Since the target variable (price) is continuous, regression models
+provided both interpretability and predictive value.</p>
+<hr />
+</div>
+<div id="tools-technologies" class="section level2">
+<h2>💻 Tools &amp; Technologies</h2>
 <ul>
-<li>R <em>(plotly, reticulate)</em></li>
-<li>Python <em>(Pandas, NumPy, Scikit-Learn, Matplotlib,
-Seaborn)</em></li>
-<li>Machine Learning <em>(Scikit-Learn)</em></li>
+<li><strong>Python</strong>
+<ul>
+<li><code>pandas</code>, <code>numpy</code> – Data cleaning and
+manipulation<br />
+</li>
+<li><code>scikit-learn</code> – Linear regression, feature
+selection<br />
+</li>
+<li><code>matplotlib</code>, <code>seaborn</code> – Data
+visualization</li>
+</ul></li>
+<li><strong>R</strong>
+<ul>
+<li><code>plotly</code> – Interactive charts and graphs<br />
+</li>
+<li><code>reticulate</code> – Python integration within R Markdown</li>
+</ul></li>
 </ul>
-<div id="imported-libraries" class="section level2">
-<h2>Imported Libraries</h2>
-<p>I imported libraries from pandas, numpy, matplotlib, scikit-learn and
-seaborn.</p>
+<hr />
 </div>
-<div id="loaded-and-inspected-the-dataset" class="section level2">
-<h2>Loaded and inspected the dataset</h2>
-<p><strong>Data Summary</strong></p>
-<p>The dataset contains 40,753 rows and 17 columns. The columns include
-key information about Airbnb listings, such as listing ID, location
-review scores, host details, neighbourhood information, pricing, room
-type, and review metrics. Key columns in the dataset include ‘id’,
-‘review_scores_location’, ‘price’, ‘room_type’, ‘number_of_reviews’,
-‘reviews_per_month’, and ‘availability_365’. There are no duplicate
-records in this dataset.</p>
+<div id="data-summary" class="section level2">
+<h2>📋 Data Summary</h2>
+<p>The dataset includes <strong>40,753 rows</strong> and <strong>17
+columns</strong>, each capturing details about Airbnb listings across
+New York City in 2017.</p>
+<p>Key variables include:<br />
+- 🆔 <code>id</code> – Unique listing identifier<br />
+- 💰 <code>price</code> – Nightly rental price<br />
+- 📍 <code>review_scores_location</code> – Location-based review score
+(1–10)<br />
+- 🛏️ <code>room_type</code> – Type of room offered<br />
+- 🗨️ <code>number_of_reviews</code>, <code>reviews_per_month</code> –
+Review activity<br />
+- 📆 <code>availability_365</code> – Number of days available per
+year</p>
+<p>✅ The dataset contains <strong>no duplicate records</strong> and is
+ready for analysis.</p>
+<hr />
 </div>
-<div id="exploratory-data-analysis" class="section level2">
-<h2>Exploratory Data Analysis</h2>
-<p><strong>Exploratory Results Summary</strong></p>
-<p>The dataset reveals a notable distribution of Airbnb listings across
-New York City boroughs, with Manhattan having the highest count at
-19,212 listings, followed by Brooklyn with 16,810 listings. Other
-boroughs such as Queens, the Bronx, and Staten Island have significantly
-fewer listings.</p>
-<p>The average prices per borough vary, with Manhattan being the most
-expensive at an average of $180.09, while the Bronx is the least
-expensive at $82.83. Staten Island and Brooklyn have moderate pricing,
-with averages of $128.02 and $119.68, respectively.</p>
-<p>Manhattan stands out as the most expensive area, while the Bronx
-remains the least expensive.</p>
+<div id="exploratory-data-analysis-eda" class="section level2">
+<h2>🔎 Exploratory Data Analysis (EDA)</h2>
+<p>Before modeling, I conducted an exploratory data analysis to better
+understand the structure, patterns, and distributions in the dataset.
+Key steps included:</p>
+<ul>
+<li>📈 <strong>Visualizing price distributions</strong> and identifying
+outliers<br />
+</li>
+<li>🗺️ <strong>Mapping listings</strong> by borough and
+neighborhood<br />
+</li>
+<li>🤝 <strong>Exploring relationships</strong> between variables like
+<code>price</code>, <code>minimum_nights</code>, and
+<code>review_scores_location</code><br />
+</li>
+<li>📊 <strong>Summarizing key metrics</strong> by room type and
+availability</li>
+</ul>
+<p>These insights helped guide feature selection and informed model
+design in the next stage.</p>
+<hr />
+</div>
+<div id="exploratory-results-summary" class="section level2">
+<h2>📊 Exploratory Results Summary</h2>
+<p>The distribution of Airbnb listings varies widely across NYC’s five
+boroughs:</p>
+<ul>
+<li>🏙 <strong>Manhattan</strong>: 19,212 listings — the highest
+concentration and also the most expensive, with an average price of
+<strong>$180.09</strong></li>
+<li>🌉 <strong>Brooklyn</strong>: 16,810 listings — moderately priced at
+<strong>$119.68</strong></li>
+<li>🛫 <strong>Queens</strong>: Far fewer listings, with pricing trends
+lower than Manhattan and Brooklyn<br />
+</li>
+<li>🏞 <strong>The Bronx</strong>: Least expensive borough, averaging
+<strong>$82.83</strong> per listing<br />
+</li>
+<li>🌊 <strong>Staten Island</strong>: Smaller market with moderate
+pricing at <strong>$128.02</strong></li>
+</ul>
+<p>💡 <strong>Insight</strong>: Manhattan dominates both in quantity and
+cost, while the Bronx remains the most affordable borough for short-term
+rentals.</p>
+<hr />
 </div>
 <div id="visualizations" class="section level2">
-<h2>Visualizations</h2>
-<div id="graph-showing-the-distribution-of-nyc-airbnb-listing-prices"
+<h2>📉 Visualizations</h2>
+<div id="distribution-of-nyc-airbnb-listing-prices"
 class="section level3">
-<h3>Graph showing the distribution of NYC Airbnb Listing Prices</h3>
+<h3>💵📊 Distribution of NYC Airbnb Listing Prices</h3>
+<p>To get a clearer picture of how Airbnb listings are priced across New
+York City, I created a histogram of nightly rental prices.</p>
+<p>This plot helps us explore:<br />
+- 📏 <strong>Overall price range</strong><br />
+- 📈 <strong>Right-skewed distribution</strong> — most listings are
+budget to mid-range, with a few high-end properties<br />
+- 🚨 <strong>Outliers</strong> — luxury listings priced above
+$500/night</p>
+<p>🔍 The majority of listings fall under <strong>$300</strong>, with a
+sharp drop-off afterward. A small number of outliers pull the average
+upward.</p>
+<p>🧠 These patterns are useful for understanding market segmentation
+and informing our model’s handling of extreme values.</p>
 <pre><code>## (0.0, 1500.0)</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-4-1.png" width="960" />
-Most NYC Airbnb listings are between $0 to $250.</p>
+📌 The Plot shows that – most NYC Airbnb listings are priced between $0
+and $250 per night, making up the bulk of the short-term rental market
+across the five boroughs.</p>
+<hr />
 </div>
 <div id="distribution-of-prices-in-nyc-airbnb-listings"
 class="section level3">
-<h3>Distribution of Prices in NYC Airbnb Listings</h3>
-<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x134856ed0&gt;, &lt;matplotlib.lines.Line2D object at 0x134857170&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x134857320&gt;, &lt;matplotlib.lines.Line2D object at 0x134857620&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x134856c00&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x134857920&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x134857bf0&gt;], &#39;means&#39;: []}</code></pre>
+<h3>💸 Distribution of Prices in NYC Airbnb Listings</h3>
+<p>📍 This section compares <strong>average Airbnb prices</strong>
+across NYC’s five boroughs — showing how location drives cost, from 💎
+Manhattan to 💼 Brooklyn to 🏞️ the Bronx.</p>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x136922d20&gt;, &lt;matplotlib.lines.Line2D object at 0x138ec2f30&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x138ec31a0&gt;, &lt;matplotlib.lines.Line2D object at 0x138ec33b0&gt;], &#39;boxes&#39;: [&lt;matplotlib.patches.PathPatch object at 0x1368f3020&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x138ec3650&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x138ec3950&gt;], &#39;means&#39;: []}</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-5-3.png" width="960" />
-NYC Airbnb listings can reach prices as high as $10,000.</p>
+💰 While most listings are under $250, a few luxury rentals in Manhattan
+reach up to $10,000 per night, creating a long right-skew in the price
+distribution.</p>
+<hr />
 </div>
-<div id="average-prices-in-nyc-airbnb-listings-across-boroughs"
+<div id="average-airbnb-prices-by-borough-in-nyc"
 class="section level3">
-<h3>Average Prices in NYC Airbnb Listings across Boroughs</h3>
+<h3>🏙️💵 Average Airbnb Prices by Borough in NYC</h3>
+<p>This section compares the <strong>average nightly prices</strong> of
+Airbnb listings across the five boroughs — highlighting differences
+between high-demand areas like Manhattan and more affordable options
+such as the Bronx.</p>
 <pre><code>## (array([0, 1, 2, 3, 4]), [Text(0, 0, &#39;Manhattan&#39;), Text(1, 0, &#39;Staten Island&#39;), Text(2, 0, &#39;Brooklyn&#39;), Text(3, 0, &#39;Queens&#39;), Text(4, 0, &#39;Bronx&#39;)])</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-6-5.png" width="960" />
-The average prices per borough vary, with Manhattan being the most
-expensive at an average of $180.09, while the Bronx is the least
-expensive at $82.83.</p>
+💸 Average Airbnb prices vary widely across NYC: Manhattan tops the list
+at $180.09/night, while the Bronx offers the most affordable stays at
+just $82.83/night.</p>
+<hr />
 </div>
 <div id="maximum-prices-in-nyc-airbnb-listings-across-boroughs"
 class="section level3">
-<h3>Maximum Prices in NYC Airbnb Listings across Boroughs</h3>
+<h3>🏙💰 Maximum Prices in NYC Airbnb Listings across Boroughs</h3>
 <pre><code>## ([0, 1, 2, 3, 4], [Text(0, 0, &#39;Manhattan&#39;), Text(1, 0, &#39;Brooklyn&#39;), Text(2, 0, &#39;Queens&#39;), Text(3, 0, &#39;Staten Island&#39;), Text(4, 0, &#39;Bronx&#39;)])</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-7-7.png" width="1152" />
-The maximum prices per borough vary, with Manhattan being the most
-expensive at around $10,000, while the Bronx is the least expensive at
-$1,000.</p>
+🔝 Maximum Airbnb prices differ across NYC: Manhattan listings can go up
+to $10,000/night 💰, while the Bronx caps closer to $1,000/night 🏷️.</p>
+<hr />
 </div>
-<div id="price-vs-review-scores" class="section level3">
-<h3>Price vs Review Scores</h3>
+<div id="how-are-review-scores-linked-airbnb-prices"
+class="section level3">
+<h3>💬 How are Review Scores linked Airbnb Prices?</h3>
 <p><img src="python_files/figure-html/unnamed-chunk-8-9.png" width="960" />
-Rental price tend to increase with review scores (1-10) up to a score of
-8. Beyond this point, maximum rental prices for listings with a score of
-8 or higher remain relatively consistent at around $10,000.</p>
+⭐ Rental prices rise with review scores (1-10) up to 8, after which the
+highest-priced listings plateau. Even listings with top scores tend to
+max out around $10,000/night 💰.</p>
+<hr />
 </div>
-<div id="price-vs-minimum-nights" class="section level3">
-<h3>Price vs Minimum Nights</h3>
+<div id="how-is-minimum-stay-requirements-related-to-airbnb-prices"
+class="section level3">
+<h3>📆 How is Minimum Stay Requirements related to Airbnb Prices 💰</h3>
 <p><img src="python_files/figure-html/unnamed-chunk-9-11.png" width="960" />
-In general, rental price tend to decrease with an increase in minimum
-nights.</p>
+🛏️ As minimum night requirements go up, 💰 rental prices tend to go
+down.</p>
+<hr />
 </div>
 </div>
-<div id="supervised-machine-learning-regression-output"
-class="section level2">
-<h2>Supervised Machine Learning: Regression Output</h2>
+<div id="what-drives-airbnb-prices" class="section level2">
+<h2>🔍 What Drives Airbnb Prices?</h2>
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -905,42 +1011,70 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div>
 <pre><code>## {&#39;coefficients&#39;: array([0.17286817, 0.04287051]), &#39;intercept&#39;: 3.237960031866904}</code></pre>
 <p><img src="python_files/figure-html/unnamed-chunk-11-13.png" width="672" /></p>
-<p>In this analysis, we are focused on exploring the relationship
-between rental prices, review scores, and minimum nights for Airbnb
-listings in Manhattan. Given that Manhattan has the highest number of
-listings, the highest average rental price, and some of the most
-expensive properties, it presents a unique opportunity for deeper
-analysis.</p>
-<p>We use regression analysis to model how rental prices are influenced
-by review scores and minimum nights. By doing so, we aim to understand
-whether higher review scores or longer minimum stays are associated with
-higher rental prices. The regression output will help quantify these
-relationships and provide insights into which factors are more
-influential in determining rental price within this borough.</p>
-<p><strong>Methods</strong></p>
-<p>In the code, we applied the featured scaling using logarithmic
-transformation to two features: <strong>Price &amp; Minimum
-Nights</strong>, with large values.</p>
-<p>The review_scores_location was left unchanged since its values were
-already on a manageable scale.</p>
-<p><strong>Regression Output Explanation:</strong></p>
-<p>The regression model has produced the following results:</p>
+</div>
+<div id="supervised-machine-learning-regression-results"
+class="section level2">
+<h2>🤖💵 Supervised Machine Learning: Regression Results</h2>
+<p>In this analysis, we focus on <strong>Airbnb listings in
+Manhattan</strong>, which stands out with:<br />
+- The <strong>highest number of listings</strong><br />
+- The <strong>highest average rental prices</strong><br />
+- And a notable concentration of <strong>luxury properties</strong> (up
+to $10,000/night 💰)</p>
+<p>This makes Manhattan a compelling case study for exploring how
+<strong>review scores</strong> and <strong>minimum night
+requirements</strong> influence rental pricing.</p>
+<hr />
+<div id="methods" class="section level3">
+<h3>🛠️ Methods</h3>
+<p>We applied a <strong>logarithmic transformation</strong> to both
+<code>price</code> and <code>minimum_nights</code> to manage skewed
+distributions and improve model performance.<br />
+- 🔢 <code>review_scores_location</code> was left untransformed, as it
+already falls within a consistent 1–10 range.</p>
+<p>A linear regression model was used to predict the <strong>log of
+rental price</strong> using:<br />
+- <code>review_scores_location</code><br />
+- <code>minimum_nights</code> (log-transformed)</p>
+<hr />
+</div>
+<div id="regression-output-summary" class="section level3">
+<h3>📈 Regression Output Summary</h3>
 <ul>
-<li><p><em>Intercept (3.237960031866904)</em>: This represents the
-predicted log of the price when both minimum_nights and
-review_scores_location are at their baseline values (e.g., zero). It is
-the starting point of the regression line.</p></li>
-<li><p><em>Coefficient for review_scores_location (0.17286817)</em>:
-This means that for each score increase in Airbnb review score, the log
-of the price is expected to increase by approximately 0.173. This means
-that for each airbnb review score increase, the price is expected to
-increase by approximately 18.9%.</p></li>
-<li><p><em>Coefficient for minimum_nights (0.04287051)</em>: This tells
-us that for each 1% increase in minimum_nights, the log of the price
-will increase by approximately 0.043%.</p></li>
+<li><strong>Intercept = 3.238</strong>
+<ul>
+<li>Represents the baseline log(price) when other features are at
+zero.<br />
+</li>
+</ul></li>
+<li><strong>Coefficient for <code>review_scores_location</code> =
+0.173</strong>
+<ul>
+<li>For each 1-point increase in review score, the
+<strong>log(price)</strong> increases by 0.173.<br />
+</li>
+<li>This translates to roughly an <strong>18.9% increase in actual
+price</strong>.<br />
+</li>
+</ul></li>
+<li><strong>Coefficient for <code>minimum_nights</code> = 0.043</strong>
+<ul>
+<li>For each 1% increase in minimum stay requirement,
+<strong>log(price)</strong> increases by 0.043%.<br />
+</li>
+<li>The effect is statistically significant but much smaller in
+practical terms.</li>
+</ul></li>
 </ul>
-<p>In conclusion, airbnb review scores is more predictive of prices of
-airbnb!</p>
+<hr />
+</div>
+<div id="key-takeaway" class="section level3">
+<h3>🧠 Key Takeaway</h3>
+<p>⭐ <strong>Review scores are a stronger predictor of Airbnb prices
+than minimum night requirements</strong> in Manhattan.<br />
+Guests appear willing to pay more for well-reviewed properties, while
+longer minimum stays have only a modest effect on price.</p>
+</div>
 </div>
 
 

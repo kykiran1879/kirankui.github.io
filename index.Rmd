@@ -1,58 +1,64 @@
 ---
-title: "Kiran's E-Portfolio"
+title: "Kiran Kui, MPH"
 output: 
   html_document:
     toc: TRUE
     toc_float: TRUE
-    theme: spacelab
+    theme: flatly
 ---
-__Data Analytics in Public Health__
 
-*Website developed with R and Git*
+## 👋 Welcome  
 
-### Introduction
+I’m **Kiran Kui** — a public health data scientist passionate about turning data into impact. 
 
-<div style="display: flex; align-items: center;">
-  <img src="/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/Biosketch_Headshot_Kiran.jpg" width="172.5" height="300" style="margin-right: 15px;">
-  <div>
-  
-__Kiran Kui, MPH__ (*she/her*) is a [Research Associate II](https://www.tuftsctsi.org/people/kiran-kui/) at [Tufts CTSI](https://www.tuftsctsi.org/research-services/stakeholder-community-engagement/addressing-disparities-in-asian-populations-through-translational-research-adapt/).
+I graduated from 🎓 **Columbia University Mailman School of Public Health** where I was trained in **biostatistics, epidemiology**, and **machine learning**. 
 
-__Degree__: Masters in __Biostatistics & Data Science__, Columbia University 
+Currently, I’m a **Data Analyst** at [Tufts CTSI](https://www.tuftsctsi.org/people/kiran-kui/) and leverage data-driven solutions to address real-world health challenges. 
 
-__Programming Languages:__ 
+---
 
-* R *(dplyr, tidyverse, ggplot2)*
-* Python *(Pandas, NumPy, Matplotlib)*
-* SAS *(Studio)*
-* Machine Learning *(Scikit-Learn,TensorFlow)*
-* Deep Learning *(NLP, LLM)*
-* SQL *(MySQL)*
-* Dashboards *(plotly)*
-* Software *(QGIS, Geoda)*
+## 🤝 Collaborators
 
-__Methods:__
+* 🏙 __City of Boston__ – Office of Environment, Office of Green Infrastructure
+* 🌿 __Massachusetts Department of Environmental Protection (MassDEP)__ – Environmental monitoring, regulatory science, and data-sharing initiatives
+* 🏥 __Tufts Medical Center__ – Clinical researchers and translational science teams
+* 🏛 __Tufts University__ – Faculty and students across public health, engineering, and data science
+* 🧑‍🤝‍🧑 __Community-Based Organizations__ – Grassroots partners supporting chronic disease prevention, and community outreach
+* 🏢 __Other Academic Health Centers & Real-World Evidence Networks__ – Including clinical researchers, epidemiologists, and data scientists 
 
-* Statistical Analysis, Data Analytics, Machine Learning, Deep Learning
-  
-  </div>
-</div>
+---
 
-### My Vision
+## 🏛 Affiliations  
 
-"As a public health data scientist, I am redefining public health by harnessing the power of data analytics to bridge the gap between insights and action. I challenge conventional norms with evidence-based strategies that inform smarter decisions and lasting impact. My mission is to empower public health agencies, clinicians, and community leaders with data-driven solutions that promote sustainable and meaningful health outcomes.
+- **Columbia University, Mailman School of Public Health (NYC)** 
+- **NYU Langone Health, Department of Population Health (NYC)** 
+- **National University of Singapore (Singapore)** 
+- **Imperial College (UK)**
+- **University of Toronto (Canada)**
 
-### Awards
+---
 
-* [Sidney Kark Award in Epidemiology 2023](https://www.publichealth.columbia.edu/sites/default/files/media/general/2023-05/columbia-mailman-2023-class-day.pdf)
-* [Delta Omega Award 2023](https://www.publichealth.columbia.edu/people/current-students/commencement/delta-omega-honor-society)
-* [Tow Scholar 2023](https://www.towfoundation.org/grantee/columbia-university-mailman-school-of-public-health/)
-* [American Public Health Association Award 2022](https://www.apha.org/about-apha/apha-awards)
+## 🏅 Recognition  
 
-### Press
+- 🏆 [Sidney Kark Award in Epidemiology (2023)](https://www.publichealth.columbia.edu/sites/default/files/media/general/2023-05/columbia-mailman-2023-class-day.pdf)  
+- 🧠 [Delta Omega Honor Society in Public Health (2023)](https://www.publichealth.columbia.edu/people/current-students/commencement/delta-omega-honor-society)  
+- 🚀 [Tow Scholar (2023)](https://www.towfoundation.org/grantee/columbia-university-mailman-school-of-public-health/)  
+- 🌎 [APHA Award for Public Health Impact (2022)](https://www.apha.org/about-apha/apha-awards)
 
-* [Featured in Tufts Now for work advancing Asian American health on Feb 10, 2025](https://now.tufts.edu/2025/02/10/one-coalition-dozens-projects-advance-asian-american-health)
+---
 
+## 📰 Featured Press  
 
+- 📰 [Tufts Now: “One Coalition, Dozens of Projects Advance Asian American Health” (Feb 2025)](https://now.tufts.edu/2025/02/10/one-coalition-dozens-projects-advance-asian-american-health)
+
+---
+
+## 📬 Let’s Connect  
+
+📫 [Email](kirankui@columbia.edu) | 🌐 [LinkedIn](https://www.linkedin.com/in/kirankui) | 💻 [GitHub](https://github.com/kykiran1879)
+
+---
+
+*This site was developed using R, Git, and Quarto. Built to be reproducible and beautiful.*
 
 

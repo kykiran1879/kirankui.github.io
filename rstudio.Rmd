@@ -4,7 +4,7 @@ output:
   html_document:
     toc: TRUE
     toc_float: TRUE
-    theme: spacelab
+    theme: flatly
 ---
 
 ```{r setup, include=FALSE}
@@ -18,46 +18,50 @@ library(lubridate)
 library(plotly)
 ```
 
-__Project Introduction and Context__
+> *“Boston’s 2023 summer saw record heat waves 🌡️, pushing the city to declare heat emergencies 🏘. Understanding where and how heat can occur has become increasingly important for shaping policy, strengthening community resilience, and ensuring climate preparedness across cities like Boston 🧭🌆. While agencies like MassDEP already collect extensive environmental monitoring data, the next step is to understand what it means—analyzing heat trends to help identify health risks ⚠️, guide targeted interventions, and inform city planning 📊🔍.”*
 
-This project explores weather collected in Reggie Wong Park in Boston on in July and August of 2023. Through this analysis, I aim to uncover patterns, trends and relationships between: 
+---
 
-* Outdoors Temperature
+## 📍 Project Introduction and Context
 
-And other environmental metrics: 
+This project explores environmental data collected from **Reggie Wong Park** in Boston during **July and August 2023**. The goal is to uncover patterns and relationships between:
 
-* Relative Humidity 
-* and other weather conditions...
+- 🌡️ **Outdoor Temperature**  
+- 💧 **Relative Humidity**  
+- 🌬 **Other weather conditions (e.g., wind speed)**
 
-__Methodology: End to End Data Pipelines & Time Series Analysis for Predicting Weather__
+---
 
-The Kestrel sensor collects weather data at every 10-min interval. Working with this raw data, I applied end to end data pipelines to QC the dataset and applied time series analysis to understand how different independent variables (features) such as outdoor temperature, and humidity influence that weather conditions. 
+## 🔍 Methodology: End-to-End Data Pipeline & Time Series Analysis
 
-__Applications__
+Weather data was collected every **10 minutes** using a **Kestrel sensor**. I built an end-to-end data pipeline in R for **data cleaning (QC)** and applied **time series analysis** to examine how features like temperature and humidity influence local environmental conditions.
 
-Time Series Analysis can be applied to analyze any type of trend that changes across time: 
+---
 
-* Healthcare: Patient Admissions, Disease Prevalence, Drug Effectiveness
-* Retail: Sales data, Customer Traffic, Inventory Management
-* Finance: Stock Market Prices, Interest Rates, Cryptocurrency Trends
-* Manufacturing: Production Output, Supply Chain
+## 📈 What is Time Series Analysis?
 
-and so much more...
+This method is widely applicable across industries:
 
+- **Healthcare** 🏥: Patient admissions, disease trends, treatment effectiveness  
+- **Retail** 🛒: Sales patterns, customer foot traffic, inventory flow  
+- **Finance** 💹: Stock prices, interest rates, cryptocurrency trends  
+- **Manufacturing** 🏭: Output tracking, supply chain delays, equipment maintenance
 
-__Dataset Source__
+---
 
-The data used in this project were sourced from __Kestrel Sensors__ located at Reggie Wong Park on Aug 2, 2023. Please email me for more information about this dataset. 
+## 📂 Dataset Source
 
-__Programming Languages used__
+Data were collected using **Kestrel Sensors** at Reggie Wong Park on **August 2, 2023**. Please email me for more information about this dataset.
 
-* R *(tidyverse, dplyr, ggplot2, plotly, lubridate, openair)*
-* Version Control: Git
+---
 
-## Imported Libraries 
-I imported libraries from tidyverse, dplyr, ggplot2, plotly, lubridate and openair.  
+## 💻 Programming & Tools Used
 
-## Loaded and inspected the dataset
+- **R**: `tidyverse`, `dplyr`, `ggplot2`, `plotly`, `lubridate`, `openair`  
+- **Version control**: Git
+
+---
+
 ```{r, echo=FALSE}
 
 kestrel_df <- read_xlsx("./data/Reggie_Kestrel_08022023.xlsx", sheet=1, range = "A5:G6228") %>% 
@@ -75,20 +79,28 @@ head(kestrel_df)
 
 ```
 
-__Methodology Explanation__
+## 📊 Exploratory Data Analysis
 
-I created a dataset kestrel_df for the Kestrel sensor by loading the relevant excel sheet, tidying the column names and removing irrelevant columns. I also explored the different variables and changed metrics from character to numeric variables. I also changed the name of the date variable to make it easier to use the lubridate packages later on. 
+The dataframe `kestrel_df` contains `r ncol(kestrel_df)` variables and `r nrow(kestrel_df)` observations 📁🔢.
 
+This dataset captures a range of environmental metrics 🌡️💧🌬️ collected by the **Kestrel sensor** between **July 8, 2023, at 8:02 PM** and **August 2, 2023, at 3:30 PM** 📆🕒.
 
-## Exploratory Data Analysis
+📌 Initially, measurements were recorded at **2-minute intervals** ⏱️ until **July 12, 2023, at 7:30 PM**, after which the recording frequency changed to **10-minute intervals** ⏲️ for the remainder of the monitoring period.
 
-The dataframe kestrel_df consists of `r ncol(kestrel_df)` variables and `r nrow(kestrel_df)` observations. 
+---
 
-The dataframe presents data pertaining to various environmental metrics, obtained from the Kestrel sensor during the period spanning from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM. 
+## 📈 Time Series Analysis
 
-Initially, the data points were recorded at 2-minute intervals until 07/12/2023, 7:30 PM, at which point the recording frequency transitioned to 10-minute intervals.
+In this section, I apply time series analysis to examine trends and patterns in environmental variables over time 🕒🌡️💧. By analyzing changes in outdoor temperature, relative humidity, and other weather metrics, we can better understand how these factors interact and evolve throughout the monitoring period 🔍📊.
 
-## Time Series Analysis
+Techniques include:
+- 📅 Temporal trend visualization  
+- 🔁 Lag analysis  
+- 📉 Smoothing and decomposition  
+- 📐 Correlation between variables over time
+
+This analysis helps reveal underlying patterns and supports further modeling or prediction efforts 🔮.
+
 
 ```{r, echo=FALSE}
 # Date to year, month, day and hour
@@ -103,7 +115,7 @@ kestrel_df %>%
   select(date, year, month, day, hour, everything())
 
 ```
-I separated the date column into year, month, day and hour.
+📉 I separated the date column into year, month, day and hour.
 
 ```{r, echo=FALSE}
 # Converted to 10 minute intervals
@@ -111,7 +123,7 @@ kestrel_df$date <- floor_date(kestrel_df$date, unit = "10 minutes")
 
 head(kestrel_df)
 ```
-I found the average 10-min values for temperature, humidity…
+📉 I found the average 10-min values for temperature, humidity…
 
 ```{r, echo=FALSE}
 # Converted to 1-day intervals
@@ -119,7 +131,7 @@ kestrel_daily_df <- timeAverage(kestrel_df, avg.time = "day")
 
 head(kestrel_daily_df)
 ```
-I found the average daily values for temperature, humidity…
+📉 I found the average daily values for temperature, humidity…
 
 ```{r, echo=FALSE}
 # Converted to monthly intervals
@@ -127,7 +139,7 @@ kestrel_monthly_df <- timeAverage(kestrel_df, avg.time = "month")
 
 head(kestrel_monthly_df)
 ```
-I found the average monthly values for temperature, humidity…
+📉 I found the average monthly values for temperature, humidity…
 
 ```{r, include=FALSE}
 # Generate the day of the week (1 = Sunday, 7 = Saturday)
@@ -143,18 +155,28 @@ kestrel_df$day_of_week_name <- factor(kestrel_df$day_of_week_name,
 
 ```
 
-__Data Methodology Summary__
+---
 
-* I separated the date column into year, month, day and hour. 
-* I found the average 10-min values for temperature, humidity... 
-* I found the average daily values for temperature, humidity...
-* I found the average monthly values for temperature, humidity...
+## 🧪 Data Methodology Summary
 
-Note: There was only data recorded for 08/01/2023 and 08/02/2023 in August.  
+- 📆 Separated the `date` column into **year**, **month**, **day**, and **hour** components for easier time-based grouping.  
+- 🔟 Calculated **average 10-minute values** for key variables such as temperature 🌡️ and humidity 💧.  
+- 📅 Computed **average daily values** to observe day-to-day trends.  
+- 📆 Aggregated **average monthly values** to explore broader seasonal patterns.
 
-## Visualizations of Trends
+📌 **Note:** Only two days of data were recorded in August—**08/01/2023** and **08/02/2023**.
 
-### Comparing July and August temperatures
+---
+
+## 📊 Visualizations of Trends
+
+This section showcases key visual insights from the dataset using plots to highlight temporal patterns and changes in environmental conditions over time 🕒🌡️💧.
+
+---
+
+### 📆 Comparing July and August Temperatures
+
+Here, we compare **average temperatures** recorded in **July** and the first two days of **August 2023** 🔥🧊. This helps identify short-term seasonal shifts and examine how extreme heat events varied between the two months.
 
 ```{r, echo=FALSE}
 kestrel_temp <- plot_ly(kestrel_daily_df, 
@@ -183,12 +205,20 @@ kestrel_temp
 
 ```
 
-__Findings__
+---
 
-* July 2023 had higher temperatures, and we have more data! 
-* Let's focus on July 2023. 
+## 🔎 Findings
 
-### Weather conditions across time in July 
+- 🌡️ **July 2023** recorded **higher overall temperatures** compared to early August.  
+- 📊 We also have **more complete data** available for July.  
+- 🎯 Based on this, the analysis will focus primarily on **July 2023** for deeper insights.
+
+---
+
+### 🌦️ Weather Conditions Across Time in July
+
+This section explores how key environmental metrics—such as **temperature**, **humidity**, and other weather conditions—varied throughout **July 2023** 📅📈. By visualizing these changes over time, we can better understand daily patterns, extreme fluctuations, and overall climate trends during the monitoring period.
+
 ```{r, echo=FALSE}
 timePlot(selectByDate(kestrel_df, year = 2023, month = 7),
 pollutant = c("temperature", "relative_humidity"),
@@ -196,14 +226,25 @@ y.relation = "free")
 
 ```
 
-__Data Methodology__
+---
 
-I created a time series plot that depicts the variations in temperature and humidity from July 8, 2023, at 8:02 PM to July 31, 2023, at 11:50 PM. 
+### 🛠️ Data Methodology
 
-__Findings__
+I created a **time series plot** to visualize variations in **temperature 🌡️** and **humidity 💧** between **July 8, 2023, at 8:02 PM** and **July 31, 2023, at 11:50 PM**.
 
-* July 13 and July 24 had the highest temperatures, close to 100 degrees Fahrenheit!!!
-* Outdoor temperature is linked to lower humidity across July 2023. 
+---
+
+### 🔍 Findings
+
+- 🔥 **July 13** and **July 24** recorded the **highest temperatures**, reaching nearly **100°F**!  
+- 💧 There is an **inverse relationship** between **outdoor temperature** and **humidity**—as temperatures rose, humidity levels tended to drop.
+
+---
+
+### 📆 Weather Conditions Across Days of the Week
+
+This section examines how **temperature** 🌡️ and **humidity** 💧 varied by **day of the week** during July 2023. Identifying patterns across weekdays and weekends can help reveal behavioral or environmental trends, such as differences in urban activity, cooling patterns, or exposure risks.
+
 
 ### Weather Conditions across days of the week
 ```{r, echo=FALSE}
@@ -216,16 +257,30 @@ timeVariation(subset(kestrel_df),pollutant = "relative_humidity", ylab = "Relati
 
 ```
 
-__Data Methodology__
 
-I created a time series plot that depicts the variations in temperature and humidity across different days of the week in July 2023. 
 
-__Findings__
+### 🛠️ Data Methodology
 
-* MONDAY had the highest humidity, lowest temperature
-* WEDNESDAY had the highest temperature, lowest humidity
+I created a **time series plot** to visualize variations in **temperature 🌡️** and **humidity 💧** across different **days of the week** during **July 2023**.
 
-## Predictive Models (for July) 
+### 🔍 Findings
+
+- 🌧️ **Monday** showed the **highest humidity** and **lowest temperatures** overall.  
+- 🔥 **Wednesday** recorded the **highest temperatures** and **lowest humidity**, suggesting sharper heat and drier conditions midweek.
+
+---
+
+## 🤖 Predictive Models (for July)
+
+In this section, I apply **predictive modeling** techniques to explore how well we can estimate or forecast one weather variable (e.g., temperature 🌡️) based on others like humidity 💧, time of day 🕒, or day of the week 📅.
+
+Using the **July 2023 dataset**, I build models to:
+
+- 🔍 Identify key predictors of outdoor temperature  
+- 📈 Quantify relationships between variables  
+- 🔮 Explore the potential for short-term forecasting
+
+These models help us better understand patterns in the data and provide a foundation for future applications in environmental monitoring, urban planning, and health response 🚦🏙️.
 
 ```{r , include=FALSE, warning=FALSE}
 kestrel_july_df = kestrel_df %>% 
@@ -299,13 +354,15 @@ ggplot(kestrel_july_df) +
 ```
 
 
-## Data Summary and Recommendations for park users
+## 📝 Data Summary and Recommendations for Park Users
 
-Based on the data from July-Aug 2023: 
+Based on weather data collected from **July to August 2023** at Reggie Wong Park:
 
-* July is a hot month, with temperatures approaching 100 degrees fahrenheit at certain times. 
-* Temperatures may fluctuate across July, and start cooling off towards the end of the month. 
-* Wednesdays bring the highest temperatures and lowest humidity, so users should take extra precautions when exercising in the park to avoid heat-related issues.
+- 🔥 **July is a hot month**, with temperatures approaching **100°F** during peak periods.  
+- 🌡️ **Temperatures fluctuate** throughout the month and begin to **cool slightly** toward the end of July.  
+- 📅 **Wednesdays** tend to have the **highest temperatures** and **lowest humidity**, making them especially risky for heat-related stress.
+
+✅ **Recommendation**: Park users should stay hydrated, avoid peak midday hours, and take extra precautions—especially on **Wednesdays**—when exercising or spending extended time outdoors.
 
 
 

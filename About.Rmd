@@ -1,31 +1,54 @@
 ---
-title: "About Me"
+title: "About My Work"
 output: 
   html_document:
     toc: TRUE
     toc_float: TRUE
-    theme: spacelab
+    theme: flatly
 ---
 
-__Bridging the gap between Data Analytics & Public Health__
+### 💡 My Vision  
 
-While there can be uncertainty around how to use data effectively in public health, I’m here to bridge that gap.
+> *“Living and working across different healthcare systems, I saw firsthand how timely data can change outcomes—and how its absence can delay action. That experience shaped my drive to make data not just available, but useful. I focus on building tools and models that help researchers, health systems, and decision-makers respond faster and plan smarter. I see the future of public health as predictive, actionable, and built on open data—and I want to help shape it.”*
 
-My journey into data analytics began during my Master’s in Public Health at Columbia University, where I dove into statistical modeling, data visualization, and real-world problem solving through hands-on projects. I’ve always been drawn to how data can uncover hidden patterns, inform smarter decisions, and ultimately improve health outcomes.
+---
 
-I’m especially interested in using advanced analytics techniques—like predictive modeling and natural language analysis—to understand disease trends, enhance population health strategies, and support data-informed policy.
+## 🚀 What I Bring to the Table
 
-My mission is to make data science more accessible, actionable, and impactful for public health professionals everywhere.
+### 🧠 Expertise  
+- **Predictive Modeling** — Machine Learning & statistical models to assess trends, identify risks & identify targeted solutions  
+- **Health Data Analytics** — Translating complex datasets into actionable population health insights for diverse stakeholders & audiences
+- **Real-World Evidence** — Clinical Trials, Claims Data, EHRs, and National Survey Analysis
 
-Below, I highlight a selection of projects that demonstrate my experience in applying data science to real-world public health challenges. You can view them by navigating to the top right-hand corner.
+---
 
-### Data Analytics Projects
+### 🛠️ Technical Toolkit  
+- **Languages**: R (tidyverse, ggplot2), Python (pandas, scikit-learn), SAS, SQL  
+- **Dashboards**: R Shiny, plotly  
+- **Spatial Tools**: QGIS, GeoDa  
+- **Machine Learning & Deep Learning**: scikit-learn, TensorFlow, NLP, LLMs  
+- **Survey Analytics**: REDCap, Qualtrics  
 
-* Airbnb Rental Price prediction (Python, R): This project predicts Airbnb rental prices in New York City based on data from 2017. 
+---
 
-* Hot Summer Trends (R, Git): This project analyzes weather changes in Boston based on data from 2023
+### 🌏 Global Approach
 
-* COVID-19 Maps (R, GIS Tools): This project visualizes COVID-19 prevalence in NYC using maps based on data from 2010.
+- 💬 **Multilingual & Cross-Cultural**: Fluent in **English, Chinese, French, and Japanese**; experienced in multilingual outreach and partnerships  
+- 🌎 **Global Perspective**: Lived and worked in **Singapore, UK, Canada, and the U.S.**, contributing to health research across diverse populations and systems  
+- 🤝 **Collaborative & Interdisciplinary**: Skilled in interdisciplinary teamwork, stakeholder engagement, and community-led health research
+
+---
+
+### 🚀 Featured Projects
+
+* __Airbnb Price Prediction__ *(Python, R)*  
+  Predicted NYC rental prices using 2017 Airbnb data. Built regression models and visualized pricing patterns for short-term rentals.
+
+* __Hot Summer Trends in Boston__ *(R, Git)*  
+  Identified heat waves in Boston using local weather data from 2023. Informs public health alerts and climate resilience planning.
+
+* __COVID-19 Mapping Dashboard__ *(R, GIS Tools)*  
+  Created interactive maps of COVID-19 case trends and neighborhood-level risk across NYC. Aimed at resource targeting and outbreak response.
 
 
 

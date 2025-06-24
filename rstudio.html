@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -381,54 +381,79 @@ div.tocify {
 </div>
 
 
-<p><strong>Project Introduction and Context</strong></p>
-<p>This project explores weather collected in Reggie Wong Park in Boston
-on in July and August of 2023. Through this analysis, I aim to uncover
-patterns, trends and relationships between:</p>
+<blockquote>
+<p><em>“Boston’s 2023 summer saw record heat waves 🌡️, pushing the city
+to declare heat emergencies 🏘. Understanding where and how heat can
+occur has become increasingly important for shaping policy,
+strengthening community resilience, and ensuring climate preparedness
+across cities like Boston 🧭🌆. While agencies like MassDEP already
+collect extensive environmental monitoring data, the next step is to
+understand what it means—analyzing heat trends to help identify health
+risks ⚠️, guide targeted interventions, and inform city planning
+📊🔍.”</em></p>
+</blockquote>
+<hr />
+<div id="project-introduction-and-context" class="section level2">
+<h2>📍 Project Introduction and Context</h2>
+<p>This project explores environmental data collected from
+<strong>Reggie Wong Park</strong> in Boston during <strong>July and
+August 2023</strong>. The goal is to uncover patterns and relationships
+between:</p>
 <ul>
-<li>Outdoors Temperature</li>
+<li>🌡️ <strong>Outdoor Temperature</strong><br />
+</li>
+<li>💧 <strong>Relative Humidity</strong><br />
+</li>
+<li>🌬 <strong>Other weather conditions (e.g., wind speed)</strong></li>
 </ul>
-<p>And other environmental metrics:</p>
-<ul>
-<li>Relative Humidity</li>
-<li>and other weather conditions…</li>
-</ul>
-<p><strong>Methodology: End to End Data Pipelines &amp; Time Series
-Analysis for Predicting Weather</strong></p>
-<p>The Kestrel sensor collects weather data at every 10-min interval.
-Working with this raw data, I applied end to end data pipelines to QC
-the dataset and applied time series analysis to understand how different
-independent variables (features) such as outdoor temperature, and
-humidity influence that weather conditions.</p>
-<p><strong>Applications</strong></p>
-<p>Time Series Analysis can be applied to analyze any type of trend that
-changes across time:</p>
-<ul>
-<li>Healthcare: Patient Admissions, Disease Prevalence, Drug
-Effectiveness</li>
-<li>Retail: Sales data, Customer Traffic, Inventory Management</li>
-<li>Finance: Stock Market Prices, Interest Rates, Cryptocurrency
-Trends</li>
-<li>Manufacturing: Production Output, Supply Chain</li>
-</ul>
-<p>and so much more…</p>
-<p><strong>Dataset Source</strong></p>
-<p>The data used in this project were sourced from <strong>Kestrel
-Sensors</strong> located at Reggie Wong Park on Aug 2, 2023. Please
-email me for more information about this dataset.</p>
-<p><strong>Programming Languages used</strong></p>
-<ul>
-<li>R <em>(tidyverse, dplyr, ggplot2, plotly, lubridate,
-openair)</em></li>
-<li>Version Control: Git</li>
-</ul>
-<div id="imported-libraries" class="section level2">
-<h2>Imported Libraries</h2>
-<p>I imported libraries from tidyverse, dplyr, ggplot2, plotly,
-lubridate and openair.</p>
+<hr />
 </div>
-<div id="loaded-and-inspected-the-dataset" class="section level2">
-<h2>Loaded and inspected the dataset</h2>
+<div id="methodology-end-to-end-data-pipeline-time-series-analysis"
+class="section level2">
+<h2>🔍 Methodology: End-to-End Data Pipeline &amp; Time Series
+Analysis</h2>
+<p>Weather data was collected every <strong>10 minutes</strong> using a
+<strong>Kestrel sensor</strong>. I built an end-to-end data pipeline in
+R for <strong>data cleaning (QC)</strong> and applied <strong>time
+series analysis</strong> to examine how features like temperature and
+humidity influence local environmental conditions.</p>
+<hr />
+</div>
+<div id="what-is-time-series-analysis" class="section level2">
+<h2>📈 What is Time Series Analysis?</h2>
+<p>This method is widely applicable across industries:</p>
+<ul>
+<li><strong>Healthcare</strong> 🏥: Patient admissions, disease trends,
+treatment effectiveness<br />
+</li>
+<li><strong>Retail</strong> 🛒: Sales patterns, customer foot traffic,
+inventory flow<br />
+</li>
+<li><strong>Finance</strong> 💹: Stock prices, interest rates,
+cryptocurrency trends<br />
+</li>
+<li><strong>Manufacturing</strong> 🏭: Output tracking, supply chain
+delays, equipment maintenance</li>
+</ul>
+<hr />
+</div>
+<div id="dataset-source" class="section level2">
+<h2>📂 Dataset Source</h2>
+<p>Data were collected using <strong>Kestrel Sensors</strong> at Reggie
+Wong Park on <strong>August 2, 2023</strong>. Please email me for more
+information about this dataset.</p>
+<hr />
+</div>
+<div id="programming-tools-used" class="section level2">
+<h2>💻 Programming &amp; Tools Used</h2>
+<ul>
+<li><strong>R</strong>: <code>tidyverse</code>, <code>dplyr</code>,
+<code>ggplot2</code>, <code>plotly</code>, <code>lubridate</code>,
+<code>openair</code><br />
+</li>
+<li><strong>Version control</strong>: Git</li>
+</ul>
+<hr />
 <pre><code>## # A tibble: 6 × 7
 ##   date   temperature wet_bulb_temp relative_humidity station_pressure heat_index
 ##   &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
@@ -439,26 +464,34 @@ lubridate and openair.</p>
 ## 5 2023-…        72.4          70.3              90.3             29.8       74.7
 ## 6 2023-…        72.4          70.3              90.5             29.8       74.7
 ## # ℹ 1 more variable: dew_point &lt;dbl&gt;</code></pre>
-<p><strong>Methodology Explanation</strong></p>
-<p>I created a dataset kestrel_df for the Kestrel sensor by loading the
-relevant excel sheet, tidying the column names and removing irrelevant
-columns. I also explored the different variables and changed metrics
-from character to numeric variables. I also changed the name of the date
-variable to make it easier to use the lubridate packages later on.</p>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
-<h2>Exploratory Data Analysis</h2>
-<p>The dataframe kestrel_df consists of 7 variables and 6222
-observations.</p>
-<p>The dataframe presents data pertaining to various environmental
-metrics, obtained from the Kestrel sensor during the period spanning
-from 07/08/2023 at 8:02 PM to 08/02/2023 at 3:30 PM.</p>
-<p>Initially, the data points were recorded at 2-minute intervals until
-07/12/2023, 7:30 PM, at which point the recording frequency transitioned
-to 10-minute intervals.</p>
+<h2>📊 Exploratory Data Analysis</h2>
+<p>The dataframe <code>kestrel_df</code> contains 7 variables and 6222
+observations 📁🔢.</p>
+<p>This dataset captures a range of environmental metrics 🌡️💧🌬️
+collected by the <strong>Kestrel sensor</strong> between <strong>July 8,
+2023, at 8:02 PM</strong> and <strong>August 2, 2023, at 3:30
+PM</strong> 📆🕒.</p>
+<p>📌 Initially, measurements were recorded at <strong>2-minute
+intervals</strong> ⏱️ until <strong>July 12, 2023, at 7:30 PM</strong>,
+after which the recording frequency changed to <strong>10-minute
+intervals</strong> ⏲️ for the remainder of the monitoring period.</p>
+<hr />
 </div>
 <div id="time-series-analysis" class="section level2">
-<h2>Time Series Analysis</h2>
+<h2>📈 Time Series Analysis</h2>
+<p>In this section, I apply time series analysis to examine trends and
+patterns in environmental variables over time 🕒🌡️💧. By analyzing
+changes in outdoor temperature, relative humidity, and other weather
+metrics, we can better understand how these factors interact and evolve
+throughout the monitoring period 🔍📊.</p>
+<p>Techniques include: - 📅 Temporal trend visualization<br />
+- 🔁 Lag analysis<br />
+- 📉 Smoothing and decomposition<br />
+- 📐 Correlation between variables over time</p>
+<p>This analysis helps reveal underlying patterns and supports further
+modeling or prediction efforts 🔮.</p>
 <pre><code>## # A tibble: 6,222 × 11
 ##    date                 year month   day  hour temperature wet_bulb_temp
 ##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;       &lt;dbl&gt;         &lt;dbl&gt;
@@ -475,7 +508,7 @@ to 10-minute intervals.</p>
 ## # ℹ 6,212 more rows
 ## # ℹ 4 more variables: relative_humidity &lt;dbl&gt;, station_pressure &lt;dbl&gt;,
 ## #   heat_index &lt;dbl&gt;, dew_point &lt;dbl&gt;</code></pre>
-<p>I separated the date column into year, month, day and hour.</p>
+<p>📉 I separated the date column into year, month, day and hour.</p>
 <pre><code>## # A tibble: 6 × 11
 ##   date                temperature wet_bulb_temp relative_humidity
 ##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -487,7 +520,7 @@ to 10-minute intervals.</p>
 ## 6 2023-07-08 20:20:00        72.4          70.3              90.5
 ## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
 ## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;int&gt;, hour &lt;int&gt;</code></pre>
-<p>I found the average 10-min values for temperature, humidity…</p>
+<p>📉 I found the average 10-min values for temperature, humidity…</p>
 <pre><code>## # A tibble: 6 × 11
 ##   date                temperature wet_bulb_temp relative_humidity
 ##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -499,7 +532,7 @@ to 10-minute intervals.</p>
 ## 6 2023-07-13 00:00:00        82.2          70.8              58.9
 ## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
 ## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;</code></pre>
-<p>I found the average daily values for temperature, humidity…</p>
+<p>📉 I found the average daily values for temperature, humidity…</p>
 <pre><code>## # A tibble: 2 × 11
 ##   date                temperature wet_bulb_temp relative_humidity
 ##   &lt;dttm&gt;                    &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -507,77 +540,166 @@ to 10-minute intervals.</p>
 ## 2 2023-08-01 00:00:00        70.4          57.6              47.5
 ## # ℹ 7 more variables: station_pressure &lt;dbl&gt;, heat_index &lt;dbl&gt;,
 ## #   dew_point &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;</code></pre>
-<p>I found the average monthly values for temperature, humidity…</p>
-<p><strong>Data Methodology Summary</strong></p>
+<p>📉 I found the average monthly values for temperature, humidity…</p>
+<hr />
+</div>
+<div id="data-methodology-summary" class="section level2">
+<h2>🧪 Data Methodology Summary</h2>
 <ul>
-<li>I separated the date column into year, month, day and hour.</li>
-<li>I found the average 10-min values for temperature, humidity…</li>
-<li>I found the average daily values for temperature, humidity…</li>
-<li>I found the average monthly values for temperature, humidity…</li>
+<li>📆 Separated the <code>date</code> column into
+<strong>year</strong>, <strong>month</strong>, <strong>day</strong>, and
+<strong>hour</strong> components for easier time-based grouping.<br />
+</li>
+<li>🔟 Calculated <strong>average 10-minute values</strong> for key
+variables such as temperature 🌡️ and humidity 💧.<br />
+</li>
+<li>📅 Computed <strong>average daily values</strong> to observe
+day-to-day trends.<br />
+</li>
+<li>📆 Aggregated <strong>average monthly values</strong> to explore
+broader seasonal patterns.</li>
 </ul>
-<p>Note: There was only data recorded for 08/01/2023 and 08/02/2023 in
-August.</p>
+<p>📌 <strong>Note:</strong> Only two days of data were recorded in
+August—<strong>08/01/2023</strong> and <strong>08/02/2023</strong>.</p>
+<hr />
 </div>
 <div id="visualizations-of-trends" class="section level2">
-<h2>Visualizations of Trends</h2>
+<h2>📊 Visualizations of Trends</h2>
+<p>This section showcases key visual insights from the dataset using
+plots to highlight temporal patterns and changes in environmental
+conditions over time 🕒🌡️💧.</p>
+<hr />
 <div id="comparing-july-and-august-temperatures" class="section level3">
-<h3>Comparing July and August temperatures</h3>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-f56bfe7a5be8577742aa" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-f56bfe7a5be8577742aa">{"x":{"visdat":{"dea72e3b9b0c":["function () ","plotlyVisDat"]},"cur_data":"dea72e3b9b0c","attrs":{"dea72e3b9b0c":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p><strong>Findings</strong></p>
-<ul>
-<li>July 2023 had higher temperatures, and we have more data!</li>
-<li>Let’s focus on July 2023.</li>
-</ul>
+<h3>📆 Comparing July and August Temperatures</h3>
+<p>Here, we compare <strong>average temperatures</strong> recorded in
+<strong>July</strong> and the first two days of <strong>August
+2023</strong> 🔥🧊. This helps identify short-term seasonal shifts and
+examine how extreme heat events varied between the two months.</p>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-12bc1e02e5a7de5a26c4" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-12bc1e02e5a7de5a26c4">{"x":{"visdat":{"300933bd4208":["function () ","plotlyVisDat"]},"cur_data":"300933bd4208","attrs":{"300933bd4208":{"x":{},"y":{},"mode":"lines+markers","name":"Daily Average Temperature (°F)","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Daily Temperature at Reggie Wong Park in July-Aug 2023","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature (°F)"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Date"},"legend":{"orientation":"h","y":-0.29999999999999999,"x":0.5,"xanchor":"center","yanchor":"bottom"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2023-07-08 00:00:00.000000","2023-07-09 00:00:00.000000","2023-07-10 00:00:00.000000","2023-07-11 00:00:00.000000","2023-07-12 00:00:00.000000","2023-07-13 00:00:00.000000","2023-07-14 00:00:00.000000","2023-07-15 00:00:00.000000","2023-07-16 00:00:00.000000","2023-07-17 00:00:00.000000","2023-07-18 00:00:00.000000","2023-07-19 00:00:00.000000","2023-07-20 00:00:00.000000","2023-07-21 00:00:00.000000","2023-07-22 00:00:00.000000","2023-07-23 00:00:00.000000","2023-07-24 00:00:00.000000","2023-07-25 00:00:00.000000","2023-07-26 00:00:00.000000","2023-07-27 00:00:00.000000","2023-07-28 00:00:00.000000","2023-07-29 00:00:00.000000","2023-07-30 00:00:00.000000","2023-07-31 00:00:00.000000","2023-08-01 00:00:00.000000","2023-08-02 00:00:00.000000"],"y":[77.175782881002092,74.486527777777781,69.126527777777781,78.291527777777773,84.069622331691292,82.243750000000006,75.888194444444437,80.374305555555551,76.150000000000006,81.761111111111106,79.49444444444444,80.010416666666671,77.384722222222223,72.736111111111114,73.318749999999994,79.426388888888894,80.415277777777774,74.546527777777783,79.382638888888891,79.77569444444444,83.353472222222223,77.206249999999997,70.257638888888891,74.344444444444449,71.868055555555557,68.165957446808505],"mode":"lines+markers","name":"Daily Average Temperature (°F)","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<hr />
 </div>
-<div id="weather-conditions-across-time-in-july" class="section level3">
-<h3>Weather conditions across time in July</h3>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p><strong>Data Methodology</strong></p>
-<p>I created a time series plot that depicts the variations in
-temperature and humidity from July 8, 2023, at 8:02 PM to July 31, 2023,
-at 11:50 PM.</p>
-<p><strong>Findings</strong></p>
+</div>
+<div id="findings" class="section level2">
+<h2>🔎 Findings</h2>
 <ul>
-<li>July 13 and July 24 had the highest temperatures, close to 100
-degrees Fahrenheit!!!</li>
-<li>Outdoor temperature is linked to lower humidity across July
-2023.</li>
+<li>🌡️ <strong>July 2023</strong> recorded <strong>higher overall
+temperatures</strong> compared to early August.<br />
+</li>
+<li>📊 We also have <strong>more complete data</strong> available for
+July.<br />
+</li>
+<li>🎯 Based on this, the analysis will focus primarily on <strong>July
+2023</strong> for deeper insights.</li>
 </ul>
+<hr />
+<div id="weather-conditions-across-time-in-july" class="section level3">
+<h3>🌦️ Weather Conditions Across Time in July</h3>
+<p>This section explores how key environmental metrics—such as
+<strong>temperature</strong>, <strong>humidity</strong>, and other
+weather conditions—varied throughout <strong>July 2023</strong> 📅📈. By
+visualizing these changes over time, we can better understand daily
+patterns, extreme fluctuations, and overall climate trends during the
+monitoring period.</p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="data-methodology" class="section level3">
+<h3>🛠️ Data Methodology</h3>
+<p>I created a <strong>time series plot</strong> to visualize variations
+in <strong>temperature 🌡️</strong> and <strong>humidity 💧</strong>
+between <strong>July 8, 2023, at 8:02 PM</strong> and <strong>July 31,
+2023, at 11:50 PM</strong>.</p>
+<hr />
+</div>
+<div id="findings-1" class="section level3">
+<h3>🔍 Findings</h3>
+<ul>
+<li>🔥 <strong>July 13</strong> and <strong>July 24</strong> recorded
+the <strong>highest temperatures</strong>, reaching nearly
+<strong>100°F</strong>!<br />
+</li>
+<li>💧 There is an <strong>inverse relationship</strong> between
+<strong>outdoor temperature</strong> and <strong>humidity</strong>—as
+temperatures rose, humidity levels tended to drop.</li>
+</ul>
+<hr />
 </div>
 <div id="weather-conditions-across-days-of-the-week"
 class="section level3">
+<h3>📆 Weather Conditions Across Days of the Week</h3>
+<p>This section examines how <strong>temperature</strong> 🌡️ and
+<strong>humidity</strong> 💧 varied by <strong>day of the week</strong>
+during July 2023. Identifying patterns across weekdays and weekends can
+help reveal behavioral or environmental trends, such as differences in
+urban activity, cooling patterns, or exposure risks.</p>
+</div>
+<div id="weather-conditions-across-days-of-the-week-1"
+class="section level3">
 <h3>Weather Conditions across days of the week</h3>
 <p><img src="rstudio_files/figure-html/unnamed-chunk-9-1.png" width="672" /><img src="rstudio_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
-<p><strong>Data Methodology</strong></p>
-<p>I created a time series plot that depicts the variations in
-temperature and humidity across different days of the week in July
-2023.</p>
-<p><strong>Findings</strong></p>
+</div>
+<div id="data-methodology-1" class="section level3">
+<h3>🛠️ Data Methodology</h3>
+<p>I created a <strong>time series plot</strong> to visualize variations
+in <strong>temperature 🌡️</strong> and <strong>humidity 💧</strong>
+across different <strong>days of the week</strong> during <strong>July
+2023</strong>.</p>
+</div>
+<div id="findings-2" class="section level3">
+<h3>🔍 Findings</h3>
 <ul>
-<li>MONDAY had the highest humidity, lowest temperature</li>
-<li>WEDNESDAY had the highest temperature, lowest humidity</li>
+<li>🌧️ <strong>Monday</strong> showed the <strong>highest
+humidity</strong> and <strong>lowest temperatures</strong>
+overall.<br />
+</li>
+<li>🔥 <strong>Wednesday</strong> recorded the <strong>highest
+temperatures</strong> and <strong>lowest humidity</strong>, suggesting
+sharper heat and drier conditions midweek.</li>
 </ul>
+<hr />
 </div>
 </div>
 <div id="predictive-models-for-july" class="section level2">
-<h2>Predictive Models (for July)</h2>
+<h2>🤖 Predictive Models (for July)</h2>
+<p>In this section, I apply <strong>predictive modeling</strong>
+techniques to explore how well we can estimate or forecast one weather
+variable (e.g., temperature 🌡️) based on others like humidity 💧, time
+of day 🕒, or day of the week 📅.</p>
+<p>Using the <strong>July 2023 dataset</strong>, I build models to:</p>
+<ul>
+<li>🔍 Identify key predictors of outdoor temperature<br />
+</li>
+<li>📈 Quantify relationships between variables<br />
+</li>
+<li>🔮 Explore the potential for short-term forecasting</li>
+</ul>
+<p>These models help us better understand patterns in the data and
+provide a foundation for future applications in environmental
+monitoring, urban planning, and health response 🚦🏙️.</p>
 <p><img src="rstudio_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p><img src="rstudio_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="data-summary-and-recommendations-for-park-users"
 class="section level2">
-<h2>Data Summary and Recommendations for park users</h2>
-<p>Based on the data from July-Aug 2023:</p>
+<h2>📝 Data Summary and Recommendations for Park Users</h2>
+<p>Based on weather data collected from <strong>July to August
+2023</strong> at Reggie Wong Park:</p>
 <ul>
-<li>July is a hot month, with temperatures approaching 100 degrees
-fahrenheit at certain times.</li>
-<li>Temperatures may fluctuate across July, and start cooling off
-towards the end of the month.</li>
-<li>Wednesdays bring the highest temperatures and lowest humidity, so
-users should take extra precautions when exercising in the park to avoid
-heat-related issues.</li>
+<li>🔥 <strong>July is a hot month</strong>, with temperatures
+approaching <strong>100°F</strong> during peak periods.<br />
+</li>
+<li>🌡️ <strong>Temperatures fluctuate</strong> throughout the month and
+begin to <strong>cool slightly</strong> toward the end of July.<br />
+</li>
+<li>📅 <strong>Wednesdays</strong> tend to have the <strong>highest
+temperatures</strong> and <strong>lowest humidity</strong>, making them
+especially risky for heat-related stress.</li>
 </ul>
+<p>✅ <strong>Recommendation</strong>: Park users should stay hydrated,
+avoid peak midday hours, and take extra precautions—especially on
+<strong>Wednesdays</strong>—when exercising or spending extended time
+outdoors.</p>
 </div>
 
 

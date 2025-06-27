@@ -25,7 +25,7 @@ covid_zip <- st_read("/Users/kuiyan/Desktop/R Projects/kirankui.github.io/data/N
 ```
 
 
-> *“📅 2021 was a critical year in the pandemic — vaccines were available 💉, but the burden of COVID-19 remained deeply unequal ⚠️. In a city as large, diverse, and densely populated as New York City 🗽, analyzing spatial data helps reveal how geography and mortality intersected 💵💀. This kind of spatial analysis 📊 provides vital lessons for designing smarter, more equitable public health responses 🏥 in future crises.”*
+> *“2021 was a critical year in the pandemic — vaccines were available 💉, but the burden of COVID-19 remained deeply unequal ⚠️. In a city as large, diverse, and densely populated as New York City , analyzing spatial data helps reveal how geography and mortality intersected . This kind of spatial analysis provides vital lessons for designing smarter, more equitable public health responses in future crises.”*
 
 ---
 

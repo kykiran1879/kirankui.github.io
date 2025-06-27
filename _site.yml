@@ -5,7 +5,7 @@ navbar:
   right:
     - text: "About 研究概述"
       href: About.html
-    - text: "Rent Prediction 租房价格分析"
+    - text: "Rent Prediction 租金预测"
       href: python.html
     - text: "Heat Monitoring 高温监测"
       href: rstudio.html

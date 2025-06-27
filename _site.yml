@@ -5,11 +5,11 @@ navbar:
   right:
     - text: "About 研究概述"
       href: About.html
-    - text: "Rental Price Prediction 租房价格分析"
+    - text: "Rent Prediction 租房价格分析"
       href: python.html
-    - text: "Heat Wave Monitoring 高温监测"
+    - text: "Heat Monitoring 高温监测"
       href: rstudio.html
-    - text: "COVID-19 Dashboard 新冠疫情地图"
+    - text: "COVID-19 Map 新冠地图"
       href: gis.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>

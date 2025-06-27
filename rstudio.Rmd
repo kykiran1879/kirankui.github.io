@@ -1,5 +1,5 @@
 ---
-title: "Project: Hot Summer"
+title: "Heat Wave Monitoring 高温监测"
 output:
   html_document:
     toc: TRUE
@@ -18,7 +18,7 @@ library(lubridate)
 library(plotly)
 ```
 
-> *“Boston’s 2023 summer saw record heat waves 🌡️, pushing the city to declare heat emergencies 🏘. Understanding where and how heat can occur has become increasingly important for shaping policy, strengthening community resilience, and ensuring climate preparedness across cities like Boston 🧭🌆. While agencies like MassDEP already collect extensive environmental monitoring data, the next step is to understand what it means—analyzing heat trends to help identify health risks ⚠️, guide targeted interventions, and inform city planning 📊🔍.”*
+> *“Boston’s 2023 summer saw record heat waves 🌡️, pushing the city to declare heat emergencies. Understanding where and how heat can occur has become increasingly important for shaping policy, strengthening community resilience, and ensuring climate preparedness across cities like Boston. While agencies like MassDEP already collect extensive environmental monitoring data, the next step is to understand what it means—analyzing heat trends to help identify health risks ⚠️, guide targeted interventions, and inform city planning.”*
 
 ---
 

@@ -3,13 +3,13 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: "About 研究概述"
       href: About.html
-    - text: "Project: AirBnb"
+    - text: "Rental Price Prediction 租房价格分析"
       href: python.html
-    - text: "Project: Hot Summer"
+    - text: "Heat Wave Monitoring 高温监测"
       href: rstudio.html
-    - text: "Project: COVID-19 Maps"
+    - text: "COVID-19 Dashboard 新冠疫情地图"
       href: gis.html
     - icon: fa-envelope fa-lg
       href: mailto:<yk2959@caa.columbia.com>

@@ -1,5 +1,5 @@
 ---
-title: "Project: AirBnb Rental Prices"
+title: "Rental Price Prediction 租房市场价格预测"
 output: 
   html_document:
     toc: TRUE
@@ -13,7 +13,7 @@ py_config()
 ```
 
 
-> *“2017 was a turning point for Airbnb 🏘️—major cities imposed new regulations to combat rising rents and housing shortages 🏙️📉, while public backlash grew over displacement and gentrification 😡. Airbnb’s valuation topped $30 billion 💰, and its launch of “Experiences” expanded tourism into everyday neighborhoods 🌐, raising concerns about infrastructure and community health. Since then, understanding what drives Airbnb prices—like guest reviews ⭐ and minimum stay requirements 📅—has become increasingly important for shaping policy, ensuring fair access to housing, and balancing tourism with local well-being 🧭🏘️.”*
+> *“2017 was a turning point for Airbnb 🏘️—major cities imposed new regulations to combat rising rents and housing shortages, while public backlash grew over displacement and gentrification. Airbnb’s valuation topped $30 billion, and its launch of “Experiences” expanded tourism into everyday neighborhoods, raising concerns about infrastructure and community health. Since then, understanding what drives Airbnb prices—like guest reviews and minimum stay requirements —has become increasingly important for shaping policy, ensuring fair access to housing, and balancing tourism with local well-being️.”*
 
 ---
 

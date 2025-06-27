@@ -1,5 +1,5 @@
 ---
-title: "Project: COVID-19 Maps"
+title: "COVID-19 Dashboard 新冠疫情地图"
 output: 
   html_document:
     toc: TRUE
